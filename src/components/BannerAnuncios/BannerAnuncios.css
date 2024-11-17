@@ -1,0 +1,9 @@
+.banner-anuncios {
+  width: 80%;
+  height: 367px;
+  background-color: white;
+  opacity: 60%;
+  border-radius: 15px;
+  position: relative;
+  margin: 20px 0; /* Asegura separación visual */
+}

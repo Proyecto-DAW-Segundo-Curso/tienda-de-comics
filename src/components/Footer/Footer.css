@@ -7,4 +7,11 @@
   justify-content: center;
   align-items: center;
   color: #FFFFFF;
+  font-size: 45px;
+}
+
+.social-icon{
+  margin: 0 10px 0 10px;
+  display: flex;
+  justify-content: center;
 }

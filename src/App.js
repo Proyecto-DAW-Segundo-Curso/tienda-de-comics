@@ -1,5 +1,6 @@
 import './App.css';
 import BannerAnuncios from './components/BannerAnuncios/BannerAnuncios';
+import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import Tendencias from './components/Tendencias/Tendencias';
 
@@ -18,7 +19,7 @@ function App() {
         </section>
       </main>
       <footer>
-
+        <Footer />
       </footer>
     </div>
 

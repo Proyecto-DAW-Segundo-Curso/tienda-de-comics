@@ -1,0 +1,7 @@
+.contenedor-busqueda{
+    margin: 15px;
+    display: flex;
+    background-color: #FFFFFF;
+    padding: 0 15px 0 15px;
+    border-radius: 25px;
+}

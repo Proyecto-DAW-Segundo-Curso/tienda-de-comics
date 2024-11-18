@@ -1,22 +1,27 @@
+import { useState } from 'react';
 import './App.css';
-import BannerAnuncios from './components/BannerAnuncios/BannerAnuncios';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
-import Tendencias from './components/Tendencias/Tendencias';
+import Home from './components/Home/Home';
+import FormLogin from './components/FormLogin/FormLogin';
 
 function App() {
+
+  const [componenteMostrado, setComponenteMostrado] = useState('home')
+
+  const manejarNavegacion = (componete) => {
+
+    setComponenteMostrado(componete)
+  }
+
   return (
     <div className="App">
       <header>
-        <Header />
+        <Header navegarHacia={manejarNavegacion} />
       </header>
       <main>
-        <section>
-          <BannerAnuncios />
-        </section>
-        <section>
-          <Tendencias />
-        </section>
+        {componenteMostrado === "home" && <Home />}
+        {componenteMostrado === "login" && <FormLogin />}
       </main>
       <footer>
         <Footer />

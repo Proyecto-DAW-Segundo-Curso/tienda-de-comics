@@ -1,0 +1,17 @@
+.footer {
+  width: 100%;
+  min-height: 60px;
+  background: linear-gradient(to top, #000000, #5c5c5c);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: #FFFFFF;
+  font-size: 45px;
+}
+
+.social-icon{
+  margin: 0 10px 0 10px;
+  display: flex;
+  justify-content: center;
+}

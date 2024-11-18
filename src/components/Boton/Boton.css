@@ -10,4 +10,10 @@
     margin: 15px;
     background: linear-gradient(to right, #FFFFFF, #62D0FF); /* Cambia los colores como prefieras */
     font-weight: bold;
+    cursor: pointer;
+
 }
+
+.boton:hover {
+    background-color: #0056b3;
+  }

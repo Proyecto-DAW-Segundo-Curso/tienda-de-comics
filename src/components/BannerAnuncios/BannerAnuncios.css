@@ -1,19 +1,20 @@
 .banner-anuncios {
   width: 80%;
   height: 367px;
-  background-color: white;
-  opacity: 60%;
+  background-color: rgba(255, 255, 255, 0.6); /*(Gon) He quitado la opacity porque quitaba luz a las img del slider*/   
   border-radius: 15px;
   position: relative;
   margin: 20px 0; /* Asegura separación visual */
 }
 
 .contenedor-anuncios{
-height: 90%;
+height: 100%;
 width: 100%;
 display: flex;
 justify-content: center;
 align-items: center;
+overflow: hidden;
+position: relative;
 }
 
 .boton-circular{
@@ -27,18 +28,22 @@ align-items: center;
 }
 
 .anuncios{
-  width: 70%;
+  width: 90%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   opacity: 100%;
+  user-select: none ;
 
 }
 
 .noticia{
-  width: 80%;
-  border-radius: 0;
+ max-width: 100%;
+ max-height: 80%;
+ object-fit: contain;
+ border-radius: 0;
+
 }
 
 .contenedor-circulos{
@@ -47,6 +52,10 @@ align-items: center;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.boton-circular:hover{
+  color:#D22076;
 }
 
 .circulo{
@@ -58,7 +67,7 @@ align-items: center;
   margin: 3px;
 }
 
-.selected{
-    background-color: #7D8081;
+.seleccionada{
+    background-color: #D22076;
 
 }

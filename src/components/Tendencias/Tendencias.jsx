@@ -16,7 +16,7 @@ function Tendencias() {
           <PortadaComic className='portadas-imagenes'/>
           <PortadaComic className='portadas-imagenes'/>
           <PortadaComic className='portadas-imagenes'/>
-          <PortadaComic className='portadas-imagenes'/>
+         
         </div>
         <div className="paginado">
           <Paginado></Paginado>

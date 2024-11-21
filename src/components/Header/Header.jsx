@@ -11,7 +11,7 @@ function Header({navegarHacia}) {
     <div className='header'>
       <div className='contenedor-logo-botones'>
         <div className='contenedor-logo'>
-          <img src={Logo} alt="logo" />
+          <img className='imagen-logo' src={Logo} alt="logo" /> {/* he puesto una clase a la imagen porque si ponemos directamente los estilos a la etuqieta img, afecta a todas las imagenes del proyecto */}
         </div>
 
         <div className='contenedor-botones'>

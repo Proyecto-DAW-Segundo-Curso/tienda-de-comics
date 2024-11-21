@@ -1,5 +1,7 @@
-import React from 'react'
-import Datos from "../../data/data.json";
+import React from 'react';
+import Datos from '../../data/data.json';
+import portada from '../../img/portadaPrueba.png';
+import './PortadaComic.css';
 
 function PortadaComic() {
 
@@ -7,10 +9,14 @@ function PortadaComic() {
   console.log(datos);
 
   return (
-    <div>
-      <h1>Hola</h1>
+    <div className='contenedor-imagen'>
+      <img 
+        src={portada} 
+        alt="portada1"
+        className='imagen-portada' 
+      />
     </div>
   )
 }
 
-export default PortadaComic
+export default PortadaComic;

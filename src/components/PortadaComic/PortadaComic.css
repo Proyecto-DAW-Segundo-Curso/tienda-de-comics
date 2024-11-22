@@ -1,0 +1,16 @@
+.contenedor-imagen{
+    height: 650px;
+    margin-bottom: 50px;
+}
+
+
+.imagen-portada{
+    border-radius: 0;
+    object-fit: cover; /*ajusta la imagen al borde del contenedor*/
+    height: 100%;
+    margin: 50px;
+    
+
+}
+
+

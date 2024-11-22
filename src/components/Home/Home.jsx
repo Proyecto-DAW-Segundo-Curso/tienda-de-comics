@@ -1,6 +1,6 @@
-import React from 'react'
-import BannerAnuncios from '../BannerAnuncios/BannerAnuncios'
-import Tendencias from "../Tendencias/Tendencias";
+import React from 'react';
+import BannerAnuncios from '../BannerAnuncios/BannerAnuncios';
+import Tendencias from "../Tendencias/Tendencias1";
 
 function Home() {
   return (

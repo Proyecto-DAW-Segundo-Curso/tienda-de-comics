@@ -14,7 +14,6 @@ function BarraBusqueda() {
         <div className='icono-busqueda'>
           <FaSistrix />
         </div>
-
       </div>
     </div>
   )

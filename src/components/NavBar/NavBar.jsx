@@ -12,6 +12,6 @@ function NavBar({navegarNavBar}) {
       <Boton>ESPECIALES</Boton>
     </div>
   )
-}
+} 
 
 export default NavBar

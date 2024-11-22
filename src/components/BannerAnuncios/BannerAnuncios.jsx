@@ -17,8 +17,6 @@ function BannerAnuncios() {
         <div className="boton-circular">
           <PiArrowCircleRightLight />
         </div>
-
-
       </div>
       <div className="contenedor-circulos">
         <div className="circulo"></div>
@@ -28,7 +26,6 @@ function BannerAnuncios() {
         <div className="circulo"></div>
         <div className="circulo selected"></div>
       </div>
-
     </div>
   )
 }

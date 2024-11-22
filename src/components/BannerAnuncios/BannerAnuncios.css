@@ -9,11 +9,11 @@
 }
 
 .contenedor-anuncios{
-height: 90%;
-width: 100%;
-display: flex;
-justify-content: center;
-align-items: center;
+  height: 90%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .boton-circular{
@@ -59,6 +59,6 @@ align-items: center;
 }
 
 .selected{
-    background-color: #7D8081;
+  background-color: #7D8081;
 
 }

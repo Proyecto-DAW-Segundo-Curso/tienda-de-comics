@@ -72,6 +72,7 @@ useEffect(()=>{
           <div  
             key={index}
             className={`circulo ${index === imgActual ? 'seleccionada' : ''}`}
+            onClick={()=>setImg(index)}
           ></div>
         ))}
       </div>

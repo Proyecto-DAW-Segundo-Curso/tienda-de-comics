@@ -3,7 +3,7 @@ import "./Tendencias.css";
 import Boton from '../Boton/Boton';
 import PortadaComic from '../PortadaComic/PortadaComic';
 import Paginado from '../Paginado/Paginado';
-import { Routes, Route } from 'react-router-dom';
+// import { Routes, Route } from 'react-router-dom';
 
 
 function Tendencias() {
@@ -21,7 +21,7 @@ function Tendencias() {
          
         </div>
         <div className="paginado">
-          <Paginado>
+          {/* <Paginado>
             <Routes>
               <nav>
                 <ul>
@@ -37,7 +37,7 @@ function Tendencias() {
                 </ul>
               </nav>
             </Routes>
-          </Paginado>
+          </Paginado> */}
         </div>
       </div>
 

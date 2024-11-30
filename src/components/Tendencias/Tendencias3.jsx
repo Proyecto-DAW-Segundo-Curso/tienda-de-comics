@@ -1,7 +1,7 @@
 import React from 'react';
 import "./Tendencias.css";
 import Boton from '../Boton/Boton';
-import {PortadaComic, PortadaComic2} from '../../PortadaComic/PortadaComic';
+import PortadaComic from '../../PortadaComic/PortadaComic';
 import Paginado from '../Paginado/Paginado';
 import { Routes, Route } from 'react-router-dom';
 
@@ -13,11 +13,11 @@ function Tendencias() {
       </div>
       <div className="contenedor-portadas">
         <div className="contenedor-imagenes">
-          <PortadaManga className='portadas-imagenes'/>
           <PortadaComic className='portadas-imagenes'/>
-          <PortadaManga className='portadas-imagenes'/>
           <PortadaComic className='portadas-imagenes'/>
-          <PortadaManga className='portadas-imagenes'/>
+          <PortadaComic className='portadas-imagenes'/>
+          <PortadaComic className='portadas-imagenes'/>
+          <PortadaComic className='portadas-imagenes'/>
           <PortadaComic className='portadas-imagenes'/>
         </div>
         <div className="paginado">

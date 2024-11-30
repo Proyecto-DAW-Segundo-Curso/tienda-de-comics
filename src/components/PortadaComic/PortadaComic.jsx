@@ -1,9 +1,9 @@
 import React from 'react';
 import Datos from '../../data/data.json';
-import portada from '../../img/portadaManga.png';
+import portada from '../../img/portadaComic.png';
 import './PortadaComic.css';
 
-function PortadaComic1() {
+function PortadaComic() {
 
   const datos = Datos;
   console.log(datos);
@@ -15,8 +15,11 @@ function PortadaComic1() {
         alt="portada1"
         className='imagen-portada' 
       />
+      <div className="texto">
+        
+      </div>
     </div>
   )
 }
 
-export default PortadaComic1;
+export default PortadaComic;

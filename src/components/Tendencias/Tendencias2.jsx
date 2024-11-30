@@ -13,12 +13,12 @@ function Tendencias() {
       </div>
       <div className="contenedor-portadas">
         <div className="contenedor-imagenes">
-          <PortadaComic2 className='portadas-imagenes'/>
-          <PortadaComic2 className='portadas-imagenes'/>
-          <PortadaComic2 className='portadas-imagenes'/>
-          <PortadaComic2 className='portadas-imagenes'/>
-          <PortadaComic2 className='portadas-imagenes'/>
-          <PortadaComic2 className='portadas-imagenes'/>
+          <PortadaComic className='portadas-imagenes'/>
+          <PortadaComic className='portadas-imagenes'/>
+          <PortadaComic className='portadas-imagenes'/>
+          <PortadaComic className='portadas-imagenes'/>
+          <PortadaComic className='portadas-imagenes'/>
+          <PortadaComic className='portadas-imagenes'/>
         </div>
         <div className="paginado">
           <Paginado>

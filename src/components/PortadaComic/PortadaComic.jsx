@@ -1,6 +1,6 @@
 import React from 'react';
 import Datos from '../../data/data.json';
-import portada from '../../img/portadaPrueba.png';
+import portada from '../../img/portadaComic.png';
 import './PortadaComic.css';
 
 function PortadaComic() {
@@ -15,6 +15,9 @@ function PortadaComic() {
         alt="portada1"
         className='imagen-portada' 
       />
+      <div className="texto">
+        
+      </div>
     </div>
   )
 }

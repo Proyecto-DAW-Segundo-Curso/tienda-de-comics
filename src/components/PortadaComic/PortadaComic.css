@@ -1,5 +1,5 @@
 .contenedor-imagen{
-    height: 650px;
+    height: 500px;
     margin-bottom: 50px;
 }
 
@@ -9,8 +9,6 @@
     object-fit: cover; /*ajusta la imagen al borde del contenedor*/
     height: 100%;
     margin: 50px;
-    
-
 }
 
 

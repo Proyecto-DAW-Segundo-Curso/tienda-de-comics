@@ -1,8 +1,10 @@
-import React from 'react'
+import React from 'react';
 import "./Tendencias.css";
 import Boton from '../Boton/Boton';
 import PortadaComic from '../PortadaComic/PortadaComic';
-import Paginado from '../Paginado/Paginado'
+import Paginado from '../Paginado/Paginado';
+import { Routes, Route } from 'react-router-dom';
+
 
 function Tendencias() {
   return (
@@ -19,12 +21,28 @@ function Tendencias() {
          
         </div>
         <div className="paginado">
-          <Paginado></Paginado>
+          <Paginado>
+            <Routes>
+              <nav>
+                <ul>
+                  <li>
+                    <Route to='/Tendencias1'>1</Route>
+                  </li>
+                  <li>
+                    <Route to='/Tendencias2'>2</Route>
+                  </li>
+                  <li>
+                    <Route to='/Tendencias3'>3</Route>
+                  </li>
+                </ul>
+              </nav>
+            </Routes>
+          </Paginado>
         </div>
       </div>
-      
+
     </div>
-  )
+  );
 }
 
-export default Tendencias
+export default Tendencias;

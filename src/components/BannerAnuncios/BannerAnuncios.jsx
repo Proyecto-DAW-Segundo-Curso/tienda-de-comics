@@ -63,8 +63,6 @@ useEffect(()=>{
         <div className="boton-circular" onClick={haciaAdelante}>
           <PiArrowCircleRightLight />
         </div>
-
-
       </div>
        <div className="contenedor-circulos">
         {/* Utilizamos el mapeado, si imgActual coincide con index de circulo pasa clase de este a seleccionada */}
@@ -75,7 +73,6 @@ useEffect(()=>{
           ></div>
         ))}
       </div>
-
     </div>
   )
 }

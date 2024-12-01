@@ -1,14 +1,22 @@
-.contenedor-imagen{
-    height: 500px;
-    margin-bottom: 50px;
+.contenedor-imagen {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
 
+.contenedor-imagen  img {
+    height: 100%;
+    object-fit: cover;
+    display: block; 
+    border-radius: 5px;
+}
 
-.imagen-portada{
+/* .imagen-portada{
     border-radius: 0;
-    object-fit: cover; /*ajusta la imagen al borde del contenedor*/
+    object-fit: cover; /*ajusta la imagen al borde del contenedor
     height: 100%;
     margin: 50px;
-}
-
-
+} */

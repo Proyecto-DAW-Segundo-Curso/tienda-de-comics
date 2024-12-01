@@ -1,23 +1,15 @@
 import React from 'react';
-import Datos from '../../data/data.json';
-import portada from '../../img/portadaComic.png';
 import './PortadaComic.css';
 
-function PortadaComic() {
-
-  const datos = Datos;
-  console.log(datos);
+function PortadaComic({src, alt}) {
 
   return (
     <div className='contenedor-imagen'>
-      <img 
-        src={portada} 
-        alt="portada1"
-        className='imagen-portada' 
+      <img
+        // className='imagen-portada'
+        src={src}
+        alt={alt}
       />
-      <div className="texto">
-        
-      </div>
     </div>
   )
 }

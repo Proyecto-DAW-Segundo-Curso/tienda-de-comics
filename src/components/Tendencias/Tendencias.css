@@ -1,7 +1,8 @@
 .tendencias {
     width: 80%;
     min-height: 367px;
-    margin: 20px auto; /* Centrado horizontal */
+    margin: 20px auto;
+    /* Centrado horizontal */
     position: relative;
 }
 
@@ -14,29 +15,31 @@
     border-radius: 15px 15px 0 0;
 }
 
-.contenedor-portadas {
+.contenedor-comics {
     width: 100%;
-    min-height: 315px; /* Se adapta a las imágenes */
-    background-color: white;
+    min-height: 315px;
+    /* Se adapta a las imágenes */
+    background-color: rgba(255, 255, 255, 0.65);
     border-radius: 0 0 15px 15px;
-    padding-bottom: 50px; /* Espacio para evitar que las imágenes queden muy juntas del borde */
-    opacity: 60%;
+    /* padding-bottom: 50px; Espacio para evitar que las imágenes queden muy juntas del borde */
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 10px;
 }
 
-.contenedor-imagenes {
+/* .contenedor-imagenes {
     padding: 10px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: flex-start;
-}
+} */
 
-.contenedor-paginado {
+/* .contenedor-paginado {
     display: flex;
     justify-content: center; 
-}
-
-
+} */

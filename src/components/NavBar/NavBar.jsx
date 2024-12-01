@@ -10,6 +10,7 @@ function NavBar({navegarNavBar}) {
       <Boton>MANGA</Boton>
       <Boton>NOVEDADES</Boton>
       <Boton>ESPECIALES</Boton>
+      <Boton onClick={() => navegarNavBar("zona-usuario")}>ZONA USUARIO</Boton>
     </div>
   )
 } 

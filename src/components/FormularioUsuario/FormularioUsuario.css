@@ -1,0 +1,46 @@
+.formulario-usuario {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .formulario-usuario label {
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+  }
+  
+  .formulario-usuario input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 4px;
+  }
+  
+  .botones-formulario {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .btn {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .btn-cancelar {
+    background-color: red;
+  }
+  
+  .btn-cancelar:hover {
+    background-color: darkred;
+  }
+  

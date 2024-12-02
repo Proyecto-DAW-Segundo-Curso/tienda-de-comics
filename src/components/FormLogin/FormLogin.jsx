@@ -1,6 +1,8 @@
 import React from 'react'
 import './FormLogin.css'
 import Boton from '../Boton/Boton'
+import FormRegistro from '../FormRegistro/FormRegistro.jsx';
+
 
 function FormLogin() {
   return (
@@ -16,7 +18,7 @@ function FormLogin() {
           <label htmlFor="contrasenia">Contraseña</label>
           <input type="text" name="contrasenia" id="contrasenia" />
           <Boton>INICIAR SESIÓN</Boton>
-          <p>¿No tiene cuenta? <a href="#">Regístrate aquí</a></p>
+          <p>¿No tiene cuenta? <a href={FormRegistro}>Regístrate aquí</a></p>
         </div>
       </div>
     </section>

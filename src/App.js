@@ -3,6 +3,7 @@ import './App.css';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import Home from './components/Home/Home';
+import FormRegistro from './components/FormRegistro/FormRegistro';
 import FormLogin from './components/FormLogin/FormLogin';
 import ZonaUsuario from './components/ZonaUsuario/ZonaUsuario';
 import Intercambio from './components/Intercambio/Intercambio';
@@ -20,9 +21,10 @@ function App() {
   return (
     <div className="App">
       <header>
-        <Header navegarHacia={manejarNavegacion} />
+        <Header/>
       </header>
       <main>
+
         {componenteMostrado === "home" && <Home />}
         
         {componenteMostrado === "login" && <FormLogin />}

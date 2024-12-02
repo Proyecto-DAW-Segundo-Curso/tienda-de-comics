@@ -21,7 +21,7 @@ function App() {
   return (
     <div className="App">
       <header>
-        <Header/>
+      <Header navegarHacia={manejarNavegacion} />
       </header>
       <main>
 

@@ -1,7 +1,12 @@
 .formulario-usuario {
+    width: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 12px;
+    border-radius: 0 0 15px 15px;
+    background-color: #f9f9f9;
+    padding: 20px;
   }
   
   .formulario-usuario label {
@@ -18,11 +23,13 @@
   }
   
   .botones-formulario {
+    width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
   }
   
   .btn {
+    width: 100%;
     padding: 8px 16px;
     background-color: #007bff;
     color: #fff;

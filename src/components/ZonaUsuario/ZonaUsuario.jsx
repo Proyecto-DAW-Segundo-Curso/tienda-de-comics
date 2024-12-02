@@ -17,7 +17,9 @@ const ZonaUsuario = () => {
 
   return (
     <div className="zona-usuario">
-      <h2>Zona de Usuario</h2>
+      <div className="contenedor-titulo">      
+        <h2>Zona de Usuario</h2>
+      </div>
       {modoEdicion ? (
         <FormularioUsuario
           datosUsuario={usuario}

@@ -4,6 +4,9 @@ import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import Home from './components/Home/Home';
 import FormLogin from './components/FormLogin/FormLogin';
+import Intercambio from './components/Intercambio/Intercambio';
+import ofertas from './data/intercambios.json';
+
 
 function App() {
 
@@ -21,7 +24,12 @@ function App() {
       </header>
       <main>
         {componenteMostrado === "home" && <Home />}
+        
         {componenteMostrado === "login" && <FormLogin />}
+
+        {componenteMostrado === "intercambio" && <Intercambio ofertas={ofertas} />}
+        
+        
       </main>
       <footer>
         <Footer />

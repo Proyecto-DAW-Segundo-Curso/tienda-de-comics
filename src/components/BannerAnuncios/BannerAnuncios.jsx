@@ -12,7 +12,7 @@ import { useState, useEffect } from 'react';
 
 function BannerAnuncios() {
   //Array que contendrá todas las imagenes que queramos meterle al carrusel
-const imgCarrusel = [Noticia1, Noticia2, Noticia3,Noticia4, Noticia5];
+const imgCarrusel = [Noticia1, Noticia2, Noticia3, Noticia4, Noticia5];
 // Usestate que contendrá los estados del carrusel
 const [imgActual, setImg] = useState(0);
 
@@ -42,9 +42,9 @@ const haciaAdelante = ()=>{
 useEffect(()=>{
   const timer = setInterval(()=>{
     haciaAdelante();
-  },5000);
+  },3000);
 
-  return () => clearInterval(timer); //limpia el intervalo para que no se vuelva loco si deja de utilizarse
+  return () => clearInterval(timer);     //limpia el intervalo para que no se vuelva loco si deja de utilizarse
 
 },[imgActual])
 
@@ -70,6 +70,7 @@ useEffect(()=>{
           <div  
             key={index}
             className={`circulo ${index === imgActual ? 'seleccionada' : ''}`}
+            onClick={()=>setImg(index)}
           ></div>
         ))}
       </div>

@@ -5,6 +5,8 @@ import Header from './components/Header/Header';
 import Home from './components/Home/Home';
 import FormLogin from './components/FormLogin/FormLogin';
 import ZonaUsuario from './components/ZonaUsuario/ZonaUsuario';
+import Intercambio from './components/Intercambio/Intercambio';
+import ofertas from './data/intercambios.json';
 
 function App() {
 
@@ -22,8 +24,13 @@ function App() {
       </header>
       <main>
         {componenteMostrado === "home" && <Home />}
+        
         {componenteMostrado === "login" && <FormLogin />}
+
         {componenteMostrado === "zona-usuario" && <ZonaUsuario />}
+
+        {componenteMostrado === "intercambio" && <Intercambio ofertas={ofertas} />}
+                
       </main>
       <footer>
         <Footer />

@@ -14,6 +14,6 @@ function NavBar({navegarNavBar}) {
       <Boton onClick={() => navegarNavBar("intercambio")}>INTERCAMBIO</Boton>
     </div>
   )
-}
+} 
 
 export default NavBar

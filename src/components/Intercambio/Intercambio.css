@@ -1,0 +1,98 @@
+
+.intercambio-contenedor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tarjetas-container {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: center;
+  gap: 20px; /* Espaciado entre las tarjetas */
+  max-width: 1000px; 
+}
+
+.tarjeta-oferta {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 45%;
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s;
+}
+
+.tarjeta-oferta img {
+  width: 40%;
+  height: auto;
+}
+
+.tarjeta-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+  width: 60%;
+}
+
+/* Botones */
+.tarjeta-botones {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.boton-oferta,
+.boton-puntuacion button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  border-radius: 4px;
+}
+
+.boton-puntuacion {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.boton-puntuacion span {
+  margin-left: 10px;
+  color: #ffcc00;
+}
+
+.boton-oferta:hover,
+.boton-puntuacion button:hover {
+  background-color: #218838;
+}
+
+.tarjeta-oferta:hover {
+  transform: translateY(-5px);
+}
+
+
+
+/* Para pantallas pequeñas */
+@media (max-width: 768px) {
+  .tarjeta-oferta {
+    width: 200px; /* Tarjetas más pequeñas en pantallas pequeñas */
+    height: 300px;
+  }
+}
+
+/* Para pantallas aún más pequeñas */
+@media (max-width: 480px) {
+  .tarjeta-oferta {
+    width: 150px; /* Aún más pequeñas en móviles */
+    height: 250px;
+  }
+}

@@ -10,7 +10,7 @@ body {
   color: #000;
   background-image: url(./img/background-page.jpg);
   background-size: 200vw;
-  background-repeat: no-repeat;
+  background-repeat: repeat;
   font-family: Lato, sans-serif;
 
 }

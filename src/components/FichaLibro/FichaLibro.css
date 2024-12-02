@@ -1,0 +1,40 @@
+.ficha-libro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30%;
+  max-width: 500px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+  opacity: 100%;
+  margin: 5px;
+}
+
+.ficha-libro:hover {
+  transform: scale(1.05);
+}
+
+.info-comic {
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  margin: 15px;
+  text-align: center;
+  min-height: 200px;
+}
+
+.info-comic h3 {
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.info-comic p {
+  font-size: 14px;
+  margin: 4px 0;
+  color: #555;
+}

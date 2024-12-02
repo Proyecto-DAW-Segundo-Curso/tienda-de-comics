@@ -1,0 +1,16 @@
+[
+    {
+      "titulo": "Spiderman",
+      "descripcion": "Primera edición en buen estado",
+      "precio": 50,
+      "vendedor": "Juan",
+      "imagen": "Spiderman_Marvel.png"
+    },
+    {
+      "titulo": "Weekly Shonen Jump Nº 6",
+      "descripcion": "Nuevo con portada exclusiva",
+      "precio": 20,
+      "vendedor": "Ana",
+      "imagen": "WeeklyShonenJumpNo6"
+    }
+  ]

@@ -31,4 +31,4 @@ function Header({navegarHacia}) {
   )
 }
 
-export default Header
+export default Header;

@@ -1,0 +1,105 @@
+.contenedor-carrito {
+    position: relative; /* Necesario para posicionar el contenido del carrito */
+    width: 70px;
+    height: 70px;
+    border: 5px solid rgb(245, 241, 241);
+    border-radius: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+}
+
+.contenedor-carrito:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.carrito {
+    width: 40px;
+    height: 40px;
+    color: #76D6FF;
+    transition: transform 0.2s ease;
+}
+
+.contenedor-carrito:hover .carrito {
+    transform: scale(1.1);
+}
+
+.carrito-contenido {
+    position: absolute;
+    top: 80px; /* Aparece justo debajo del ícono */
+    right: 0;
+    width: 300px;
+    max-height: 400px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow-y: auto;
+    opacity: 0; /* Oculto por defecto */
+    visibility: hidden; /* Oculto por defecto */
+    z-index: 1000; /* Para asegurar que esté sobre otros elementos */
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* Transiciones suaves */
+}
+
+.contenedor-carrito:hover .carrito-contenido,
+.carrito-contenido:hover {
+    opacity: 1; /* Visible cuando se interactúa */
+    visibility: visible; /* Visible cuando se interactúa */
+}
+
+.carrito-contenido h3 {
+    margin: 10px;
+    font-size: 1.2em;
+    color: #333;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
+.carrito-contenido ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.carrito-contenido li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.carrito-contenido li img {
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.carrito-contenido li span {
+    flex: 1;
+    font-size: 0.9em;
+    color: #555;
+}
+
+.carrito-contenido li button {
+    background-color: #ff6b6b;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.8em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.carrito-contenido li button:hover {
+    background-color: #ff4c4c;
+}
+
+.carrito-contenido p {
+    text-align: center;
+    padding: 20px;
+    font-size: 1em;
+    color: #888;
+}

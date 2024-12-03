@@ -12,8 +12,6 @@ function NavBar({navegarNavBar}) {
       <Boton>NOVEDADES</Boton>
       <Boton>ESPECIALES</Boton>
       <Boton onClick={() => navegarNavBar("intercambio")}>INTERCAMBIO</Boton>
-      <Boton onClick={() => navegarNavBar("zona-usuario")}>ZONA USUARIO</Boton>
-
     </div>
   )
 } 

@@ -2,13 +2,9 @@ import React, { useState } from "react";
 import FormularioUsuario from "../FormularioUsuario/FormularioUsuario";
 import "./ZonaUsuario.css";
 
-const ZonaUsuario = () => {
+const ZonaUsuario = ({usuarioLogado}) => {
   const [modoEdicion, setModoEdicion] = useState(false);
-  const [usuario, setUsuario] = useState({
-    nombre: "Juan Pérez",
-    email: "juan.perez@example.com",
-    contraseña: "********", // No mostrar la contraseña real
-  });
+  const [usuario, setUsuario] = useState(usuarioLogado);
 
   const actualizarUsuario = (nuevosDatos) => {
     setUsuario(nuevosDatos);

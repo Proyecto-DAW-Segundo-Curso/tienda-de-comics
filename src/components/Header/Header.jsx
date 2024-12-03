@@ -15,7 +15,7 @@ function Header({navegarHacia}) {
         </div>
 
         <div className='contenedor-botones'>
-          <Boton onClick={() => navegarHacia("login")}>MI CUENTA</Boton>
+          <Boton onClick={() => navegarHacia("/login")}>MI CUENTA</Boton>
           <div className="barra-busqueda-carrrito">
             <BarraBusqueda />
             

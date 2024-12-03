@@ -4,7 +4,8 @@ import Boton from '../Boton/Boton'
 import FormRegistro from '../FormRegistro/FormRegistro.jsx';
 
 
-function FormLogin() {
+function FormLogin(navegarHacia) {
+
   return (
     <section>
       <div className='form-login'>
@@ -18,7 +19,7 @@ function FormLogin() {
           <label htmlFor="contrasenia">Contraseña</label>
           <input type="text" name="contrasenia" id="contrasenia" />
           <Boton>INICIAR SESIÓN</Boton>
-          <p>¿No tiene cuenta? <a href={FormRegistro}>Regístrate aquí</a></p>
+          <p>¿No tiene cuenta? <a onClick={() => navegarHacia("FormRegistro")}>Regístrate aquí</a></p>
         </div>
       </div>
     </section>

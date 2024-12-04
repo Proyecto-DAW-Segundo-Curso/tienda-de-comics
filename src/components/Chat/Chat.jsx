@@ -8,6 +8,7 @@ const Chat = ({ vendedor, onClose }) => {
   const enviarMensaje = () => {
     if (mensaje.trim() === '') return; // Evitar mensajes vacíos
     setConversacion([...conversacion, { quien: 'comprador', texto: mensaje }]);
+    //Guardar mensaje y la info del vendedor y comprador en una variable aquí, en esta línea
     setMensaje('');
   };
 

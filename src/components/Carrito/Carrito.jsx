@@ -9,7 +9,7 @@ function Carrito() {
   const handleRemoveFromCart = (productId) => {
     removeFromCart(productId);
   };
-
+    
   return (
     <div className="contenedor-carrito">
       <FiShoppingCart className='carrito' onClick={() => console.log(cart)} />
@@ -22,7 +22,7 @@ function Carrito() {
                 <li key={product.id}>
                   <img src={product.imagen} alt={product.titulo} width="50" />
                   <span>{product.titulo}</span>
-                  <span>{product.precio}</span>
+                  <span><strong>{product.precio}€</strong></span>
                   <button onClick={() => handleRemoveFromCart(product.id)}>Eliminar</button>
                 </li>
               ))}

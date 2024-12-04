@@ -18,7 +18,21 @@ function App() {
     setComponenteMostrado(componente);
   };
 
+  // `usuarioActual` almacena el estado del usuario actualmente logueado.
+  // Por defecto, se inicializa como `null`, indicando que nadie ha iniciado sesión.
+  // `setUsuarioActual` es la función para actualizar este estado.
+  const [usuarioActual, setUsuarioActual] = useState(null);
+
+  // `manejarLogin` es una función que se llamará cuando el usuario haya iniciado sesión con éxito.
+  // Recibe un objeto `usuario` como argumento.
+  const manejarLogin = (usuario) => {
+    // Actualizamos el estado `usuarioActual` con los datos del usuario que acaba de loguearse.
+    setUsuarioActual(usuario);
+    setComponenteMostrado("zona-usuario");
+  };
+
   return (
+
     <CartProvider>  {/* Envuelve la aplicación con el CartProvider */}
       <div className="App">
         <header>
@@ -35,6 +49,7 @@ function App() {
         </footer>
       </div>
     </CartProvider>
+
   );
 }
 

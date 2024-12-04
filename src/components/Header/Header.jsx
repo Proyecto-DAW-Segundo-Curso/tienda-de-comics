@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import Logo from '../../img/logo.jpg'
 import './Header.css'
 import Boton from '../Boton/Boton'

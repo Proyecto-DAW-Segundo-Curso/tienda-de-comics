@@ -2,13 +2,9 @@ import React, { useState } from "react";
 import FormularioUsuario from "../FormularioUsuario/FormularioUsuario";
 import "./ZonaUsuario.css";
 
-const ZonaUsuario = () => {
+const ZonaUsuario = ({ usuarioLogado }) => {
   const [modoEdicion, setModoEdicion] = useState(false);
-  const [usuario, setUsuario] = useState({
-    nombre: "Juan Pérez",
-    email: "juan.perez@example.com",
-    contraseña: "********", // No mostrar la contraseña real
-  });
+  const [usuario, setUsuario] = useState(usuarioLogado);
 
   const actualizarUsuario = (nuevosDatos) => {
     setUsuario(nuevosDatos);
@@ -17,7 +13,7 @@ const ZonaUsuario = () => {
 
   return (
     <div className="zona-usuario">
-      <div className="contenedor-titulo">      
+      <div className="contenedor-titulo">
         <h2>Zona de Usuario</h2>
       </div>
       {modoEdicion ? (
@@ -28,12 +24,26 @@ const ZonaUsuario = () => {
         />
       ) : (
         <div className="datos-usuario">
-          <p><strong>Nombre:</strong> {usuario.nombre}</p>
-          <p><strong>Email:</strong> {usuario.email}</p>
-          <p><strong>Contraseña:</strong> {usuario.contraseña}</p>
+          <div className="tarjeta-info">
+            <p><strong>Nombre:</strong> {usuario.nombre}</p>
+            <p><strong>Email:</strong> {usuario.email}</p>
+            <p><strong>Contraseña:</strong> {usuario.contraseña}</p>
+
+          </div>
+          <div className="tarjeta-opciones">
           <button onClick={() => setModoEdicion(true)} className="btn">
-            Modificar Datos
-          </button>
+              Modificar Datos
+            </button>
+            <button onClick={() => setModoEdicion(true)} className="btn">
+              Mis Comics
+            </button>
+            <button onClick={() => setModoEdicion(true)} className="btn">
+              Crear Oferta
+            </button>
+            <button onClick={() => setModoEdicion(true)} className="btn">
+              Mis Ofertas
+            </button>
+          </div>
         </div>
       )}
     </div>

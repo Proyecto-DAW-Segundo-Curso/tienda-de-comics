@@ -4,6 +4,7 @@
   align-items: center;
   width: 30%;
   max-width: 500px;
+  max-height: 550px;
   border: 1px solid #ddd;
   border-radius: 8px;
   overflow: hidden;
@@ -12,15 +13,13 @@
   transition: transform 0.2s ease-in-out;
   opacity: 100%;
   margin: 5px;
+  padding-top: 20px;
 }
 
-.ficha-libro:hover {
-  transform: scale(1.05);
-}
 
 .info-comic {
   display: flex;
-  align-items: start;
+  align-items: center;
   flex-direction: column;
   margin: 15px;
   text-align: center;
@@ -38,3 +37,5 @@
   margin: 4px 0;
   color: #555;
 }
+
+

@@ -1,9 +1,17 @@
-import React from 'react'
+import React from 'react';
 import PortadaComic from '../PortadaComic/PortadaComic';
 import './FichaLibro.css';
+import BotonComprar from '../BotonComprar/BotonComprar';
+import { useCart } from '../../CartContext/CartContext.js'; // Usar el contexto del carrito
 
 function FichaLibro({ comic }) {
+  const { addToCart } = useCart();  // Acceder a la función para agregar al carrito
+
   const { titulo, autor, editorial, genero, precio, stock, imagen } = comic;
+
+  const handleAddToCart = () => {
+    addToCart(comic);  // Agregar el cómic al carrito
+  };
 
   return (
     <div className="ficha-libro">
@@ -15,9 +23,10 @@ function FichaLibro({ comic }) {
         <p><strong>Género:</strong> {genero}</p>
         <p><strong>Precio:</strong> ${precio.toFixed(2)}</p>
         <p><strong>Stock:</strong> {stock}</p>
+        <BotonComprar onClick={handleAddToCart} />
       </div>
     </div>
   );
 }
 
-export default FichaLibro
+export default FichaLibro;

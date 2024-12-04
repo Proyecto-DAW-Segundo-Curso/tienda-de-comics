@@ -11,6 +11,7 @@
   justify-content: center;
   gap: 20px; /* Espaciado entre las tarjetas */
   max-width: 1000px; 
+  padding-top: 20px;
 }
 
 .tarjeta-oferta {
@@ -48,7 +49,7 @@
 
 .boton-oferta,
 .boton-puntuacion button {
-  background-color: #28a745;
+  background-color: #007bff;
   color: white;
   border: none;
   padding: 10px;
@@ -73,13 +74,9 @@
 .boton-oferta:hover,
 .boton-puntuacion button:hover {
   background-color: #218838;
+  transform: scale(1.03);
+  transition: transform 0.2s ease, color 0.2s ease;
 }
-
-.tarjeta-oferta:hover {
-  transform: translateY(-5px);
-}
-
-
 
 /* Para pantallas pequeñas */
 @media (max-width: 768px) {

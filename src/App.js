@@ -8,7 +8,7 @@ import FormLogin from './components/FormLogin/FormLogin';
 import ZonaUsuario from './components/ZonaUsuario/ZonaUsuario';
 import Intercambio from './components/Intercambio/Intercambio';
 import ofertas from './data/intercambios.json';
-import { CartProvider } from './CartContext/CartContext.js';  
+import { CartProvider } from './CartContext/CartContext.js';
 
 function App() {
 
@@ -40,8 +40,8 @@ function App() {
         </header>
         <main>
           {componenteMostrado === "home" && <Home />}
-          {componenteMostrado === "login" && <FormLogin />}
-          {componenteMostrado === "zona-usuario" && <ZonaUsuario />}
+          {componenteMostrado === "login" && <FormLogin onLogin={manejarLogin} />}
+          {componenteMostrado === "zona-usuario" && <ZonaUsuario usuarioLogado={usuarioActual} />}
           {componenteMostrado === "intercambio" && <Intercambio ofertas={ofertas} />}
         </main>
         <footer>

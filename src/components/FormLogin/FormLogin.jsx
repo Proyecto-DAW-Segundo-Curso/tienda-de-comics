@@ -77,7 +77,8 @@ function FormLogin({ onLogin }) {
           {error && <p className="error">{error}</p>}
           <button type="submit" className='boton'>INICIAR SESIÓN</button>
           {/* <Boton>INICIAR SESIÓN</Boton> */}
-          {/* <p>¿No tiene cuenta? <a href={FormRegistro}>Regístrate aquí</a></p> */}
+          
+          <p>¿No tiene cuenta?</p> <a href={FormRegistro}>Regístrate aquí</a>
         </form>
       </div>
     </section>

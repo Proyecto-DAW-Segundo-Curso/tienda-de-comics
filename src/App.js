@@ -9,8 +9,7 @@ import ZonaUsuario from './components/ZonaUsuario/ZonaUsuario';
 import Intercambio from './components/Intercambio/Intercambio';
 import ofertas from './data/intercambios.json';
 import { CartProvider } from './CartContext/CartContext.js';
-
-import { BrowserRouter,Routes,Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
 
@@ -19,6 +18,11 @@ function App() {
   // const manejarNavegacion = (componente) => {
   //   setComponenteMostrado(componente);
   // };
+
+  const manejarNavegacion = (ruta) => {
+    // Implementa lógica de navegación si es necesario
+    console.log(`Navegando hacia ${ruta}`);
+  };
 
   // // `usuarioActual` almacena el estado del usuario actualmente logueado.
   // // Por defecto, se inicializa como `null`, indicando que nadie ha iniciado sesión.
@@ -34,11 +38,11 @@ function App() {
   // };
 
   return (
-    
+
     <BrowserRouter>
 
-    <CartProvider>  {/* Envuelve la aplicación con el CartProvider */}
-      {/* <div className="App">
+      <CartProvider>  {/* Envuelve la aplicación con el CartProvider */}
+        {/* <div className="App">
         <header>
           <Header navegarHacia={manejarNavegacion} />
         </header>
@@ -51,22 +55,32 @@ function App() {
         </main>
         <footer>
           <Footer />
-        </footer>
+        </footer> 
 
       </div> */}
-     <Header/>
-      <Routes>
-       
-        <Route exact path="/" element={<Home />} />
-        <Route path="/header" element={<Header />} />
-        <Route path="/login" element={<FormLogin />} />
-        <Route path="/registro" element={<FormRegistro />} />
-    
 
-      </Routes>
-    
-    </CartProvider>
-</BrowserRouter>
+        <header>
+          <Header navegarHacia={manejarNavegacion} />
+        </header>
+        
+        <main>
+        <Routes>
+
+          <Route exact path="/" element={<Home />} />
+          <Route path="/header" element={<Header />} />
+          <Route path="/login" element={<FormLogin />} />
+          <Route path="/registro" element={<FormRegistro />} />
+          <Route path='/intercambio' element={< Intercambio ofertas={ofertas}/>} />
+          {/* <Route path='zona-usuario' element={<ZonaUsuario usuarioLogado={usuarioActual} />}/> */}
+        </Routes>
+        </main>
+
+        <footer>
+          <Footer />
+        </footer>
+
+      </CartProvider>
+    </BrowserRouter>
   );
 }
 

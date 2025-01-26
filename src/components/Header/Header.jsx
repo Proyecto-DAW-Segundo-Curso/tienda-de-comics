@@ -6,7 +6,7 @@ import Carrito from '../Carrito/Carrito'
 import { useNavigate } from 'react-router-dom'
 
 
-function Header({navegarHacia}) {
+function Header() {
 
   const navigate = useNavigate();
 

@@ -31,7 +31,7 @@
   align-items: center;
   gap: 8px;
   border-radius: 0 0 15px 15px;
-  background-color: #f9f9f9;
+  background-color: rgba(255, 255, 255, 0.65);
 }
 
 .tarjeta-opciones {

@@ -2,11 +2,11 @@
   {
     "nombre": "Juan Pérez",
     "email": "juan.perez@example.com",
-    "contraseña": "1234"
+    "contrasenia": "1234"
   },
   {
     "nombre": "Alan Brito Prieto",
     "email": "alan.brito@example.com",
-    "contraseña": "5678"
+    "contrasenia": "5678"
   }
 ]

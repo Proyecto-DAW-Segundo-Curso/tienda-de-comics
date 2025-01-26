@@ -41,6 +41,7 @@ function App() {
         <main>
           {componenteMostrado === "home" && <Home />}
           {componenteMostrado === "login" && <FormLogin onLogin={manejarLogin} />}
+          {componenteMostrado === "registro" && <FormRegistro />}
           {componenteMostrado === "zona-usuario" && <ZonaUsuario usuarioLogado={usuarioActual} />}
           {componenteMostrado === "intercambio" && <Intercambio ofertas={ofertas} />}
         </main>

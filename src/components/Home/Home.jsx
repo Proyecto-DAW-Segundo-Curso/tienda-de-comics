@@ -4,7 +4,6 @@ import Tendencias from "../Tendencias/Tendencias";
 import Comics from "../../data/comics.json";
 
 function Home() {
-  console.log("hola");
   
   return (
     <div>

@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import './FormLogin.css'
 import Boton from '../Boton/Boton'
-import FormRegistro from '../FormRegistro/FormRegistro.jsx';
 // Importamos el archivo JSON que contiene la lista de usuarios. Este archivo simula la base de datos.
-import usuarios from '../../data/usuarios.json';
-
+// import usuarios from '../../data/usuarios.json';
+import { useNavigate, Link, redirect } from 'react-router-dom';
 
 function FormLogin({ onLogin }) {
+
+  const navigate = useNavigate();
 
   // Estado local para almacenar el valor del campo `email`. Se inicializa como una cadena vacía.
   const [email, setEmail] = useState("");
@@ -19,13 +20,13 @@ function FormLogin({ onLogin }) {
   const [datoUsuarioActual, setDatoUsuarioActual] = useState(null);
 
   const cargarUsuarios = async () => {
-    const response = await fetch('http://localhost:3000/api/users');
+    const response = await fetch('http://localhost:3001/api/users');
     const data = await response.json();
     setDatoUsuarioActual(data);
   };
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/users')
+    fetch('http://localhost:3001/api/users')
       .then((res) => res.json())
       .then((data) => {
         setDatoUsuarioActual(data)
@@ -55,6 +56,8 @@ function FormLogin({ onLogin }) {
       // Limpiamos el mensaje de error en caso de que haya habido intentos fallidos anteriores.
       onLogin(usuario);
       // Llamamos a la función `onLogin` y le pasamos el usuario encontrado.
+      // Redirigir a `/zona-usuario` pasando el usuario logado en el estado.
+      navigate('/zona-usuario', { state: { usuarioLogado: usuario } });
     } else {
       // Si no encontramos un usuario que coincida:
       setError("Email o contraseña incorrectos");
@@ -77,7 +80,8 @@ function FormLogin({ onLogin }) {
           {error && <p className="error">{error}</p>}
           <button type="submit" className='boton'>INICIAR SESIÓN</button>
           {/* <Boton>INICIAR SESIÓN</Boton> */}
-          {/* <p>¿No tiene cuenta? <a href={FormRegistro}>Regístrate aquí</a></p> */}
+          
+          <p>¿No tiene cuenta?</p> <Link to="/registro">Regístrate aquí</Link>
         </form>
       </div>
     </section>

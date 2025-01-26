@@ -9,14 +9,20 @@ import ZonaUsuario from './components/ZonaUsuario/ZonaUsuario';
 import Intercambio from './components/Intercambio/Intercambio';
 import ofertas from './data/intercambios.json';
 import { CartProvider } from './CartContext/CartContext.js';
+import { BrowserRouter, Routes, Route, useNavigate, redirect } from 'react-router-dom';
 
 function App() {
 
-  const [componenteMostrado, setComponenteMostrado] = useState('home');
+  // const [componenteMostrado, setComponenteMostrado] = useState('home');
 
-  const manejarNavegacion = (componente) => {
-    setComponenteMostrado(componente);
-  };
+  // const manejarNavegacion = (componente) => {
+  //   setComponenteMostrado(componente);
+  // };
+
+  // const manejarNavegacion = (ruta) => {
+  //   // Implementa lógica de navegación si es necesario
+  //   console.log(`Navegando hacia ${ruta}`);
+  // };
 
   // `usuarioActual` almacena el estado del usuario actualmente logueado.
   // Por defecto, se inicializa como `null`, indicando que nadie ha iniciado sesión.
@@ -28,13 +34,15 @@ function App() {
   const manejarLogin = (usuario) => {
     // Actualizamos el estado `usuarioActual` con los datos del usuario que acaba de loguearse.
     setUsuarioActual(usuario);
-    setComponenteMostrado("zona-usuario");
+
   };
 
   return (
 
-    <CartProvider>  {/* Envuelve la aplicación con el CartProvider */}
-      <div className="App">
+    <BrowserRouter>
+
+      <CartProvider>  {/* Envuelve la aplicación con el CartProvider */}
+        {/* <div className="App">
         <header>
           <Header navegarHacia={manejarNavegacion} />
         </header>
@@ -47,10 +55,30 @@ function App() {
         </main>
         <footer>
           <Footer />
-        </footer>
-      </div>
-    </CartProvider>
+        </footer> 
 
+      </div> */}
+
+        <header>
+          <Header />
+        </header>
+        
+        <main>
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route path="/login" element={<FormLogin onLogin={manejarLogin}/>} />
+          <Route path="/registro" element={<FormRegistro />} />
+          <Route path='/intercambio' element={< Intercambio ofertas={ofertas}/>} />
+          <Route path='/zona-usuario' element={<ZonaUsuario usuarioLogado={usuarioActual} />}/>
+        </Routes>
+        </main>
+
+        <footer>
+          <Footer />
+        </footer>
+
+      </CartProvider>
+    </BrowserRouter>
   );
 }
 

@@ -3,9 +3,12 @@ import './Header.css'
 import Boton from '../Boton/Boton'
 import NavBar from '../NavBar/NavBar'
 import Carrito from '../Carrito/Carrito'
+import { useNavigate } from 'react-router-dom'
 
 
-function Header({navegarHacia}) {
+function Header() {
+
+  const navigate = useNavigate();
 
   return (
     <div className='header'>
@@ -16,14 +19,14 @@ function Header({navegarHacia}) {
        
         <div className='contenedor-botones'>
            
-          <Boton onClick={() => navegarHacia("login")}>MI CUENTA</Boton>
-          
+          <Boton onClick={() => navigate("/login")}>MI CUENTA</Boton>          
           <Carrito />
+
         </div>
 
       </div>
       <div>
-        <NavBar navegarNavBar={navegarHacia} />
+        <NavBar navegarNavBar={navigate} />
       </div>
 
     </div>

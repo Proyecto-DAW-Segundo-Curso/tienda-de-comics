@@ -27,7 +27,7 @@ const ZonaUsuario = ({ usuarioLogado }) => {
           <div className="tarjeta-info">
             <p><strong>Nombre:</strong> {usuario.nombre}</p>
             <p><strong>Email:</strong> {usuario.email}</p>
-            <p><strong>Contraseña:</strong> {usuario.contraseña}</p>
+            <p><strong>Contraseña:</strong> {usuario.contrasenia}</p>
 
           </div>
           <div className="tarjeta-opciones">

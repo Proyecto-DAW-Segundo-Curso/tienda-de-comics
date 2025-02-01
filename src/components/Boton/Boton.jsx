@@ -6,7 +6,7 @@ function Boton(props) {
   return (
     
     <div>
-      <div className='boton' onClick={props.onClick}>{props.children}</div>
+      <button type='submit' className='boton' onClick={props.onClick}>{props.children}</button>
     </div>
   )
 };

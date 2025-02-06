@@ -6,9 +6,23 @@ import Carrito from '../Carrito/Carrito'
 import { useNavigate } from 'react-router-dom'
 
 
-function Header() {
+function Header({usuarioActual, onLogout}) {
 
   const navigate = useNavigate();
+
+  const userOrNot = ()=>{
+    if(usuarioActual){
+      navigate('/zona-usuario')
+    }else{
+      navigate('/login'); 
+    }
+  }
+
+  const manejarLogout=() => {
+    localStorage.removeItem('token');
+    onLogout();
+    navigate('/')
+  }
 
   return (
     <div className='header'>
@@ -19,7 +33,14 @@ function Header() {
        
         <div className='contenedor-botones'>
            
-          <Boton onClick={() => navigate("/login")}>MI CUENTA</Boton>          
+            <Boton onClick={userOrNot}>
+              {usuarioActual ? 'Perfil':'Mi cuenta'}
+              </Boton> 
+              {usuarioActual && (
+            <Boton onClick={manejarLogout} className="boton-logout">
+              Cerrar sesión
+            </Boton>
+          )}         
           <Carrito />
 
         </div>

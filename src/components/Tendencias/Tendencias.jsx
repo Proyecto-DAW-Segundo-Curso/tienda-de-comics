@@ -1,10 +1,21 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "./Tendencias.css";
 import Boton from '../Boton/Boton';
 import FichaLibro from '../FichaLibro/FichaLibro';
 
 
-function Tendencias( {comics}) {
+function Tendencias() {
+
+  const [comics, setComics] = useState([])
+
+  useEffect(() => {
+    
+    fetch('http://localhost:3001/api/comics')
+    .then((res) => res.json())
+    .then((data) => setComics(data))
+
+  }, []);
+  
 
   return (
     <div className='tendencias'>

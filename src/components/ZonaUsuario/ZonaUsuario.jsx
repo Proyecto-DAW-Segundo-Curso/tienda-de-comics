@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import FormularioUsuario from "../FormularioUsuario/FormularioUsuario";
 import "./ZonaUsuario.css";
+import { useNavigate } from "react-router-dom";
 
 const ZonaUsuario = ({ usuarioLogado }) => {
+
   const [modoEdicion, setModoEdicion] = useState(false);
   const [usuario, setUsuario] = useState(usuarioLogado);
 
@@ -10,6 +12,8 @@ const ZonaUsuario = ({ usuarioLogado }) => {
     setUsuario(nuevosDatos);
     setModoEdicion(false);
   };
+
+  const navigate = useNavigate();
 
   return (
     <div className="zona-usuario">
@@ -34,7 +38,7 @@ const ZonaUsuario = ({ usuarioLogado }) => {
           <button onClick={() => setModoEdicion(true)} className="btn">
               Modificar Datos
             </button>
-            <button onClick={() => setModoEdicion(true)} className="btn">
+            <button onClick={() => navigate("/edit-comic")} className="btn">
               Admin Comics
             </button>
             <button onClick={() => setModoEdicion(true)} className="btn">

@@ -35,7 +35,7 @@ const ZonaUsuario = ({ usuarioLogado }) => {
               Modificar Datos
             </button>
             <button onClick={() => setModoEdicion(true)} className="btn">
-              Mis Comics
+              Admin Comics
             </button>
             <button onClick={() => setModoEdicion(true)} className="btn">
               Crear Oferta

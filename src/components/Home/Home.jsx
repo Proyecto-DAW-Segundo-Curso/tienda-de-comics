@@ -1,7 +1,6 @@
 import React from 'react';
 import BannerAnuncios from '../BannerAnuncios/BannerAnuncios';
 import Tendencias from "../Tendencias/Tendencias";
-import Comics from "../../data/comics.json";
 
 function Home() {
   
@@ -11,7 +10,7 @@ function Home() {
         <BannerAnuncios />
       </section>
       <section>
-        <Tendencias comics= {Comics} />
+        <Tendencias />
       </section>
 
     </div>

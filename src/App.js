@@ -36,6 +36,9 @@ function App() {
     setUsuarioActual(usuario);
 
   };
+  const manejarLogout = () => {
+    setUsuarioActual(null);
+  };
 
   return (
 
@@ -58,10 +61,11 @@ function App() {
         </footer> 
 
       </div> */}
-
+        <div className="App">
         <header>
-          <Header />
-        </header>
+        <Header usuarioActual={usuarioActual} onLogout={manejarLogout} />
+
+        </header> 
         
         <main>
         <Routes>
@@ -76,6 +80,7 @@ function App() {
         <footer>
           <Footer />
         </footer>
+        </div>
 
       </CartProvider>
     </BrowserRouter>

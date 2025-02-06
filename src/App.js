@@ -10,6 +10,8 @@ import Intercambio from './components/Intercambio/Intercambio';
 import ofertas from './data/intercambios.json';
 import { CartProvider } from './CartContext/CartContext.js';
 import { BrowserRouter, Routes, Route, useNavigate, redirect } from 'react-router-dom';
+import FormComic from './components/FormComic/FormComic.jsx';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
 
@@ -70,6 +72,7 @@ function App() {
           <Route path="/registro" element={<FormRegistro />} />
           <Route path='/intercambio' element={< Intercambio ofertas={ofertas}/>} />
           <Route path='/zona-usuario' element={<ZonaUsuario usuarioLogado={usuarioActual} />}/>
+          <Route path='/edit-comic' element={<FormComic />} />
         </Routes>
         </main>
 

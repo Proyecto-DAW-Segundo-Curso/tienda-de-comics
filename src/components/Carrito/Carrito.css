@@ -103,3 +103,9 @@
     font-size: 1em;
     color: #888;
 }
+
+#contenedor-boton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

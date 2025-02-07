@@ -48,7 +48,7 @@ const Intercambio = ({ ofertas }) => {
           {ofertas.map((oferta, index) => (
             <div className="tarjeta-oferta" key={index}>
               <img
-                src={imagenes[oferta.imagen] || 'ruta/respaldo.png'} //Dejamos ruta/respaldo.png como placeholder en caso de que pongamos una imagen de respaldo, pero demomento solo creamos la funcionalidad sin llamar a nada
+                src={imagenes[oferta.imagen] || 'ruta/respaldo.png'} //Dejamos ruta/respaldo.png como placeholder en caso de que pongamos una imagen de respaldo, pero de momento solo creamos la funcionalidad sin llamar a nada
                 alt={oferta.titulo}
               />
               <div className="tarjeta-info">

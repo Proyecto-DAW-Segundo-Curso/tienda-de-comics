@@ -2,6 +2,7 @@ import React from 'react';
 import { FiShoppingCart } from "react-icons/fi";
 import './Carrito.css';
 import { useCart } from '../../CartContext/CartContext.js'; // Usar el contexto del carrito
+import BotonFinalizar from '../BotonFinalizar/BotonFinalizar.jsx';
 
 function Carrito() {
   const { cart, removeFromCart } = useCart();
@@ -27,6 +28,9 @@ function Carrito() {
                 </li>
               ))}
             </ul>
+            <div id="contenedor-boton">
+              <BotonFinalizar id='fin'>FINALIZAR COMPRA</BotonFinalizar>
+            </div>
           </div>
         ) : (
           <p>El carrito está vacío</p>

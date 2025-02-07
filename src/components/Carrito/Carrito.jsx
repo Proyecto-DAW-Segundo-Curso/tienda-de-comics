@@ -10,7 +10,7 @@ function Carrito() {
   const handleRemoveFromCart = (productId) => {
     removeFromCart(productId);
   };
-    
+
   return (
     <div className="contenedor-carrito">
       <FiShoppingCart className='carrito' onClick={() => console.log(cart)} />
@@ -41,3 +41,4 @@ function Carrito() {
 }
 
 export default Carrito;
+//

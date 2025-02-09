@@ -34,31 +34,31 @@ function App() {
     <BrowserRouter>
 
       <CartProvider>  {/* Envuelve la aplicación con el CartProvider */}
-      <div className="App">
-        
-        <header>
-          <Header />
-        </header>
+        <div className="App">
 
-        <main>
-          <Routes>
-            <Route exact path="/" element={<Home />} />
-            <Route path="/login" element={<FormLogin onLogin={manejarLogin} />} />
-            <Route path="/registro" element={<FormRegistro />} />
-            <Route path='/intercambio' element={< Intercambio ofertas={ofertas} />} />
-            <Route path='/zona-usuario' element={<ZonaUsuario usuarioLogado={usuarioActual} />} />
-            <Route path='/edit-comic' element={<FormComic />} />
-            <Route path='/admin-comics' element={<AdminComics />} />
-            <Route path="/agregar-comic" element={<FormComic />} />
-            <Route path="/editar-comic/:id" element={<FormComic />} />
-          </Routes>
-        </main>
+          <header>
+            <Header />
+          </header>
 
-        <footer>
-          <Footer />
-        </footer>
-        </div> 
-              </CartProvider>
+          <main>
+            <Routes>
+              <Route exact path="/" element={<Home />} />
+              <Route path="/login" element={<FormLogin onLogin={manejarLogin} />} />
+              <Route path="/registro" element={<FormRegistro />} />
+              <Route path='/intercambio' element={< Intercambio ofertas={ofertas} />} />
+              <Route path='/zona-usuario' element={<ZonaUsuario usuarioLogado={usuarioActual} />} />
+              <Route path='/edit-comic' element={<FormComic />} />
+              <Route path='/admin-comics' element={<AdminComics />} />
+              <Route path="/agregar-comic" element={<FormComic />} />
+              <Route path="/editar-comic/:id" element={<FormComic />} />
+            </Routes>
+          </main>
+
+          <footer>
+            <Footer />
+          </footer>
+        </div>
+      </CartProvider>
     </BrowserRouter>
   );
 }

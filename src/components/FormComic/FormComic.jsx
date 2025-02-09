@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom'; // Importa useNavigate
+import './FormComic.css';
 
 function FormComic() {
   const { id } = useParams();
@@ -60,14 +61,14 @@ function FormComic() {
 
   return (
     <div className="container mt-5">
-      <form onSubmit={handleSubmit}>
-        <div className="card">
-          <div className="card-header bg-primary text-white">
-            {id ? 'EDITAR' : 'AGREGAR'}
-          </div>
-          <div className="card-body">
+      <div className="card">
+        <div className="card-header custom-header text-white fw-bold">
+          {id ? 'EDITAR' : 'AÑADIR'}
+        </div>
+        <div className="card-body custom-body">
+          <form onSubmit={handleSubmit}>
             <div className="row">
-              <div className="col-md-4">
+              <div className="col-md-6 fw-bold">
                 <div className="form-group">
                   <label htmlFor="imagen">Imagen</label>
                   <input
@@ -77,18 +78,19 @@ function FormComic() {
                     placeholder="Escribe aquí"
                     value={comic.imagen}
                     onChange={handleInputChange}
+                    style={{ marginBottom: "15px" }} // Margen entre input y la imagen
                   />
                 </div>
                 <div className="form-group">
                   <img
                     src={comic.imagen}
                     alt="Portada Comic"
-                    className="img-fluid"
+                    className="img-fluid rounded"
                     onError={(e) => (e.target.src = "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg")}
                   />
                 </div>
               </div>
-              <div className="col-md-8">
+              <div className="col-md-6 fw-bold">
                 <div className="form-group">
                   <label htmlFor="titulo">Título</label>
                   <input
@@ -163,18 +165,29 @@ function FormComic() {
                 </div>
               </div>
             </div>
-            <div className="row mt-3">
-              <div className="col-md-12">
-                <button type="submit" className="btn btn-primary btn-block">
-                  {id ? 'Actualizar Cómic' : 'Agregar Cómic'}
+  
+            <div className="row mt-3 d-flex justify-content-center">
+              <div className="col-md-6 d-flex justify-content-around">
+                <button
+                  type="submit"
+                  className="btn custom-button text-black fw-bold me-2"
+                >
+                  CONFIRMAR
+                </button>
+                <button
+                  type='button'
+                  className="btn custom-button text-black fw-bold"
+                  onClick={() => navigate('/admin-comics')}
+                >
+                  VOLVER
                 </button>
               </div>
             </div>
-          </div>
+          </form>
         </div>
-      </form>
+      </div>
     </div>
   );
-}
+  }
 
 export default FormComic;

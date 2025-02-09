@@ -35,7 +35,7 @@ const ZonaUsuario = ({ usuarioLogado }) => {
 
           </div>
           <div className="tarjeta-opciones">
-          <button onClick={() => setModoEdicion(true)} className="btn">
+            <button onClick={() => setModoEdicion(true)} className="btn">
               Modificar Datos
             </button>
             <button onClick={() => navigate("/admin-comics")} className="btn">

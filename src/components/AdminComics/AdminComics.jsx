@@ -18,7 +18,7 @@ function AdminComics() {
   }, []);
 
   useEffect(() => {
-    const results = comics.filter(comic => 
+    const results = comics.filter(comic =>
       comic.titulo.toLowerCase().includes(searchText.toLowerCase())
     );
     setFilteredComics(results);

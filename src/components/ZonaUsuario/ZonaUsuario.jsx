@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import FormularioUsuario from "../FormularioUsuario/FormularioUsuario";
 import "./ZonaUsuario.css";
 
@@ -7,6 +8,7 @@ const ZonaUsuario = () => {
   const [usuario, setUsuario] = useState(null); // Estado para los datos del usuario
   const [cargando, setCargando] = useState(true); // Indicador de carga
   const [error, setError] = useState(""); // Manejo de errores
+  const navigate = useNavigate()
 
   useEffect(() => {
     // Recuperar el token del localStorage
@@ -59,6 +61,34 @@ const ZonaUsuario = () => {
     return <p>{error}</p>; // Mostrar un mensaje de error si ocurrió un problema
   }
 
+  const eliminarCuenta = async () => {
+    const confirmar = window.confirm(" ¿Estás seguro de que quieres eliminar tu cuenta? Esta acción no se puede deshacer.");
+    if (!confirmar) return;
+
+    try {
+      const token = localStorage.getItem("token");
+      const response = await fetch(`http://localhost:3001/api/user/${usuario.id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert("Tu cuenta ha sido eliminada con éxito.");
+        localStorage.removeItem("token"); // Eliminar el token de autenticación
+        navigate("/"); // Redirigir a la página de inicio
+      } else {
+        alert(data.message || "Error al eliminar la cuenta.");
+      }
+    } catch (error) {
+      console.error("Error al eliminar cuenta:", error);
+      alert("Error en el servidor.");
+    }
+  };
+
   return (
     <div className="zona-usuario">
       <div className="contenedor-titulo">
@@ -90,6 +120,9 @@ const ZonaUsuario = () => {
             <button onClick={() => setModoEdicion(true)} className="btn">
               Mis Ofertas
             </button>
+            <button onClick={eliminarCuenta} className="btn btn-eliminar">
+            Eliminar Cuenta
+          </button>
           </div>
         </div>
       )}

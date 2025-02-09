@@ -1,6 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom'; // Importa useNavigate
 
 function FormComic() {
+  const { id } = useParams();
+  const navigate = useNavigate(); // Hook para redireccionar
+
   const [comic, setComic] = useState({
     titulo: '',
     autor: '',
@@ -8,8 +12,17 @@ function FormComic() {
     genero: '',
     precio: '',
     stock: '',
-    imagen: "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg", // Imagen por defecto
+    imagen: "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg",
   });
+
+  useEffect(() => {
+    if (id) {
+      fetch(`http://localhost:3001/api/comics/${id}`)
+        .then((res) => res.json())
+        .then((data) => setComic(data))
+        .catch((error) => console.error('Error al cargar el cómic:', error));
+    }
+  }, [id]);
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
@@ -19,9 +32,14 @@ function FormComic() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const method = id ? 'PUT' : 'POST';
+    const endpoint = id
+      ? `http://localhost:3001/api/comics/${id}`
+      : 'http://localhost:3001/api/comics';
+
     try {
-      const response = await fetch('http://localhost:3001/api/comics', {
-        method: 'POST',
+      const response = await fetch(endpoint, {
+        method,
         headers: {
           'Content-Type': 'application/json',
         },
@@ -29,18 +47,10 @@ function FormComic() {
       });
 
       if (response.ok) {
-        alert('Cómic agregado exitosamente');
-        setComic({
-          titulo: '',
-          autor: '',
-          editorial: '',
-          genero: '',
-          precio: '',
-          stock: '',
-          imagen: "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg",
-        });
+        alert(id ? 'Cómic actualizado con éxito' : 'Cómic agregado exitosamente');
+        navigate('/admin-comics'); // Redirige a AdminComics después de la operación
       } else {
-        alert('Error al agregar el cómic');
+        alert('Error al procesar la solicitud');
       }
     } catch (error) {
       console.error('Error:', error);
@@ -53,7 +63,7 @@ function FormComic() {
       <form onSubmit={handleSubmit}>
         <div className="card">
           <div className="card-header bg-primary text-white">
-            EDITAR
+            {id ? 'EDITAR' : 'AGREGAR'}
           </div>
           <div className="card-body">
             <div className="row">
@@ -74,7 +84,7 @@ function FormComic() {
                     src={comic.imagen}
                     alt="Portada Comic"
                     className="img-fluid"
-                    onError={(e) => (e.target.src = "marvel_avengers_50.jpg")}
+                    onError={(e) => (e.target.src = "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg")}
                   />
                 </div>
               </div>
@@ -156,7 +166,7 @@ function FormComic() {
             <div className="row mt-3">
               <div className="col-md-12">
                 <button type="submit" className="btn btn-primary btn-block">
-                  CONFIRMAR
+                  {id ? 'Actualizar Cómic' : 'Agregar Cómic'}
                 </button>
               </div>
             </div>

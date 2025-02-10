@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import FormularioUsuario from "../FormularioUsuario/FormularioUsuario";
 import "./ZonaUsuario.css";
-import { useNavigate } from "react-router-dom";
-
 
 const ZonaUsuario = () => {
 

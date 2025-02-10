@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom'; // Importa useNavigate
 import './FormComic.css';
+import Boton from '../Boton/Boton';
 
 function FormComic() {
   const { id } = useParams();
@@ -168,19 +169,17 @@ function FormComic() {
   
             <div className="row mt-3 d-flex justify-content-center">
               <div className="col-md-6 d-flex justify-content-around">
-                <button
+                <Boton
                   type="submit"
-                  className="btn custom-button text-black fw-bold me-2"
                 >
                   CONFIRMAR
-                </button>
-                <button
+                </Boton>
+                <Boton
                   type='button'
-                  className="btn custom-button text-black fw-bold"
                   onClick={() => navigate('/admin-comics')}
                 >
                   VOLVER
-                </button>
+                </Boton>
               </div>
             </div>
           </form>

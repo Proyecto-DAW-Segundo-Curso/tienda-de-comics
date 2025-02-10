@@ -1,0 +1,5 @@
+.compra{
+    display: flex;
+    flex-direction: column;
+    background-color: white, 50%;
+}

@@ -10,6 +10,7 @@ import Intercambio from './components/Intercambio/Intercambio';
 import ofertas from './data/intercambios.json';
 import { CartProvider } from './CartContext/CartContext.js';
 import { BrowserRouter, Routes, Route, useNavigate, redirect } from 'react-router-dom';
+import FinCompra from './components/FinCompra/FinCompra.jsx';
 
 function App() {
 
@@ -70,6 +71,7 @@ function App() {
           <Route path="/registro" element={<FormRegistro />} />
           <Route path='/intercambio' element={< Intercambio ofertas={ofertas}/>} />
           <Route path='/zona-usuario' element={<ZonaUsuario usuarioLogado={usuarioActual} />}/>
+          <Route path='/fin-compra' element={<FinCompra />}/>
         </Routes>
         </main>
 

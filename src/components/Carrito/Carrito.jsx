@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FiShoppingCart } from "react-icons/fi";
 import './Carrito.css';
 import { useCart } from '../../CartContext/CartContext.js'; // Usar el contexto del carrito
@@ -6,6 +6,11 @@ import BotonFinalizar from '../BotonFinalizar/BotonFinalizar.jsx';
 
 function Carrito() {
   const { cart, removeFromCart } = useCart();
+
+  const [comic, setComic] = useState([]);
+  const [merchan, setMerchan] = useState([]);
+  const [usuario, setUsuario] = useState("");
+  
 
   const handleRemoveFromCart = (productId) => {
     removeFromCart(productId);
@@ -41,4 +46,3 @@ function Carrito() {
 }
 
 export default Carrito;
-//

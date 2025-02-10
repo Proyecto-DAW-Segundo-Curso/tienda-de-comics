@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import FormularioUsuario from "../FormularioUsuario/FormularioUsuario";
 import "./ZonaUsuario.css";
+import Boton from "../Boton/Boton";
 
 const ZonaUsuario = () => {
 
@@ -53,8 +54,8 @@ const ZonaUsuario = () => {
     setUsuario(nuevosDatos);
     setModoEdicion(false);
   };
-  
-    if (cargando) {
+
+  if (cargando) {
     return <p>Cargando...</p>; // Mostrar un mensaje de carga mientras se obtienen los datos
   }
 
@@ -112,29 +113,18 @@ const ZonaUsuario = () => {
 
               </div>
               <div className="tarjeta-opciones">
-                <button onClick={() => setModoEdicion(true)} className="btn custom-button text-black fw-bold me-2">
-                  Modificar Datos
-                </button>
-                <button onClick={() => navigate("/admin-comics")} className="btn custom-button text-black fw-bold me-2">
-                  Admin Comics
-                </button>
-                <button onClick={() => setModoEdicion(true)} className="btn custom-button text-black fw-bold me-2">
-                  Crear Oferta
-                </button>
-                <button onClick={() => setModoEdicion(true)} className="btn custom-button text-black fw-bold me-2">
-                  Mis Ofertas
-                </button>
-                <button onClick={eliminarCuenta} className="btn custom-button text-black fw-bold me-2">
-                 Eliminar Cuenta
-                 </button>
+                <Boton className="btn-zu" onClick={() => setModoEdicion(true)}>MODIFICAR DATOS</Boton>
+                <Boton className="btn-zu" onClick={() => navigate("/admin-comics")}>ADMIN COMICS</Boton>
+                <Boton className="btn-zu" onClick={() => setModoEdicion(true)}>CREAR OFERTA</Boton>
+                <Boton className="btn-zu" onClick={() => setModoEdicion(true)}>MIS OFERTAS</Boton>
+                <Boton className="btn-zu" onClick={eliminarCuenta}>ELIMINAR CUENTA</Boton>
               </div>
             </div>
           )}
-
         </div>
       </div>
     </div>
-  );
+  )
 };
 
 export default ZonaUsuario;

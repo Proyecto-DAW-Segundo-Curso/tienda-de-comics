@@ -7,21 +7,6 @@
   background-color: #D9D9D9;
 }
 
-.custom-button {
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5); /* Sombra oscura por debajo */
-  background-color: #62CFFE;
-  padding: 10px 20px;
-  border-radius: 5px;
-  transition: transform 0.2s;
-}
-
-.custom-button:hover {
-  transform: translateY(-2px);
-  background-color: #6FA287;
-}
-
-
-
 .zona-usuario {
   width: 80%;
   min-height: 250px;
@@ -35,6 +20,10 @@
   align-items: center;
   justify-self: center;
 
+}
+
+.btn-zu{
+  min-width: 180px;
 }
 
 .contenedor-titulo {
@@ -64,18 +53,7 @@
   justify-content: space-around;
 }
 
-.btn {
-  width: 150px;
-  padding: 8px 16px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin: 15px 0;
-}
 
-.btn:hover {
+/* .btn:hover {
   background-color: #0056b3;
-}
+} */

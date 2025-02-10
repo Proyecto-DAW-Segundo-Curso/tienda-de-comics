@@ -1,105 +1,120 @@
-import React, { useEffect, useState } from 'react';
-import './AdminComics.css';
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from 'react'; // Importa React y los hooks useEffect y useState
+import './AdminComics.css'; // Importa los estilos personalizados del componente
+import { useNavigate } from "react-router-dom"; // Hook para navegar entre rutas de la aplicación
 
 function AdminComics() {
-  const navigate = useNavigate();
-  const [comics, setComics] = useState([]);
-  const [searchText, setSearchText] = useState('');
-  const [filteredComics, setFilteredComics] = useState([]);
+  const navigate = useNavigate(); // Permite redirigir a otras rutas dentro de la aplicación
+  const [comics, setComics] = useState([]); // Estado para almacenar la lista completa de cómics obtenida del servidor
+  const [searchText, setSearchText] = useState(''); // Estado para almacenar el texto ingresado en la barra de búsqueda
+  const [filteredComics, setFilteredComics] = useState([]); // Estado para almacenar los cómics que coinciden con el filtro de búsqueda
 
+  // Hook para cargar los cómics desde el backend al montar el componente
   useEffect(() => {
-    fetch('http://localhost:3001/api/comics')
-      .then(response => response.json())
+    fetch('http://localhost:3001/api/comics') // Petición HTTP GET a la API local
+      .then(response => response.json()) // Convierte la respuesta en formato JSON
       .then(data => {
-        setComics(data);
-        setFilteredComics(data);
+        setComics(data); // Guarda los cómics en el estado principal
+        setFilteredComics(data); // Inicialmente muestra todos los cómics sin filtro
       });
-  }, []);
+  }, []); // [] indica que solo se ejecutará una vez al montar el componente
 
+  // Hook que se ejecuta cada vez que cambia el texto de búsqueda o la lista de cómics
   useEffect(() => {
     const results = comics.filter(comic =>
-      comic.titulo.toLowerCase().includes(searchText.toLowerCase())
+      comic.titulo.toLowerCase().includes(searchText.toLowerCase()) // Filtra los cómics por coincidencia parcial en el título
     );
-    setFilteredComics(results);
-  }, [searchText, comics]);
+    setFilteredComics(results); // Actualiza la lista de cómics filtrados
+  }, [searchText, comics]); // Dependencias: ejecuta el hook cuando cambia searchText o comics
 
+  // Función para eliminar un cómic
   const eliminarComic = (comicId, titulo) => {
+    // Confirmación antes de eliminar
     if (window.confirm(`¿Está seguro de eliminar ${titulo}?`)) {
-      fetch(`http://localhost:3001/api/comics/${comicId}`, {
+      fetch(`http://localhost:3001/api/comics/${comicId}`, { // Petición HTTP DELETE a la API
         method: 'DELETE',
       })
         .then(() => {
+          // Actualiza el estado eliminando el cómic borrado
           setComics(comics.filter(c => c.id !== comicId));
         })
-        .catch(err => console.error(err));
+        .catch(err => console.error(err)); // Manejo de errores en la petición
     }
   };
 
   return (
     <div className="container mt-5">
-      <div className="text-center mb-4">
-        <h1 className="display-4">AdminComics</h1>
-      </div>
 
-      <div className="d-flex justify-content-between align-items-center mb-4">
-        <button
-          onClick={() => navigate("/agregar-comic")}
-          className="btn btn-primary btn-lg"
-        >
-          Añadir Comic
-        </button>
-        <input
-          type="text"
-          placeholder="Buscar por título..."
-          className="form-control w-50"
-          value={searchText}
-          onChange={e => setSearchText(e.target.value)}
-        />
-      </div>
+      <div className="card rounded custom-body">
+        {/* Título principal */}
+        <div className="text-center card-header custom-header text-white fw-bold">
+          ADMINISTRAR COMICS
+        </div>
 
-      {filteredComics.length === 0 ? (
-        <div className="text-center text-danger">Cómic no encontrado</div>
-      ) : (
-        <div className="row">
-          {filteredComics.map(comic => (
-            <div className="col-md-4 mb-4" key={comic.id}>
-              <div className="card h-100">
-                <img
-                  src={comic.imagen || 'https://via.placeholder.com/150'}
-                  className="card-img-top"
-                  alt={comic.titulo}
-                  style={{ maxHeight: '200px', objectFit: 'cover' }}
-                />
-                <div className="card-body">
-                  <h5 className="card-title">{comic.titulo}</h5>
-                  <p className="card-text">
-                    <strong>Autor:</strong> {comic.autor} <br />
-                    <strong>Editorial:</strong> {comic.editorial} <br />
-                    <strong>Género:</strong> {comic.genero} <br />
-                    <strong>Precio:</strong> ${comic.precio.toFixed(2)} <br />
-                    <strong>Stock:</strong> {comic.stock}
-                  </p>
-                  <div className="d-flex justify-content-between">
-                    <button
-                      className="btn btn-warning"
-                      onClick={() => navigate(`/editar-comic/${comic.id}`)}
-                    >
-                      Editar
-                    </button>
-                    <button
-                      className="btn btn-danger"
-                      onClick={() => eliminarComic(comic.id, comic.titulo)}
-                    >
-                      Eliminar
-                    </button>
+        {/* Barra de búsqueda y botón "Añadir Comic" */}
+        <div className="card-body d-flex justify-content-between align-items-center mb-4">
+          <input
+            type="text"
+            placeholder="Buscar por título..." // Placeholder en el campo de búsqueda
+            className="form-control w-50" // Clases de Bootstrap para diseño
+            value={searchText} // Enlaza el valor del campo con el estado searchText
+            onChange={e => setSearchText(e.target.value)} // Actualiza searchText al cambiar el contenido del input
+          />
+          <button
+            onClick={() => navigate("/agregar-comic")} // Redirige a la ruta de agregar cómic
+            className="btn btn-block custom-button text-black d-block fw-bold"
+          >
+            Añadir Comic
+          </button>
+        </div>
+        <div className="card-body">
+          {/* Mensaje de error si no se encuentran cómics */}
+          {filteredComics.length === 0 ? (
+            <div className="text-center text-danger">Cómic no encontrado</div>
+          ) : (
+            <div className="row">
+              {/* Mapea los cómics filtrados y muestra cada uno en una tarjeta */}
+              {filteredComics.map(comic => (
+                <div className="col-md-4 mb-4" key={comic.id}>
+                  <div className="card h-100">
+                    <img
+                      src={comic.imagen || 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg'} // Muestra la imagen del cómic o un placeholder si no hay imagen
+                      className="card-img-top"
+                      alt={comic.titulo}
+                      style={{ maxHeight: '250px', objectFit: 'cover' }} // Estilo para ajustar la imagen dentro del contenedor
+                    />
+                    <div className="card-body">
+                      <h5 className="card-title">{comic.titulo}</h5> {/* Título del cómic */}
+                      <p className="card-text">
+                        <strong>Autor:</strong> {comic.autor} <br />
+                        <strong>Editorial:</strong> {comic.editorial} <br />
+                        <strong>Género:</strong> {comic.genero} <br />
+                        <strong>Precio:</strong> ${comic.precio.toFixed(2)} <br />
+                        <strong>Stock:</strong> {comic.stock}
+                      </p>
+                      <div className="d-flex justify-content-between">
+                        {/* Botón para editar el cómic */}
+                        <button
+                          className="btn btn-warning"
+                          onClick={() => navigate(`/editar-comic/${comic.id}`)} // Redirige a la ruta de edición con el ID del cómic
+                        >
+                          Editar
+                        </button>
+                        {/* Botón para eliminar el cómic */}
+                        <button
+                          className="btn btn-danger"
+                          onClick={() => eliminarComic(comic.id, comic.titulo)}
+                        >
+                          Eliminar
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
+              ))}
             </div>
-          ))}
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 }

@@ -12,6 +12,7 @@ function Carrito() {
   const [usuario, setUsuario] = useState("");
   
 
+
   const handleRemoveFromCart = (productId) => {
     removeFromCart(productId);
   };

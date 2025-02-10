@@ -1,16 +1,17 @@
 import React from 'react';
 import './FinCompra.css';
+import BotonComprarFin from '../BotonComprarFin/BotonComprarFin'
 import BotonFinalizar from '../BotonFinalizar/BotonFinalizar'
 import { useCart } from '../../CartContext/CartContext.js'; // Usar el contexto del carrito
 import { useState } from 'react';
 
 
 function FinCompra() {
-
-  const [usuario, setUsuario] = ('');
-  const [comic, setComic] = ([]);
-  const [merchan, setMerchan] = ([]);
-  const [cantidad, setCantidad] = (0);
+  const [usuario, setUsuario] = useState('');
+  const [comic, setComic] = useState([]);
+  const [merchan, setMerchan] = useState([]);
+  const [cantidad, setCantidad] = useState(0);
+  
   
   const { cart, removeFromCart } = useCart(); 
    
@@ -45,7 +46,7 @@ function FinCompra() {
           </li>
         ))}
       </ul>    
-      <BotonFinalizar></BotonFinalizar>
+      <BotonComprarFin></BotonComprarFin>
     </div>
   );
 }

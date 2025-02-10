@@ -7,22 +7,14 @@ import FormRegistro from './components/FormRegistro/FormRegistro';
 import FormLogin from './components/FormLogin/FormLogin';
 import ZonaUsuario from './components/ZonaUsuario/ZonaUsuario';
 import Intercambio from './components/Intercambio/Intercambio';
+import AdminComics from './components/AdminComics/AdminComics';
 import ofertas from './data/intercambios.json';
 import { CartProvider } from './CartContext/CartContext.js';
-import { BrowserRouter, Routes, Route, useNavigate, redirect } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import FormComic from './components/FormComic/FormComic.jsx';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
-
-  // const [componenteMostrado, setComponenteMostrado] = useState('home');
-
-  // const manejarNavegacion = (componente) => {
-  //   setComponenteMostrado(componente);
-  // };
-
-  // const manejarNavegacion = (ruta) => {
-  //   // Implementa lógica de navegación si es necesario
-  //   console.log(`Navegando hacia ${ruta}`);
-  // };
 
   // `usuarioActual` almacena el estado del usuario actualmente logueado.
   // Por defecto, se inicializa como `null`, indicando que nadie ha iniciado sesión.
@@ -45,43 +37,31 @@ function App() {
     <BrowserRouter>
 
       <CartProvider>  {/* Envuelve la aplicación con el CartProvider */}
-        {/* <div className="App">
-        <header>
-          <Header navegarHacia={manejarNavegacion} />
-        </header>
-        <main>
-          {componenteMostrado === "home" && <Home />}
-          {componenteMostrado === "login" && <FormLogin onLogin={manejarLogin} />}
-          {componenteMostrado === "registro" && <FormRegistro />}
-          {componenteMostrado === "zona-usuario" && <ZonaUsuario usuarioLogado={usuarioActual} />}
-          {componenteMostrado === "intercambio" && <Intercambio ofertas={ofertas} />}
-        </main>
-        <footer>
-          <Footer />
-        </footer> 
 
-      </div> */}
         <div className="App">
-        <header>
+
+          <header>
         <Header usuarioActual={usuarioActual} onLogout={manejarLogout} />
-
         </header> 
-        
-        <main>
-        <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route path="/login" element={<FormLogin onLogin={manejarLogin}/>} />
-          <Route path="/registro" element={<FormRegistro />} />
-          <Route path='/intercambio' element={< Intercambio ofertas={ofertas}/>} />
-          <Route path='/zona-usuario' element={<ZonaUsuario usuarioLogado={usuarioActual} />}/>
-        </Routes>
-        </main>
 
-        <footer>
-          <Footer />
-        </footer>
+          <main>
+            <Routes>
+              <Route exact path="/" element={<Home />} />
+              <Route path="/login" element={<FormLogin onLogin={manejarLogin} />} />
+              <Route path="/registro" element={<FormRegistro />} />
+              <Route path='/intercambio' element={< Intercambio ofertas={ofertas} />} />
+              <Route path='/zona-usuario' element={<ZonaUsuario usuarioLogado={usuarioActual} />} />
+              <Route path='/edit-comic' element={<FormComic />} />
+              <Route path='/admin-comics' element={<AdminComics />} />
+              <Route path="/agregar-comic" element={<FormComic />} />
+              <Route path="/editar-comic/:id" element={<FormComic />} />
+            </Routes>
+          </main>
+
+          <footer>
+            <Footer />
+          </footer>
         </div>
-
       </CartProvider>
     </BrowserRouter>
   );

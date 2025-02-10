@@ -33,6 +33,8 @@ function FormLogin({ onLogin }) {
       const data = await response.json();
       
       if (response.ok) {
+        localStorage.setItem('token', data.token);
+        console.log("sesion iniciada, token guardado");
         setError("");
         onLogin(data);
         navigate('/zona-usuario', { state: { usuarioLogado: data } });

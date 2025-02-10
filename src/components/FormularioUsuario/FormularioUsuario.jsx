@@ -2,16 +2,51 @@ import React, { useState } from "react";
 import "./FormularioUsuario.css";
 
 const FormularioUsuario = ({ datosUsuario, onGuardar, onCancelar }) => {
-  const [datosEditados, setDatosEditados] = useState(datosUsuario);
+  const [datosEditados, setDatosEditados] = useState({
+    nombre: datosUsuario.nombre,
+    email: datosUsuario.email,
+    contrasenia: "", // La contraseña solo se actualiza si el usuario la cambia
+  });
 
   const manejarCambio = (e) => {
     const { name, value } = e.target;
     setDatosEditados({ ...datosEditados, [name]: value });
   };
 
-  const manejarEnvio = (e) => {
+  const manejarEnvio = async (e) => {
     e.preventDefault();
-    onGuardar(datosEditados);
+
+    try {
+      const token = localStorage.getItem("token"); // Recuperar el token de autenticación
+
+      const response = await fetch("http://localhost:3001/api/update", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`, // Agregar el token al encabezado
+        },
+        body: JSON.stringify({
+          nombre: datosEditados.nombre,
+          email: datosEditados.email,
+          contrasenia: datosEditados.contrasenia ? datosEditados.contrasenia : undefined, // Solo enviar si la cambia
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        onGuardar({ 
+          nombre: datosEditados.nombre, 
+          email: datosEditados.email, 
+          contrasenia: datosEditados.contrasenia ? "Actualizada" : "No cambiada" 
+        });
+      } else {
+        alert(data.message || "Error al actualizar los datos");
+      }
+    } catch (error) {
+      console.error("Error al actualizar usuario:", error);
+      alert("Error en el servidor");
+    }
   };
 
   return (
@@ -23,6 +58,7 @@ const FormularioUsuario = ({ datosUsuario, onGuardar, onCancelar }) => {
           name="nombre"
           value={datosEditados.nombre}
           onChange={manejarCambio}
+          required
         />
       </label>
       <label>
@@ -32,15 +68,17 @@ const FormularioUsuario = ({ datosUsuario, onGuardar, onCancelar }) => {
           name="email"
           value={datosEditados.email}
           onChange={manejarCambio}
+          required
         />
       </label>
       <label>
-        Contraseña:
+        Nueva Contraseña (opcional):
         <input
           type="password"
-          name="contraseña"
-          value={datosEditados.contraseña}
+          name="contrasenia"
+          value={datosEditados.contrasenia}
           onChange={manejarCambio}
+          placeholder="Déjalo en blanco si no deseas cambiarla"
         />
       </label>
       <div className="botones-formulario">

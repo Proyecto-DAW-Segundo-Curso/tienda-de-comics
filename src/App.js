@@ -28,17 +28,21 @@ function App() {
     setUsuarioActual(usuario);
 
   };
+  const manejarLogout = () => {
+    setUsuarioActual(null);
+  };
 
   return (
 
     <BrowserRouter>
 
       <CartProvider>  {/* Envuelve la aplicación con el CartProvider */}
+
         <div className="App">
 
           <header>
-            <Header />
-          </header>
+        <Header usuarioActual={usuarioActual} onLogout={manejarLogout} />
+        </header> 
 
           <main>
             <Routes>

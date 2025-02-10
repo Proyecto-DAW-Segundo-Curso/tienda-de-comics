@@ -1,53 +1,37 @@
 .formulario-usuario {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    border-radius: 0 0 15px 15px;
-    background-color: rgba(255, 255, 255, 0.65);
-    padding: 20px;
-  }
-  
-  .formulario-usuario label {
-    display: flex;
-    flex-direction: column;
-    font-weight: bold;
-  }
-  
-  .formulario-usuario input {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-top: 4px;
-  }
-  
-  .botones-formulario {
-    width: 100%;
-    display: flex;
-    justify-content: space-evenly;
-  }
-  
-  .btn {
-    width: 100%;
-    padding: 8px 16px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .btn:hover {
-    background-color: #0056b3;
-  }
-  
-  .btn-cancelar {
-    background-color: red;
-  }
-  
-  .btn-cancelar:hover {
-    background-color: darkred;
-  }
-  
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  border-radius: 0 0 15px 15px;
+  background-color: rgba(255, 255, 255, 0.65);
+  padding: 20px;
+}
+
+.formulario-usuario label {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+}
+
+.formulario-usuario input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 4px;
+}
+
+.botones-formulario {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.btn-cancelar{
+  background-color: #ee4242;
+}
+
+.btn-cancelar:hover {
+  background-color: darkred;
+}

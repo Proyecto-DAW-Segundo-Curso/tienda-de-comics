@@ -1,8 +1,8 @@
 import React from 'react';
 import PortadaComic from '../PortadaComic/PortadaComic';
 import './FichaLibro.css';
-import BotonComprar from '../BotonComprar/BotonComprar';
 import { useCart } from '../../CartContext/CartContext.js'; // Usar el contexto del carrito
+import Boton from '../Boton/Boton.jsx';
 
 function FichaLibro({ comic }) {
   const { addToCart } = useCart();  // Acceder a la función para agregar al carrito
@@ -23,8 +23,8 @@ function FichaLibro({ comic }) {
         <p><strong>Género:</strong> {genero}</p>
         <p><strong>Precio:</strong> ${precio.toFixed(2)}</p>
         <p><strong>Stock:</strong> {stock}</p>
-        <BotonComprar onClick={handleAddToCart} />
       </div>
+      <Boton onClick={handleAddToCart}>+ Añadir</Boton>
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'; // Importa React y los hooks useEffect y useState
 import './AdminComics.css'; // Importa los estilos personalizados del componente
 import { useNavigate } from "react-router-dom"; // Hook para navegar entre rutas de la aplicación
+import Boton from '../Boton/Boton';
 
 function AdminComics() {
   const navigate = useNavigate(); // Permite redirigir a otras rutas dentro de la aplicación
@@ -59,12 +60,11 @@ function AdminComics() {
             value={searchText} // Enlaza el valor del campo con el estado searchText
             onChange={e => setSearchText(e.target.value)} // Actualiza searchText al cambiar el contenido del input
           />
-          <button
+          <Boton
             onClick={() => navigate("/agregar-comic")} // Redirige a la ruta de agregar cómic
-            className="btn btn-block custom-button text-black d-block fw-bold"
           >
-            Añadir Comic
-          </button>
+            AÑADIR COMIC
+          </Boton>
         </div>
         <div className="card-body">
           {/* Mensaje de error si no se encuentran cómics */}
@@ -93,19 +93,19 @@ function AdminComics() {
                       </p>
                       <div className="d-flex justify-content-between">
                         {/* Botón para editar el cómic */}
-                        <button
+                        <Boton
                           className="btn btn-warning"
                           onClick={() => navigate(`/editar-comic/${comic.id}`)} // Redirige a la ruta de edición con el ID del cómic
                         >
                           Editar
-                        </button>
+                        </Boton>
                         {/* Botón para eliminar el cómic */}
-                        <button
+                        <Boton
                           className="btn btn-danger"
                           onClick={() => eliminarComic(comic.id, comic.titulo)}
                         >
                           Eliminar
-                        </button>
+                        </Boton>
                       </div>
                     </div>
                   </div>

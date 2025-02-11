@@ -6,19 +6,19 @@ import Carrito from '../Carrito/Carrito'
 import { useNavigate } from 'react-router-dom'
 
 
-function Header({usuarioActual, onLogout}) {
+function Header({ usuarioActual, onLogout }) {
 
   const navigate = useNavigate();
 
-  const userOrNot = ()=>{
-    if(usuarioActual){
+  const userOrNot = () => {
+    if (usuarioActual) {
       navigate('/zona-usuario')
-    }else{
-      navigate('/login'); 
+    } else {
+      navigate('/login');
     }
   }
 
-  const manejarLogout=() => {
+  const manejarLogout = () => {
     localStorage.removeItem('token');
     onLogout();
     navigate('/')
@@ -30,21 +30,19 @@ function Header({usuarioActual, onLogout}) {
         <div className='contenedor-logo'>
           <img className='imagen-logo' src={Logo} alt="logo" /> {/* he puesto una clase a la imagen porque si ponemos directamente los estilos a la etuqieta img, afecta a todas las imagenes del proyecto */}
         </div>
-       
+
         <div className='contenedor-botones'>
-           
-            <Boton onClick={userOrNot}>
-              {usuarioActual ? 'Perfil':'Mi cuenta'}
-              </Boton> 
-              {usuarioActual && (
+
+          <Boton onClick={userOrNot}>
+            {usuarioActual ? 'PERFIL' : 'MI CUENTA'}
+          </Boton>
+          {usuarioActual && (
             <Boton onClick={manejarLogout} className="boton-logout">
-              Cerrar sesión
+              CERRAR SESIÓN
             </Boton>
-          )}         
+          )}
           <Carrito />
-
         </div>
-
       </div>
       <div>
         <NavBar navegarNavBar={navigate} />

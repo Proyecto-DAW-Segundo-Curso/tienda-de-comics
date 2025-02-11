@@ -41,8 +41,8 @@ function App() {
         <div className="App">
 
           <header>
-        <Header usuarioActual={usuarioActual} onLogout={manejarLogout} />
-        </header> 
+            <Header usuarioActual={usuarioActual} onLogout={manejarLogout} />
+          </header>
 
           <main>
             <Routes>

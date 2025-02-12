@@ -1,7 +1,7 @@
 import React from 'react';
 import { FiShoppingCart } from "react-icons/fi";
 import './Carrito.css';
-import { useCart } from '../../CartContext/CartContext.js';
+import { useCart } from '../../../CartContext/CartContext.js';
 
 function Carrito() {
   const { cart, removeFromCart, checkout } = useCart();

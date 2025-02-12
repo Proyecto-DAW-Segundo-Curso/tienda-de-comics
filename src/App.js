@@ -51,7 +51,6 @@ function App() {
               <Route path="/registro" element={<FormRegistro />} />
               <Route path='/intercambio' element={< Intercambio ofertas={ofertas} />} />
               <Route path='/zona-usuario' element={<ZonaUsuario usuarioLogado={usuarioActual} />} />
-              <Route path='/edit-comic' element={<FormComic />} />
               <Route path='/admin-comics' element={<AdminComics />} />
               <Route path="/agregar-comic" element={<FormComic />} />
               <Route path="/editar-comic/:id" element={<FormComic />} />

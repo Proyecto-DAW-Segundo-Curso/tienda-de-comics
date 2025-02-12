@@ -37,7 +37,7 @@ function Header({ usuarioActual, onLogout }) {
             {usuarioActual ? 'PERFIL' : 'MI CUENTA'}
           </Boton>
           {usuarioActual && (
-            <Boton onClick={manejarLogout} className="boton-logout">
+            <Boton onClick={manejarLogout}>
               CERRAR SESIÓN
             </Boton>
           )}

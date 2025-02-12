@@ -8,6 +8,8 @@ import FormLogin from './components/FormLogin/FormLogin';
 import ZonaUsuario from './components/ZonaUsuario/ZonaUsuario';
 import Intercambio from './components/Intercambio/Intercambio';
 import AdminComics from './components/AdminComics/AdminComics';
+import SubirComic from './components/SubirComic/SubirComic'; 
+import MisComics from './components/MisComics/MisComics';
 import ofertas from './data/intercambios.json';
 import { CartProvider } from './CartContext/CartContext.js';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -55,6 +57,8 @@ function App() {
               <Route path='/admin-comics' element={<AdminComics />} />
               <Route path="/agregar-comic" element={<FormComic />} />
               <Route path="/editar-comic/:id" element={<FormComic />} />
+              <Route path="/subir-comic" element={<SubirComic />} />
+              <Route path="/mis-comics" element={<MisComics />} />
             </Routes>
           </main>
 

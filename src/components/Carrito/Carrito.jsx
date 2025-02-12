@@ -8,7 +8,7 @@ function Carrito() {
 
   return (
 
-<div className="container custom-container d-flex justify-content-center align-items-center">
+<div className="custom-container d-flex justify-content-center align-items-center">
       <div className="d-flex justify-content-between align-items-center">
         <FiShoppingCart className="custom-cart" onClick={() => console.log(cart)} />
       </div>

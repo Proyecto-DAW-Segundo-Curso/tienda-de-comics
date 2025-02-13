@@ -107,6 +107,11 @@ const MisComics = () => {
               ))}
             </div>
           )}
+          <div className="volver-container">
+            <button className="btn custom-button" onClick={() => navigate("/zona-usuario")}>
+              VOLVER
+            </button>
+          </div>
         </div>
       </div>
     </div>

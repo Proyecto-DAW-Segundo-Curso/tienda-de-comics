@@ -69,3 +69,32 @@
     display: flex;
     justify-content: space-between;
   }
+
+  /* Contenedor de los cómics */
+.comics-container {
+  position: relative;
+  padding-bottom: 60px; /* Espacio extra para el botón */
+}
+
+/* Contenedor del botón Volver */
+.volver-container {
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+  width: auto;
+}
+
+/* Estilo del botón Volver */
+.volver-container .custom-button {
+  background-color: #62CFFE;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: transform 0.2s;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.volver-container .custom-button:hover {
+  transform: translateY(-2px);
+  background-color: #6FA287;
+}

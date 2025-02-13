@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import FichaLibro from "../FichaLibro/FichaLibro"; 
-import "./MisComics.css"; 
+import "./MisComics.css";
 
 const MisComics = () => {
   const [comicsSubidos, setComicsSubidos] = useState([]);
+  const [searchText, setSearchText] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -12,7 +12,7 @@ const MisComics = () => {
 
     const obtenerComicsSubidos = async () => {
       try {
-        const response = await fetch("http://localhost:3001/api/comics_subidos/usuario", {
+        const response = await fetch("http://localhost:3001/api/comics-subidos-usuario", {
           method: "GET",
           headers: { Authorization: `Bearer ${token}` },
         });
@@ -30,7 +30,7 @@ const MisComics = () => {
   }, []);
 
   const editarComic = (comic) => {
-    navigate("/editar-comic", { state: { comic } });
+    navigate(`/editar-comic-usuario/${comic.id}`, { state: { comic } });
   };
 
   const eliminarComic = async (id) => {
@@ -39,7 +39,7 @@ const MisComics = () => {
 
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(`http://localhost:3001/api/comics_subidos/${id}`, {
+      const response = await fetch(`http://localhost:3001/api/comics-subidos-usuario/${id}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -55,28 +55,63 @@ const MisComics = () => {
   };
 
   return (
-    <div className="mis-comics-container">
-      <h2 className="titulo-mis-comics">Mis Cómics Subidos</h2>
-      <div className="contenedor-comics">
-        {comicsSubidos.length > 0 ? (
-          comicsSubidos.map((comic) => (
-            <div key={comic.id} className="tarjeta-comic">
-              <FichaLibro comic={comic} botonTexto="Intercambiar" />
-              <div className="botones-comic">
-                <button className="btn-editar" onClick={() => editarComic(comic)}>Editar</button>
-                <button className="btn-eliminar" onClick={() => eliminarComic(comic.id)}>Eliminar</button>
-              </div>
+    <div className="container mt-5">
+      <div className="card rounded custom-body">
+        <div className="text-center card-header custom-header text-white fw-bold">
+          MIS CÓMICS SUBIDOS
+        </div>
+
+        <div className="card-body d-flex justify-content-between align-items-center mb-4">
+          <input
+            type="text"
+            placeholder="Buscar por título..."
+            className="form-control w-50"
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
+          />
+        </div>
+
+        <div className="card-body">
+          {comicsSubidos.length === 0 ? (
+            <div className="text-center text-danger">No has subido cómics aún.</div>
+          ) : (
+            <div className="row">
+              {comicsSubidos.map((comic) => (
+                <div className="col-md-4 mb-4" key={comic.id}>
+                  <div className="card h-100">
+                    <img
+                      src={comic.imagen || "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg"}
+                      className="card-img-top"
+                      alt={comic.titulo}
+                      style={{ maxHeight: "250px", objectFit: "cover" }}
+                    />
+                    <div className="card-body">
+                      <h5 className="card-title">{comic.titulo}</h5>
+                      <p className="card-text">
+                        <strong>Autor:</strong> {comic.autor} <br />
+                        <strong>Editorial:</strong> {comic.editorial} <br />
+                        <strong>Género:</strong> {comic.genero} <br />
+                        <strong>Precio:</strong> ${comic.precio.toFixed(2)} <br />
+                        <strong>Stock:</strong> {comic.stock}
+                      </p>
+                      <div className="d-flex flex-column">
+                        <button className="btn btn-primary mb-2">Ofertar</button>
+                        <div className="d-flex justify-content-between">
+                          <button className="btn btn-warning" onClick={() => editarComic(comic)}>Editar</button>
+                          <button className="btn btn-danger" onClick={() => eliminarComic(comic.id)}>Eliminar</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
-          ))
-        ) : (
-          <p className="mensaje-vacio">No has subido cómics aún.</p>
-        )}
-      </div>
-      <div className="boton-volver">
-        <button onClick={() => navigate("/zona-usuario")} className="btn btn-secondary">Volver a Zona de Usuario</button>
+          )}
+        </div>
       </div>
     </div>
   );
 };
 
 export default MisComics;
+

@@ -91,11 +91,12 @@ const MisComics = () => {
                         <strong>Autor:</strong> {comic.autor} <br />
                         <strong>Editorial:</strong> {comic.editorial} <br />
                         <strong>Género:</strong> {comic.genero} <br />
-                        <strong>Precio:</strong> ${comic.precio.toFixed(2)} <br />
-                        <strong>Stock:</strong> {comic.stock}
+                        <strong>Precio:</strong> ${comic.precio.toFixed(2)}
                       </p>
                       <div className="d-flex flex-column">
-                        <button className="btn btn-primary mb-2">Ofertar</button>
+                        <button className="btn btn-primary mb-2" onClick={() => navigate(`/ofertar-comic/${comic.id}`)}>
+                          Ofertar
+                        </button>
                         <div className="d-flex justify-content-between">
                           <button className="btn btn-warning" onClick={() => editarComic(comic)}>Editar</button>
                           <button className="btn btn-danger" onClick={() => eliminarComic(comic.id)}>Eliminar</button>
@@ -107,6 +108,7 @@ const MisComics = () => {
               ))}
             </div>
           )}
+
           <div className="volver-container">
             <button className="btn custom-button" onClick={() => navigate("/zona-usuario")}>
               VOLVER
@@ -119,4 +121,5 @@ const MisComics = () => {
 };
 
 export default MisComics;
+
 

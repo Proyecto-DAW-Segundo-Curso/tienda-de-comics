@@ -119,6 +119,8 @@ const ZonaUsuario = () => {
               
                 <Boton className="btn-zu" onClick={() => setModoEdicion(true)}>CREAR OFERTA</Boton>
                 <Boton className="btn-zu" onClick={() => setModoEdicion(true)}>MIS OFERTAS</Boton>
+                <Boton className="btn-zu" onClick={() => navigate("/subir-comic-usuario")}>SUBIR COMIC</Boton>
+                <Boton className="btn-zu" onClick={() => navigate("/mis-comics")}>MIS COMICS</Boton>
                 <Boton className="btn-zu" onClick={eliminarCuenta}>ELIMINAR CUENTA</Boton>
                 {usuario.permiso === 9 && (
                 <Boton className="btn-zu" onClick={() => navigate("/admin-usuarios")}>ADM USUARIOS</Boton>

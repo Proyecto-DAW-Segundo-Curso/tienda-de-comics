@@ -43,4 +43,28 @@
   color: #555;
 }
 
+/* Estilos del modal de stock */
+.modal-stock {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 15px 30px;
+  border-radius: 10px;
+  font-size: 18px;
+  text-align: center;
+  z-index: 1000;
+  opacity: 0.9;
+  animation: fadeInOut 1.5s ease-in-out;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
 

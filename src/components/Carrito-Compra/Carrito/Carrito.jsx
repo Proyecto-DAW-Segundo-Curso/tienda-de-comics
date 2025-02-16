@@ -2,15 +2,17 @@ import React from 'react';
 import { FiShoppingCart } from "react-icons/fi";
 import './Carrito.css';
 import { useCart } from '../../../CartContext/CartContext.js';
+import { useNavigate } from 'react-router-dom';
 
 function Carrito() {
-  const { cart, removeFromCart, checkout } = useCart();
+  const { cart, removeFromCart } = useCart();
+  const navigate = useNavigate();
 
   return (
 
-<div className="custom-container d-flex justify-content-center align-items-center">
+    <div className="custom-cart-container d-flex justify-content-center align-items-center">
       <div className="d-flex justify-content-between align-items-center">
-        <FiShoppingCart className="custom-cart" onClick={() => console.log(cart)} />
+        <FiShoppingCart className="custom-cart" />
       </div>
       <div className="custom-cart-content">
         {cart.length > 0 ? (
@@ -27,7 +29,8 @@ function Carrito() {
                 </li>
               ))}
             </ul>
-            <button className="btn btn-success mt-3" onClick={checkout}>Finalizar compra</button>
+            {/* <button className="btn btn-success mt-3" onClick={checkout}>Finalizar compra</button> */}
+            <button className="btn btn-success mt-3" onClick={() => navigate('/resumen-carrito')}>Finalizar compra</button>
           </div>
         ) : (
           <p className="alert alert-warning mt-3">El carrito está vacío</p>

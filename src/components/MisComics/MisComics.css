@@ -1,0 +1,100 @@
+.custom-header {
+    background: linear-gradient(to bottom, #000000, #5c5c5c);
+    width: 100%;
+  }
+  
+  .custom-body {
+    background-color: #D9D9D9;
+  }
+  
+  /* Contenedor principal */
+  .container {
+    max-width: 90%;
+  }
+  
+  /* Tarjetas de cómics */
+  .card {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card img {
+    max-height: 250px;
+    object-fit: cover;
+  }
+  
+  .card-body {
+    padding: 15px;
+  }
+  
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+  
+  .card-text {
+    font-size: 0.9rem;
+    color: #333;
+  }
+  
+  /* Botones */
+  .btn-warning {
+    background-color: #f0ad4e;
+    border: none;
+  }
+  
+  .btn-warning:hover {
+    background-color: #ec971f;
+  }
+  
+  .btn-danger {
+    background-color: #dc3545;
+    border: none;
+  }
+  
+  .btn-danger:hover {
+    background-color: #b02a37;
+  }
+  
+  /* Input de búsqueda */
+  .form-control {
+    border-radius: 5px;
+    padding: 8px;
+    font-size: 1rem;
+  }
+  
+  /* Ajuste de botones */
+  .d-flex {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* Contenedor de los cómics */
+.comics-container {
+  position: relative;
+  padding-bottom: 60px; /* Espacio extra para el botón */
+}
+
+/* Contenedor del botón Volver */
+.volver-container {
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+  width: auto;
+}
+
+/* Estilo del botón Volver */
+.volver-container .custom-button {
+  background-color: #62CFFE;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: transform 0.2s;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.volver-container .custom-button:hover {
+  transform: translateY(-2px);
+  background-color: #6FA287;
+}

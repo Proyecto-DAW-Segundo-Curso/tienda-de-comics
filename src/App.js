@@ -16,6 +16,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import FormComic from './components/FormComic/FormComic.jsx';
 import EditarComicUsuario from './components/EditarComicUsuario/EditarComicUsuario.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import AdminUsuarios from './components/AdminUsuarios/AdminUsuarios.jsx';
 
 function App() {
 
@@ -57,6 +58,7 @@ function App() {
               <Route path='/admin-comics' element={<AdminComics />} />
               <Route path="/agregar-comic" element={<FormComic />} />
               <Route path="/editar-comic/:id" element={<FormComic />} />
+              <Route path="/admin-usuarios" element={<AdminUsuarios />} />
               <Route path="/subir-comic-usuario" element={<SubirComicUsuario />} />
               <Route path="/mis-comics" element={<MisComics />} />
               <Route path="/editar-comic-usuario/:id" element={<EditarComicUsuario />} />

@@ -13,6 +13,7 @@ import { CartProvider } from './CartContext/CartContext.js';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import FormComic from './components/FormComic/FormComic.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ResumenCarrito from './components/Carrito-Compra/ResumenCarrito/ResumenCarrito.jsx';
 
 function App() {
 
@@ -54,6 +55,7 @@ function App() {
               <Route path='/admin-comics' element={<AdminComics />} />
               <Route path="/agregar-comic" element={<FormComic />} />
               <Route path="/editar-comic/:id" element={<FormComic />} />
+              <Route path="/resumen-carrito" element={<ResumenCarrito />} />
             </Routes>
           </main>
 

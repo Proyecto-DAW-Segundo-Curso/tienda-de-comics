@@ -10,7 +10,6 @@ function NavBar({navegarNavBar}) {
       <Boton onClick={() => navegarNavBar("/")}>INICIO</Boton>
       <Boton onClick={() => navegarNavBar("/pag-comic")}>CÓMICS</Boton>
       <Boton onClick={() => navegarNavBar("/pag-manga")}>MANGA</Boton>
-      <Boton onClick={() => navegarNavBar("/merchan")}>MERCHANDISING</Boton>
       <Boton onClick={() => navegarNavBar("/intercambio")}>INTERCAMBIO</Boton>
     </div>
   )

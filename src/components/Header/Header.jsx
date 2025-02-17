@@ -2,7 +2,7 @@ import Logo from '../../img/logo.jpg'
 import './Header.css'
 import Boton from '../Boton/Boton'
 import NavBar from '../NavBar/NavBar'
-import Carrito from '../Carrito/Carrito'
+import Carrito from '../Carrito-Compra/Carrito/Carrito'
 import { useNavigate } from 'react-router-dom'
 
 
@@ -37,7 +37,7 @@ function Header({ usuarioActual, onLogout }) {
             {usuarioActual ? 'PERFIL' : 'MI CUENTA'}
           </Boton>
           {usuarioActual && (
-            <Boton onClick={manejarLogout} className="boton-logout">
+            <Boton onClick={manejarLogout}>
               CERRAR SESIÓN
             </Boton>
           )}

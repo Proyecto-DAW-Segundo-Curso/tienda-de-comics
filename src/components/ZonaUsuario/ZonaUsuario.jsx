@@ -87,7 +87,7 @@ const ZonaUsuario = () => {
       }
     } catch (error) {
       console.error("Error al eliminar cuenta:", error);
-      alert("Error en el servidor.");
+      alert("Error en el servidor."); 
     }
   };
 
@@ -113,13 +113,28 @@ const ZonaUsuario = () => {
 
               </div>
               <div className="tarjeta-opciones">
-                <Boton className="btn-zu" onClick={() => setModoEdicion(true)}>MODIFICAR DATOS</Boton>
-                <Boton className="btn-zu" onClick={() => navigate("/admin-comics")}>ADMIN COMICS</Boton>
+                {usuario.permiso ===1&&(
+                  <Boton className="btn-zu" onClick={() => setModoEdicion(true)}>MODIFICAR DATOS</Boton>
+                )}
+              
                 <Boton className="btn-zu" onClick={() => setModoEdicion(true)}>CREAR OFERTA</Boton>
                 <Boton className="btn-zu" onClick={() => navigate("/mis-ofertas")}>MIS OFERTAS</Boton>
                 <Boton className="btn-zu" onClick={() => navigate("/subir-comic-usuario")}>SUBIR COMIC</Boton>
                 <Boton className="btn-zu" onClick={() => navigate("/mis-comics")}>MIS COMICS</Boton>
                 <Boton className="btn-zu" onClick={eliminarCuenta}>ELIMINAR CUENTA</Boton>
+                {usuario.permiso === 9 && (
+                <Boton className="btn-zu" onClick={() => navigate("/admin-usuarios")}>ADM USUARIOS</Boton>
+              )}
+               {usuario.permiso ===9 && (
+                  <Boton className="btn-zu" onClick={() => navigate("/admin-comics")}>ADM COMICS</Boton>
+                )}
+              {usuario.permiso === 9 && (
+                <Boton className="btn-zu" >ADM PEDIDOS</Boton>
+              )}
+              {usuario.permiso === 9 && (
+                <Boton className="btn-zu" >ADM VENTAS</Boton>
+              )}
+                
               </div>
             </div>
           )}

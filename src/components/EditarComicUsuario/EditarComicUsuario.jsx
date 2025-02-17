@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import '../FormComic/FormComic.css';
+import Boton from '../Boton/Boton';
 
 function EditarMisComics() {
   const { id } = useParams(); // Obtiene el ID de la URL
@@ -172,16 +173,10 @@ function EditarMisComics() {
 
             <div className="row mt-3 d-flex justify-content-center">
               <div className="col-md-6 d-flex justify-content-around">
-                <button type="submit" className="btn custom-button text-black fw-bold me-2">
-                  CONFIRMAR
-                </button>
-                <button
-                  type="button"
-                  className="btn custom-button text-black fw-bold"
-                  onClick={() => navigate("/mis-comics")}
-                >
+                <Boton type="submit">CONFIRMAR</Boton>
+                <Boton type="button" onClick={() => navigate("/mis-comics")}>
                   VOLVER
-                </button>
+                </Boton>
               </div>
             </div>
           </form>

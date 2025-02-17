@@ -84,17 +84,8 @@
   width: auto;
 }
 
-/* Estilo del botón Volver */
-.volver-container .custom-button {
-  background-color: #62CFFE;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
-  transition: transform 0.2s;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
-}
-
-.volver-container .custom-button:hover {
-  transform: translateY(-2px);
-  background-color: #6FA287;
+.custom-ofertar{
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
 }

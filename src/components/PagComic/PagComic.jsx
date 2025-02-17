@@ -6,13 +6,13 @@ function PagComic() {
   const [comics, setComics] = useState([]);
   const [genero, setGenero] = useState('Comic');
     
-    useEffect(() => {
-      if(genero){
-        fetch(`http://localhost:3001/api/comics/genero/${genero}`)
-          .then((res) => res.json())
-          .then((data) => setComics(data));
-      } 
-    }, [genero]);
+  useEffect(() => {
+    if(genero){
+      fetch(`http://localhost:3001/api/comics/genero/${genero}`)
+        .then((res) => res.json())
+        .then((data) => setComics(data));
+    } 
+  }, [genero]);
 
   return (
     <div className='tendencias'>

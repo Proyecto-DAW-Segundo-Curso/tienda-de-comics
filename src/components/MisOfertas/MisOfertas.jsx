@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "./MisComics.css";
+import "../MisComics/MisComics.css";
 
 const MisOfertas = () => {
   const [ofertas, setOfertas] = useState([]);
@@ -28,6 +28,7 @@ const MisOfertas = () => {
     obtenerMisOfertas();
   }, []);
 
+  // Redirigir al formulario de edición
   const editarOferta = (intercambioId) => {
     navigate(`/editar-oferta/${intercambioId}`);
   };
@@ -43,13 +44,18 @@ const MisOfertas = () => {
         headers: { Authorization: `Bearer ${token}` },
       });
 
-      if (!response.ok) throw new Error("Error al eliminar la oferta");
+      const data = await response.json();
 
-      setOfertas(ofertas.filter(oferta => oferta.intercambio_id !== intercambioId));
+      if (!response.ok) {
+        alert(data.message || "Error al eliminar la oferta.");
+        return;
+      }
+
       alert("Oferta eliminada correctamente");
+      setOfertas(ofertas.filter(oferta => oferta.intercambio_id !== intercambioId));
     } catch (error) {
-      console.error("Error al eliminar:", error);
-      alert("Hubo un error al eliminar la oferta");
+      console.error("Error al eliminar oferta:", error);
+      alert("Hubo un error al eliminar la oferta.");
     }
   };
 

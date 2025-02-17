@@ -3,18 +3,22 @@ import { useParams, useNavigate } from "react-router-dom";
 import "../UsuarioSubirComicForm/UsuarioSubirComicForm.css";
 
 const FormularioIntercambio = () => {
-  const { id } = useParams();
+  const { id } = useParams(); // Obtiene el ID del cómic desde la URL
   const navigate = useNavigate();
+
+  // Estados para los campos del formulario
   const [comentario, setComentario] = useState("");
   const [estadoIntercambio, setEstadoIntercambio] = useState("");
+  const [error, setError] = useState(null); // Para mostrar errores en la UI
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(null); // Reinicia el error al enviar el formulario
 
     try {
       const token = localStorage.getItem("token");
       if (!token) {
-        alert("Debes iniciar sesión para ofertar un cómic.");
+        setError("Debes iniciar sesión para ofertar un cómic.");
         return;
       }
 
@@ -25,19 +29,24 @@ const FormularioIntercambio = () => {
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
-          comic_id: id,
-          comentario,
-          estado_intercambio: estadoIntercambio,
+          comic_id: id, 
+          comentario, 
+          estado_intercambio: estadoIntercambio
         }),
       });
 
-      if (!response.ok) throw new Error("Error al ofertar cómic");
+      const data = await response.json(); // Obtener respuesta del backend
+
+      if (!response.ok) {
+        setError(data.message || "Error al ofertar el cómic");
+        return;
+      }
 
       alert("Cómic ofertado exitosamente");
-      navigate("/mis-comics");
+      navigate("/mis-comics"); // Redirige de vuelta a la lista de cómics después de ofertar
     } catch (error) {
       console.error("Error:", error);
-      alert("Hubo un error al ofertar el cómic");
+      setError("Hubo un error en el servidor. Inténtalo más tarde.");
     }
   };
 
@@ -48,6 +57,9 @@ const FormularioIntercambio = () => {
           Ofertar Cómic
         </div>
         <div className="card-body custom-body">
+          {/* Mostrar mensaje de error si existe */}
+          {error && <div className="alert alert-danger">{error}</div>}
+
           <form onSubmit={handleSubmit}>
             <div className="form-group">
               <label htmlFor="comentario">Comentario</label>
@@ -67,7 +79,7 @@ const FormularioIntercambio = () => {
                 type="text"
                 className="form-control"
                 id="estado_intercambio"
-                placeholder="Ejemplo: Disponible, Interesado en cambios, Solo venta"
+                placeholder="Ejemplo: Disponible, Solo venta, Acepto cambios"
                 value={estadoIntercambio}
                 onChange={(e) => setEstadoIntercambio(e.target.value)}
                 required
@@ -90,3 +102,5 @@ const FormularioIntercambio = () => {
 };
 
 export default FormularioIntercambio;
+
+

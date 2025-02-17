@@ -16,6 +16,8 @@ import { CartProvider } from './CartContext/CartContext.js';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import FormComic from './components/FormComic/FormComic.jsx';
 import EditarComicUsuario from './components/EditarComicUsuario/EditarComicUsuario.jsx';
+import MisOfertas from "./components/MisOfertas/MisOfertas.jsx"; // Importamos el nuevo componente
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -50,7 +52,8 @@ function App() {
               <Route path="/subir-comic-usuario" element={<SubirComicUsuario />} />
               <Route path="/mis-comics" element={<MisComics />} />
               <Route path="/editar-comic-usuario/:id" element={<EditarComicUsuario />} />
-              <Route path="/ofertar-comic/:id" element={<FormularioIntercambio />} /> {/* Nueva ruta agregada */}
+              <Route path="/ofertar-comic/:id" element={<FormularioIntercambio />} />
+              <Route path="/mis-ofertas" element={<MisOfertas />} />
             </Routes>
           </main>
 

@@ -1,6 +1,6 @@
 /* ESTILOS PROPIOS */
 
-.custom-container {
+.custom-cart-container {
   position: relative;
   width: 70px;
   height: 70px;
@@ -10,7 +10,7 @@
   transition: box-shadow 0.3s ease;
 }
 
-.custom-container:hover {
+.custom-cart-container:hover {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
@@ -21,7 +21,7 @@
   transition: transform 0.2s ease;
 }
 
-.custom-container:hover .custom-cart {
+.custom-cart-container:hover .custom-cart {
   transform: scale(1.1);
 }
 
@@ -37,7 +37,7 @@
   transition: opacity 0.3s ease, visibility 0.3s ease; /* Transiciones suaves */
 }
 
-.custom-container:hover .custom-cart-content,
+.custom-cart-container:hover .custom-cart-content,
 .custom-cart-content:hover {
   opacity: 1;
   /* Visible cuando se interactúa */

@@ -3,7 +3,6 @@ import UsuarioSubirComicForm from "../UsuarioSubirComicForm/UsuarioSubirComicFor
 import { useNavigate } from "react-router-dom";
 
 const SubirComic = () => {
-  const navigate = useNavigate();
 
   return (
     <div className="container mt-5">

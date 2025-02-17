@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./MisComics.css";
+import Boton from "../Boton/Boton";
 
 const MisComics = () => {
   const [comicsSubidos, setComicsSubidos] = useState([]);
@@ -94,12 +95,12 @@ const MisComics = () => {
                         <strong>Precio:</strong> ${comic.precio.toFixed(2)}
                       </p>
                       <div className="d-flex flex-column">
-                        <button className="btn btn-primary mb-2" onClick={() => navigate(`/ofertar-comic/${comic.id}`)}>
+                        <Boton className="mb-2 custom-ofertar" onClick={() => navigate(`/ofertar-comic/${comic.id}`)}>
                           Ofertar
-                        </button>
+                        </Boton>
                         <div className="d-flex justify-content-between">
-                          <button className="btn btn-warning" onClick={() => editarComic(comic)}>Editar</button>
-                          <button className="btn btn-danger" onClick={() => eliminarComic(comic.id)}>Eliminar</button>
+                          <Boton className="btn-warning" onClick={() => editarComic(comic)}>Editar</Boton>
+                          <Boton className="btn-danger" onClick={() => eliminarComic(comic.id)}>Eliminar</Boton>
                         </div>
                       </div>
                     </div>
@@ -110,9 +111,7 @@ const MisComics = () => {
           )}
 
           <div className="volver-container">
-            <button className="btn custom-button" onClick={() => navigate("/zona-usuario")}>
-              VOLVER
-            </button>
+            <Boton onClick={() => navigate("/zona-usuario")}>VOLVER</Boton>
           </div>
         </div>
       </div>

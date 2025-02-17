@@ -65,6 +65,7 @@ function AdminComics() {
           >
             AÑADIR COMIC
           </Boton>
+          <Boton onClick={() => navigate("/zona-usuario")}>VOLVER</Boton>
         </div>
         <div className="card-body">
           {/* Mensaje de error si no se encuentran cómics */}

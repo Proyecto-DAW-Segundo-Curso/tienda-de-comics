@@ -1,0 +1,43 @@
+/* Estilos generales para la tabla */
+.contenedor-ventas {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	margin-top: 20px;
+}
+
+.tabla-ventas {
+  width: 80%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.tabla-ventas td {
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #2a687a;
+}
+
+.tabla-ventas th {
+	border: 1px solid #3f97b2;
+}
+.tabla-ventas th {
+  background-color: #2a687a;
+  color: white;
+  font-weight: bold;
+}
+
+.tabla-ventas tr {
+	background-color: #3f97b2;
+}
+
+.tabla-ventas td {
+  font-size: 14px;
+  color: #000;
+}
+
+.tabla-ventas td, .tabla-ventas th {
+  text-align: center;
+}

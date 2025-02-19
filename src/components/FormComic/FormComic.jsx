@@ -127,14 +127,15 @@ function FormComic() {
                 </div>
                 <div className="form-group">
                   <label htmlFor="genero">Género</label>
-                  <input
-                    type="text"
+                  <select
                     className="form-control"
                     id="genero"
-                    placeholder="Escribe aquí"
                     value={comic.genero}
                     onChange={handleInputChange}
-                  />
+                  >
+                    <option value="Comic" selected>Comic</option>
+                    <option value="Manga">Manga</option>
+                  </select>
                 </div>
                 <div className="row">
                   <div className="col-md-6">
@@ -166,7 +167,7 @@ function FormComic() {
                 </div>
               </div>
             </div>
-  
+
             <div className="row mt-3 d-flex justify-content-center">
               <div className="col-md-6 d-flex justify-content-around">
                 <Boton
@@ -187,6 +188,6 @@ function FormComic() {
       </div>
     </div>
   );
-  }
+}
 
 export default FormComic;

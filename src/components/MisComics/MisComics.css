@@ -3,22 +3,6 @@
     max-width: 90%;
   }
   
-  /* Tarjetas de cómics */
-  .card {
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .card img {
-    max-height: 250px;
-    object-fit: cover;
-  }
-  
-  .card-body {
-    padding: 15px;
-  }
-  
   .card-title {
     font-size: 1.25rem;
     font-weight: bold;
@@ -55,12 +39,6 @@
     font-size: 1rem;
   }
   
-  /* Ajuste de botones */
-  .d-flex {
-    display: flex;
-    justify-content: space-between;
-  }
-
   /* Contenedor de los cómics */
 .comics-container {
   position: relative;

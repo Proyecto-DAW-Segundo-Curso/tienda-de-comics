@@ -155,15 +155,15 @@ const AdminUsuarios = () => {
                   className="form-select mb-3"
                   value={usuarioSeleccionado.permiso}
                   onChange={(e) =>
-                    setUsuarioSeleccionado({ 
-                      ...usuarioSeleccionado, 
-                      permiso: Number(e.target.value) 
+                    setUsuarioSeleccionado({
+                      ...usuarioSeleccionado,
+                      permiso: Number(e.target.value)
                     })
                   }
                 >
                   <option value={1}>Usuario</option>
                   <option value={9}>Administrador</option>
-</select>
+                </select>
 
               </div>
               <div className="modal-footer">

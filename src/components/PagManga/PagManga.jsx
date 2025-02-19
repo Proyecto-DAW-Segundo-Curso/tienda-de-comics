@@ -16,14 +16,18 @@ function PagManga( { comic } ) {
   }, [genero]);
 
   return (
-    <div className='tendencias'>
-      <div className="contenedor-boton">
-        <Boton>MANGA</Boton>
-      </div>
-      <div className="contenedor-comics">
-        {comics.map((comic) => (
-          <FichaLibro key={comic.id} comic={comic} />
-        ))}
+    <div className='container mt-5 w-80 position-relative'>
+      <div className="card">
+        <div className="card-header custom-header text-white fw-bold text-center">
+          MANGA
+        </div>
+
+        <div className="custom-body contenedor-comics">
+          {comics.map((comic) => (
+            <FichaLibro key={comic.id} comic={comic} />
+          ))}
+
+        </div>
       </div>
     </div>
   )

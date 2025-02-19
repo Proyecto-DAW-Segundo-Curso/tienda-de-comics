@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react'; 
+import React, { useState, useEffect } from 'react';
 import PortadaComic from '../PortadaComic/PortadaComic';
-import './FichaLibro.css';
-import { useCart } from '../../CartContext/CartContext.js'; 
+import { useCart } from '../../CartContext/CartContext.js';
 import Boton from '../Boton/Boton.jsx';
+import './FichaLibro.css';
 
 function FichaLibro({ comic }) {
-  const { addToCart, message, clearMessage } = useCart();  // Obtener el mensaje desde el contexto
+  const { addToCart, message } = useCart();
   const { titulo, autor, editorial, genero, precio, stock, imagen } = comic;
 
   const [showModal, setShowModal] = useState(false);
@@ -21,27 +21,44 @@ function FichaLibro({ comic }) {
   useEffect(() => {
     if (message) {
       setShowModal(true);
-      const timer = setTimeout(() => setShowModal(false), 1500); // Ocultar modal después de 1.5 segundos
-      return () => clearTimeout(timer); // Limpiar el timer cuando el componente se desmonte
+      const timer = setTimeout(() => setShowModal(false), 1500);
+      return () => clearTimeout(timer);
     }
-  }, [message]); // Se ejecuta cuando el mensaje cambie
+  }, [message]);
 
   return (
-    <div className="ficha-libro">
-      <PortadaComic src={imagen} alt={titulo} />
-      <div className="info-comic">
-        <h3>{titulo}</h3>
-        <p><strong>Autor:</strong> {autor}</p>
-        <p><strong>Editorial:</strong> {editorial}</p>
-        <p><strong>Género:</strong> {genero}</p>
-        <p><strong>Precio:</strong> ${precio.toFixed(2)}</p>
-        <p><strong>Stock:</strong> {stock}</p>
+    <div className="card custom-card d-flex flex-column justify-content-between p-2">
+      {/* Contenedor de la imagen */}
+      <div className="card-image">
+        <PortadaComic src={imagen} alt={titulo} className="img-fluid" />
       </div>
-      <Boton onClick={handleAddToCart}>+ Añadir</Boton>
+
+      {/* Contenedor del contenido con scroll */}
+      <div className="card-body text-center list-group custom-card-content border-0 d-flex align-items-center">
+        <h5 className="card-title">{titulo}</h5>
+        <p className="card-text"><strong>Autor:</strong> {autor}</p>
+        <p className="card-text"><strong>Editorial:</strong> {editorial}</p>
+        <p className="card-text"><strong>Género:</strong> {genero}</p>
+        <p className="card-text"><strong>Precio:</strong> ${precio.toFixed(2)}</p>
+        <p className={`card-text ${stock > 0 ? 'text-success' : 'text-danger'}`}>
+          <strong>Stock:</strong> {stock}
+        </p>
+      </div>
+
+      {/* Contenedor del botón */}
+      <div className="card-footer">
+        <Boton className="w-100" onClick={handleAddToCart}>+ Añadir</Boton>
+      </div>
 
       {showModal && message && (
-        <div className="modal-stock">
-          <p>{message}</p> {/* Mostrar el mensaje del contexto */}
+        <div className="modal fade show d-block" role="dialog">
+          <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content">
+              <div className="modal-body text-center">
+                <p>{message}</p>
+              </div>
+            </div>
+          </div>
         </div>
       )}
     </div>

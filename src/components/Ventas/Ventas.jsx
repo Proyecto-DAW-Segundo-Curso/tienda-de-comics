@@ -7,7 +7,7 @@ function Ventas() {
 	const [ventas, setVentas] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3001/api/ventas')
+    fetch('http://localhost:3001/api/ventasConUsuarioComic')
       .then(response => response.json())
       .then(data => setVentas(data));
   }, []);

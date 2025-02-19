@@ -132,7 +132,7 @@ const ZonaUsuario = () => {
                 <Boton className="btn-zu" >ADM PEDIDOS</Boton>
               )}
               {usuario.permiso === 9 && (
-                <Boton className="btn-zu" >ADM VENTAS</Boton>
+                <Boton className="btn-zu"onClick={() => navigate("/ventas")}>ADM VENTAS</Boton>
               )}
                 
               </div>

@@ -17,13 +17,21 @@
 .tabla-ventas td {
   padding: 12px;
   text-align: left;
-  border: 1px solid #2a687a;
 }
 
-.tabla-ventas th {
-	border: 1px solid #3f97b2;
+.ventas {
+  border-radius: 15px, 15px, 0, 0;
+  background: linear-gradient(to bottom, #000000, #5c5c5c);
+  padding: 10px;
 }
+
+.cabecera {
+  border: 1px solid #2a687a;
+  padding: 12px;
+} 
+
 .tabla-ventas th {
+  border: 1px solid #3f97b2;
   background-color: #2a687a;
   color: white;
   font-weight: bold;

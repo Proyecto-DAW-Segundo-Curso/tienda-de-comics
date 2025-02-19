@@ -17,9 +17,9 @@ function Ventas() {
       <table className='tabla-ventas'>
         <thead>
           <tr>
-            <th colSpan='5'>VENTAS</th>
+            <th colSpan='5' className='ventas'>VENTAS</th>
           </tr>
-          <tr>
+          <tr className='cabecera'>
             <th>USUARIO</th>
             <th>CÓMIC</th>
             <th>PRECIO</th>

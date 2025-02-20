@@ -39,50 +39,72 @@ const Intercambio = () => {
   };
 
   return (
-    <div className="intercambio-contenedor">
-      {mostrarChat && <Chat vendedor={vendedor} onClose={cerrarChat} />} {/* Renderiza el chat si está activo */}
+    <div className="container mt-4">
+      {mostrarChat && <Chat vendedor={vendedor} onClose={cerrarChat} />}
 
       {ofertas.length > 0 ? (
-        <div className="tarjetas-container">
+        <div className="row">
           {ofertas.map((oferta, index) => (
-            <div className="tarjeta-oferta" key={index}>
-              <img
-                src={oferta.imagen || 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg'}
-                alt={oferta.titulo}
-              />
-              <div className="tarjeta-info">
-                <h3>{oferta.titulo}</h3>
-                <p>{oferta.comentario}</p>
-                <p className="precio">{oferta.precio}€</p>
-                <p className="fecha">Publicado: {new Date(oferta.fecha_comentario).toLocaleDateString()}</p>
-                <p className="estado"><strong>Estado:</strong> {oferta.estado_intercambio}</p>
-
-                {/* Sistema de puntuación con Material-UI Rating */}
-                <div className="boton-puntuacion">
-                  <Rating
-                    value={puntuaciones[index] || 0}
-                    onChange={(event, newValue) => {
-                      setPuntuaciones({ ...puntuaciones, [index]: newValue });
-                    }}
-                  />
+            <div className="col-md-4 mb-4" key={index}>
+              <div className="card h-100 shadow">
+                
+                {/* Fila 1: Título */}
+                <div className="card-header text-center bg-primary text-white">
+                  <h5 className="m-0">{oferta.titulo}</h5>
                 </div>
 
-                {/* Botón para iniciar chat con el vendedor */}
-                <div className="tarjeta-botones">
-                  <button className="boton-oferta" onClick={() => abrirChat(oferta.vendedor)}>
+                {/* Fila 2: Imagen + Información */}
+                <div className="card-body">
+                  <div className="row">
+                    
+                    {/* Columna izquierda: Imagen */}
+                    <div className="col-5 d-flex align-items-center">
+                      <img
+                        src={oferta.imagen || "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg"}
+                        className="img-fluid rounded"
+                        alt={oferta.titulo}
+                        style={{ maxHeight: "150px", objectFit: "cover" }}
+                      />
+                    </div>
+
+                    {/* Columna derecha: Información */}
+                    <div className="col-7">
+                      <p className="mb-1">{oferta.comentario}</p>
+                      <p className="fw-bold text-primary mb-1">{oferta.precio}€</p>
+                      <p className="text-muted small mb-1">Publicado: {new Date(oferta.fecha_comentario).toLocaleDateString()}</p>
+                      <p className="text-warning small mb-2">
+                        <strong>Estado:</strong> {oferta.estado_intercambio}
+                      </p>
+
+                      {/* Sistema de puntuación */}
+                      <Rating
+                        value={puntuaciones[index] || 0}
+                        onChange={(event, newValue) => {
+                          setPuntuaciones({ ...puntuaciones, [index]: newValue });
+                        }}
+                        size="small"
+                      />
+                    </div>
+
+                  </div>
+                </div>
+
+                {/* Fila 3: Botón centrado */}
+                <div className="card-footer d-flex justify-content-center">
+                  <button className="btn btn-success w-75" onClick={() => abrirChat(oferta.vendedor)}>
                     OFERTA
                   </button>
                 </div>
+
               </div>
             </div>
           ))}
         </div>
       ) : (
-        <p>No hay ofertas disponibles.</p>
+        <p className="text-center text-muted">No hay ofertas disponibles.</p>
       )}
     </div>
-  );
-};
+  );};
 
 export default Intercambio;
 

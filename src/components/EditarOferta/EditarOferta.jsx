@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "../UsuarioSubirComicForm/UsuarioSubirComicForm.css";
+import Boton from "../Boton/Boton";
 
 const EditarOferta = () => {
   const { id } = useParams(); // ID de la oferta
@@ -89,12 +90,12 @@ const EditarOferta = () => {
             </div>
 
             <div className="d-flex justify-content-between mt-4">
-              <button type="submit" className="btn custom-button fw-bold">
-                Guardar Cambios
-              </button>
-              <button type="button" className="btn btn-danger" onClick={() => navigate("/mis-ofertas")}>
-                Cancelar
-              </button>
+              <Boton type="submit">
+                GUARDAR CAMBIOS
+              </Boton>
+              <Boton type="button" className="btn-danger" onClick={() => navigate("/mis-ofertas")}>
+                CANCELAR
+              </Boton>
             </div>
           </form>
         </div>

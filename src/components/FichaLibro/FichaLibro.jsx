@@ -27,14 +27,14 @@ function FichaLibro({ comic }) {
   }, [message]);
 
   return (
-    <div className="card custom-card d-flex flex-column justify-content-between p-2">
+    <div className="card custom-card d-flex flex-column justify-content-between align-items-center p-2">
       {/* Contenedor de la imagen */}
       <div className="card-image">
         <PortadaComic src={imagen} alt={titulo} className="img-fluid" />
       </div>
 
       {/* Contenedor del contenido con scroll */}
-      <div className="card-body text-center list-group custom-card-content border-0 d-flex align-items-center">
+      <div className="text-center list-group custom-card-content border-0 d-flex align-items-center">
         <h5 className="card-title">{titulo}</h5>
         <p className="card-text"><strong>Autor:</strong> {autor}</p>
         <p className="card-text"><strong>Editorial:</strong> {editorial}</p>
@@ -47,7 +47,7 @@ function FichaLibro({ comic }) {
 
       {/* Contenedor del botón */}
       <div className="card-footer">
-        <Boton className="w-100" onClick={handleAddToCart}>+ Añadir</Boton>
+        <Boton className="w-75" onClick={handleAddToCart}>+ Añadir</Boton>
       </div>
 
       {showModal && message && (

@@ -76,7 +76,7 @@ function AdminComics() {
               {/* Mapea los cómics filtrados y muestra cada uno en una tarjeta */}
               {filteredComics.map(comic => (
                 <div className="col-md-4 mb-4" key={comic.id}>
-                  <div className="card h-100">
+                  <div className="card h-100 d-flex justify-content-between align-items-center">
                     <img
                       src={comic.imagen || 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg'} // Muestra la imagen del cómic o un placeholder si no hay imagen
                       className="card-img-top"
@@ -92,22 +92,22 @@ function AdminComics() {
                         <strong>Precio:</strong> ${comic.precio.toFixed(2)} <br />
                         <strong>Stock:</strong> {comic.stock}
                       </p>
-                      <div className="d-flex justify-content-between">
-                        {/* Botón para editar el cómic */}
-                        <Boton
-                          className="btn btn-warning"
-                          onClick={() => navigate(`/editar-comic/${comic.id}`)} // Redirige a la ruta de edición con el ID del cómic
-                        >
-                          Editar
-                        </Boton>
-                        {/* Botón para eliminar el cómic */}
-                        <Boton
-                          className="btn btn-danger"
-                          onClick={() => eliminarComic(comic.id, comic.titulo)}
-                        >
-                          Eliminar
-                        </Boton>
-                      </div>
+                    </div>
+                    <div className="d-flex">
+                      {/* Botón para editar el cómic */}
+                      <Boton
+                        className="btn btn-warning"
+                        onClick={() => navigate(`/editar-comic/${comic.id}`)} // Redirige a la ruta de edición con el ID del cómic
+                      >
+                        Editar
+                      </Boton>
+                      {/* Botón para eliminar el cómic */}
+                      <Boton
+                        className="btn btn-danger"
+                        onClick={() => eliminarComic(comic.id, comic.titulo)}
+                      >
+                        Eliminar
+                      </Boton>
                     </div>
                   </div>
                 </div>

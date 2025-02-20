@@ -96,7 +96,7 @@ function FormComic() {
                   <label htmlFor="titulo">Título</label>
                   <input
                     type="text"
-                    className="form-control  mb-2"
+                    className="form-control  mb-3"
                     id="titulo"
                     placeholder="Escribe aquí"
                     value={comic.titulo}
@@ -107,7 +107,7 @@ function FormComic() {
                   <label htmlFor="autor">Autor</label>
                   <input
                     type="text"
-                    className="form-control mb-2"
+                    className="form-control mb-3"
                     id="autor"
                     placeholder="Escribe aquí"
                     value={comic.autor}
@@ -118,7 +118,7 @@ function FormComic() {
                   <label htmlFor="editorial">Editorial</label>
                   <input
                     type="text"
-                    className="form-control mb-2"
+                    className="form-control mb-3"
                     id="editorial"
                     placeholder="Escribe aquí"
                     value={comic.editorial}
@@ -128,7 +128,7 @@ function FormComic() {
                 <div className="form-group">
                   <label htmlFor="genero">Género</label>
                   <select
-                    className="form-select mb-2"
+                    className="form-select mb-3"
                     id="genero"
                     value={comic.genero}
                     onChange={handleInputChange}
@@ -143,7 +143,7 @@ function FormComic() {
                       <label htmlFor="precio">Precio</label>
                       <input
                         type="text"
-                        className="form-control mb-2"
+                        className="form-control mb-3"
                         id="precio"
                         placeholder="Escribe aquí"
                         value={comic.precio}
@@ -156,7 +156,7 @@ function FormComic() {
                       <label htmlFor="stock">Stock</label>
                       <input
                         type="text"
-                        className="form-control mb-2"
+                        className="form-control mb-3"
                         id="stock"
                         placeholder="Escribe aquí"
                         value={comic.stock}

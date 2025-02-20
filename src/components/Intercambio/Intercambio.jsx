@@ -47,7 +47,7 @@ const Intercambio = () => {
           {ofertas.map((oferta, index) => (
             <div className="col-md-4 mb-4" key={index}>
               <div className="card h-100 shadow">
-                
+
                 {/* Fila 1: Título */}
                 <div className="card-header text-center bg-primary text-white">
                   <h5 className="m-0">{oferta.titulo}</h5>
@@ -56,7 +56,7 @@ const Intercambio = () => {
                 {/* Fila 2: Imagen + Información */}
                 <div className="card-body">
                   <div className="row">
-                    
+
                     {/* Columna izquierda: Imagen */}
                     <div className="col-5 d-flex align-items-center">
                       <img
@@ -104,7 +104,8 @@ const Intercambio = () => {
         <p className="text-center text-muted">No hay ofertas disponibles.</p>
       )}
     </div>
-  );};
+  );
+};
 
 export default Intercambio;
 

@@ -22,6 +22,8 @@ import ResumenCarrito from './components/Carrito-Compra/ResumenCarrito/ResumenCa
 import PagManga from './components/PagManga/PagManga.jsx';
 import PagComic from './components/PagComic/PagComic.jsx';
 import AdminUsuarios from './components/AdminUsuarios/AdminUsuarios.jsx';
+import Chat from './components/Chat/Chat.jsx';
+import ListaChats from "./components/ListaChats/ListaChats";
 
 
 
@@ -64,6 +66,8 @@ function App() {
               <Route path="/ofertar-comic/:id" element={<FormularioIntercambio />} />
               <Route path="/mis-ofertas" element={<MisOfertas />} />
               <Route path="/editar-oferta/:id" element={<EditarOferta />} />
+              <Route path="/chat/:id" element={<Chat />} />
+              <Route path="/chats-activos" element={<ListaChats />} />
             </Routes>
           </main>
 

@@ -5,23 +5,29 @@ import Boton from '../Boton/Boton.jsx';
 import './FichaLibro.css';
 
 function FichaLibro({ comic }) {
-  const { addToCart, message } = useCart();
+  const { addToCart, message, setMessage } = useCart();
   const { titulo, autor, editorial, genero, precio, stock, imagen } = comic;
 
   const [showModal, setShowModal] = useState(false);
+  
 
   const handleAddToCart = () => {
     if (stock > 0) {
+      setMessage(`${titulo} añadido al carrito`);
       addToCart(comic);
     } else {
-      setShowModal(true);
+      setMessage("No hay suficiente stock");
     }
   };
 
   useEffect(() => {
     if (message) {
       setShowModal(true);
-      const timer = setTimeout(() => setShowModal(false), 1500);
+      const timer = setTimeout(() => {
+        setShowModal(false);
+        setMessage("")  
+      }, 1000);
+
       return () => clearTimeout(timer);
     }
   }, [message]);
@@ -52,7 +58,7 @@ function FichaLibro({ comic }) {
 
       {showModal && message && (
         <div className="modal fade show d-block" role="dialog">
-          <div className="modal-dialog modal-dialog-centered">
+          <div className="modal-dialog">
             <div className="modal-content">
               <div className="modal-body text-center">
                 <p>{message}</p>

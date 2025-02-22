@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Rating } from '@mui/material'; // Importamos el material MUI para las estrellas
 import './Intercambio.css';
 import Chat from '../Chat/Chat.jsx';
+import Boton from '../Boton/Boton.jsx';
 
 const Intercambio = () => {
   const [ofertas, setOfertas] = useState([]); // Estado para almacenar las ofertas desde la API
@@ -90,10 +91,11 @@ const Intercambio = () => {
                 </div>
 
                 {/* Fila 3: Botón centrado */}
-                <div className="card-footer d-flex justify-content-center">
-                  <button className="btn btn-success w-75" onClick={() => abrirChat(oferta.vendedor)}>
+                <div className="d-flex justify-content-center">
+
+                  <Boton className="w-75 mb-3" onClick={() => abrirChat(oferta.vendedor)}>
                     OFERTA
-                  </button>
+                  </Boton>
                 </div>
 
               </div>

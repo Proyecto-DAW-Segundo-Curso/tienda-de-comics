@@ -46,7 +46,7 @@ function FichaLibro({ comic }) {
       </div>
 
       {/* Contenedor del botón */}
-      <div className="card-footer">
+      <div>
         <Boton className="w-75" onClick={handleAddToCart}>+ Añadir</Boton>
       </div>
 

@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import Boton from '../Boton/Boton';
 import FichaLibro from '../FichaLibro/FichaLibro';
 
 function PagComic() {
   const [comics, setComics] = useState([]);
-  const [genero, setGenero] = useState('Comic');
+  const genero = 'Comic';
 
   useEffect(() => {
     if (genero) {

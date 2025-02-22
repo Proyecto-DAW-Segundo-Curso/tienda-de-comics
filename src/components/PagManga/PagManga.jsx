@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import Boton from '../Boton/Boton';
 import FichaLibro from '../FichaLibro/FichaLibro';
-import { data } from 'react-router-dom';
 
-function PagManga( { comic } ) {
+function PagManga() {
   const [comics, setComics] = useState([]);
-  const [genero, setGenero] = useState('Manga');
+  const genero = 'Manga';
   
   useEffect(() => {
     if(genero){

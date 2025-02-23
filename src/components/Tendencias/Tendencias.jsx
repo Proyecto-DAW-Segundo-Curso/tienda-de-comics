@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import "./Tendencias.css";
-import Boton from '../Boton/Boton';
 import FichaLibro from '../FichaLibro/FichaLibro';
 
 

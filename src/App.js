@@ -22,6 +22,7 @@ import ResumenCarrito from './components/Carrito-Compra/ResumenCarrito/ResumenCa
 import PagManga from './components/PagManga/PagManga.jsx';
 import PagComic from './components/PagComic/PagComic.jsx';
 import AdminUsuarios from './components/AdminUsuarios/AdminUsuarios.jsx';
+import EditarUsuario from './components/AdminUsuarios/EditarUsuario.jsx';
 
 
 
@@ -64,6 +65,7 @@ function App() {
               <Route path="/ofertar-comic/:id" element={<FormularioIntercambio />} />
               <Route path="/mis-ofertas" element={<MisOfertas />} />
               <Route path="/editar-oferta/:id" element={<EditarOferta />} />
+              <Route path="/editar-usuario/:id" element={<EditarUsuario/>} />
             </Routes>
           </main>
 

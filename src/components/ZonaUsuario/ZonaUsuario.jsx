@@ -133,7 +133,7 @@ const ZonaUsuario = () => { // Define el componente ZonaUsuario como una funció
                 <Boton className="btn-zu" >ADM PEDIDOS</Boton>
               )}
               {usuario.permiso === 9 && (
-                <Boton className="btn-zu" >ADM VENTAS</Boton>
+                <Boton className="btn-zu"onClick={() => navigate("/ventas")}>ADM VENTAS</Boton>
               )}
 
                 <Boton className="btn-zu" onClick={() => navigate("/logout")}> {/* Botón para cerrar sesión */}

@@ -140,7 +140,6 @@ const ZonaUsuario = () => { // Define el componente ZonaUsuario como una funció
                 {usuario.permiso === 1 && (
                   <Boton className="btn-zu" onClick={() => setModoEdicion(true)}>MODIFICAR DATOS</Boton>
                 )}
-                <Boton className="btn-zu" onClick={() => setModoEdicion(true)}>CREAR OFERTA</Boton>
                 <Boton className="btn-zu" onClick={() => navigate("/mis-ofertas")}>MIS OFERTAS</Boton>
                 <Boton className="btn-zu" onClick={() => navigate("/subir-comic-usuario")}>SUBIR COMIC</Boton>
                 <Boton className="btn-zu" onClick={() => navigate("/mis-comics")}>MIS COMICS</Boton>

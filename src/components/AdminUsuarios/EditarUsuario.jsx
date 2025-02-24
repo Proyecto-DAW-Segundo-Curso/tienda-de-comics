@@ -45,7 +45,11 @@ const EditarUsuario = () => {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(usuario),
+        body: JSON.stringify({
+          nombre: usuario.nombre,
+          email: usuario.email,
+          permiso: usuario.permiso
+        }),
       });
 
       if (response.ok) {

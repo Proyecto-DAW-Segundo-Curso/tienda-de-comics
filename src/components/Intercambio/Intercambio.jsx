@@ -103,7 +103,7 @@ const Intercambio = () => {
           ))}
         </div>
       ) : (
-        <p className="text-center text-muted">No hay ofertas disponibles.</p>
+        <p className="alert alert-warning mt-3">No hay ofertas disponibles.</p>
       )}
     </div>
   );

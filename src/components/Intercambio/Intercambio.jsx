@@ -1,37 +1,37 @@
-import React, { useState, useEffect } from 'react'; // Importa React y los hooks useState y useEffect
-import { Rating } from '@mui/material'; // Importa el componente Rating de Material-UI para las estrellas
-import './Intercambio.css'; // Importa el archivo CSS para los estilos
-import { useNavigate } from 'react-router-dom'; // Importa useNavigate de react-router-dom para la navegación
+import React, { useState, useEffect } from 'react';
+import { Rating } from '@mui/material'; // Importamos el material MUI para las estrellas
+import './Intercambio.css';
+import Chat from '../Chat/Chat.jsx';
+import Boton from '../Boton/Boton.jsx';
+import { useNavigate } from 'react-router-dom';
 
-const Intercambio = () => { // Define el componente Intercambio como una función
+const Intercambio = () => {
     const [ofertas, setOfertas] = useState([]); // Estado para almacenar las ofertas desde la API
     const [puntuaciones, setPuntuaciones] = useState({}); // Estado para la calificación de cada oferta
     const [usuario, setUsuario] = useState(null); // Estado para verificar el usuario logueado
     const [mensajeError, setMensajeError] = useState(''); // Mensaje de error si aplica
     const navigate = useNavigate(); // Obtiene la función navigate para la navegación programática
+    const [mostrarChat, setMostrarChat] = useState(false); // Estado para mostrar/ocultar el chat
+    const [vendedor, setVendedor] = useState(''); // Estado para el vendedor del chat
 
-    // Obtener las ofertas desde la API
-    useEffect(() => {
-        const fetchOfertas = async () => { // Define una función asíncrona para obtener las ofertas
-            try {
-                const response = await fetch("http://localhost:3001/api/intercambios"); // Hace una solicitud GET a la API
-                if (!response.ok) throw new Error("Error al obtener las ofertas"); // Lanza un error si la respuesta no es exitosa
-    
-                const data = await response.json(); // Convierte la respuesta a JSON
-    
-                // Agregamos un console.log para verificar si las ofertas incluyen usuario_id
-                console.log("📌 Datos recibidos de la API:", data);
-    
-                setOfertas(data); // Actualiza el estado ofertas con los datos obtenidos
-            } catch (error) {
-                console.error("Error al cargar ofertas:", error); // Muestra el error en la consola
-            }
-        };
-    
-        fetchOfertas(); // Llama a la función para obtener las ofertas
-    }, []); // Dependencias: ejecuta el hook solo al montar el componente
+  // Función para obtener los cómics ofertados desde la API
+  useEffect(() => {
+    const fetchOfertas = async () => {
+      try {
+        const response = await fetch("http://localhost:3001/api/intercambios"); // Llamada a la API del backend
+        if (!response.ok) throw new Error("Error al obtener las ofertas");
 
-    // Verificar si el usuario está logueado
+        const data = await response.json(); // Convertimos la respuesta en JSON
+        setOfertas(data); // Guardamos las ofertas en el estado
+      } catch (error) {
+        console.error("Error al cargar ofertas:", error);
+      }
+    };
+
+    fetchOfertas();
+  }, []); // Se ejecuta solo al montar el componente
+  
+   // Verificar si el usuario está logueado
     useEffect(() => {
         const token = localStorage.getItem("token"); // Obtiene el token de autenticación del localStorage
 
@@ -58,8 +58,8 @@ const Intercambio = () => { // Define el componente Intercambio como una funció
 
         obtenerUsuario(); // Llama a la función para obtener el usuario
     }, []); // Dependencias: ejecuta el hook solo al montar el componente
-
-    // Función para manejar la oferta
+  
+      // Función para manejar la oferta
     const manejarOferta = async (oferta) => {
         console.log(" Oferta seleccionada:", oferta); // Ver qué datos tiene la oferta
     
@@ -120,51 +120,77 @@ const Intercambio = () => { // Define el componente Intercambio como una funció
         }
     };
 
-    return (
-        <div className="intercambio-contenedor"> {/* Contenedor principal */}
-            {mensajeError && <div className="mensaje-error">{mensajeError}</div>} {/* Muestra el mensaje de error si existe */}
+  
 
-            {ofertas.length > 0 ? ( // Si hay ofertas, las muestra en una cuadrícula
-                <div className="tarjetas-container">
-                    {ofertas.map((oferta, index) => ( // Mapea las ofertas para mostrarlas
-                        <div className="tarjeta-oferta" key={index}> {/* Tarjeta de oferta */}
-                            <img
-                                src={oferta.imagen || 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg'} // Imagen del cómic o imagen por defecto
-                                alt={oferta.titulo}
-                            />
-                            <div className="tarjeta-info"> {/* Información de la tarjeta */}
-                                <h3>{oferta.titulo}</h3> {/* Título del cómic */}
-                                <p>{oferta.comentario}</p> {/* Comentario del cómic */}
-                                <p className="precio">{oferta.precio}€</p> {/* Precio del cómic */}
-                                <p className="fecha">Publicado: {new Date(oferta.fecha_comentario).toLocaleDateString()}</p> {/* Fecha de publicación */}
-                                <p className="estado"><strong>Estado:</strong> {oferta.estado_intercambio}</p> {/* Estado del intercambio */}
-                                <p className="vendedor"><strong>Vendedor:</strong> {oferta.vendedor_nombre || "Desconocido"}</p> {/* Nombre del vendedor */}
-                                
-                                {/* Sistema de puntuación con Material-UI Rating */}
-                                <div className="boton-puntuacion">
-                                    <Rating
-                                        value={puntuaciones[index] || 0} // Valor de la puntuación
-                                        onChange={(event, newValue) => {
-                                            setPuntuaciones({ ...puntuaciones, [index]: newValue }); // Actualiza la puntuación
-                                        }}
-                                    />
-                                </div>
+  return (
+    <div className="container mt-4">
+      {mensajeError && <div className="mensaje-error">{mensajeError}</div>} {/* Muestra el mensaje de error si existe */}
 
-                                {/* Botón para iniciar chat con validaciones */}
-                                <div className="tarjeta-botones">
-                                    <button className="boton-oferta" onClick={() => manejarOferta(oferta)}> {/* Botón para hacer una oferta */}
-                                        OFERTA
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
+      {ofertas.length > 0 ? (
+        <div className="row">
+          {ofertas.map((oferta, index) => (
+            <div className="col-md-4 mb-4" key={index}>
+              <div className="card h-100 shadow">
+
+                {/* Fila 1: Título */}
+                <div className="card-header text-center bg-primary text-white">
+                  <h5 className="m-0">{oferta.titulo}</h5>
                 </div>
-            ) : (
-                <p>No hay ofertas disponibles.</p> // Muestra un mensaje si no hay ofertas
-            )}
+
+                {/* Fila 2: Imagen + Información */}
+                <div className="card-body">
+                  <div className="row">
+
+                    {/* Columna izquierda: Imagen */}
+                    <div className="col-5 d-flex align-items-center">
+                      <img
+                        src={oferta.imagen || "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg"}
+                        className="img-fluid rounded"
+                        alt={oferta.titulo}
+                        style={{ maxHeight: "150px", objectFit: "cover" }}
+                      />
+                    </div>
+
+                    {/* Columna derecha: Información */}
+                    <div className="col-7">
+                      <p className="mb-1">{oferta.comentario}</p>
+                      <p className="fw-bold text-primary mb-1">{oferta.precio}€</p>
+                      <p className="text-muted small mb-1">Publicado: {new Date(oferta.fecha_comentario).toLocaleDateString()}</p>
+                      <p className="text-warning small mb-2">
+                        <strong>Estado:</strong> {oferta.estado_intercambio}
+                      </p>
+                       <p className="vendedor"><strong>Vendedor:</strong> {oferta.vendedor_nombre || "Desconocido"}</p> {/* Nombre del vendedor */}
+
+                      {/* Sistema de puntuación */}
+                      <Rating
+                        value={puntuaciones[index] || 0}
+                        onChange={(event, newValue) => {
+                          setPuntuaciones({ ...puntuaciones, [index]: newValue });
+                        }}
+                        size="small"
+                      />
+                    </div>
+
+                  </div>
+                </div>
+
+                {/* Fila 3: Botón centrado */}
+                <div className="d-flex justify-content-center">
+
+                  <Boton className="w-75 mb-3"  onClick={() => manejarOferta(oferta)}> {/* Botón para hacer una oferta */}
+                    OFERTA
+                  </Boton>
+                </div>
+              </div>
+            </div>
+          ))}
+
         </div>
-    );
+      ) : (
+        <p className="alert alert-warning mt-3">No hay ofertas disponibles.</p>
+      )}
+    </div>
+  );
 };
 
 export default Intercambio; // Exporta el componente Intercambio

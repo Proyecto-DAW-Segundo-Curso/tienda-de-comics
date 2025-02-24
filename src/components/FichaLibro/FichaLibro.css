@@ -1,70 +1,23 @@
-.ficha-libro {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  width: 30%;
+.custom-card {
+  width: 30%; /* Ancho fijo del 30% del contenedor */
   max-width: 500px;
-  max-height: 550px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
   overflow: hidden;
-  background-color: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 10px;
   transition: transform 0.2s ease-in-out;
-  opacity: 100%;
-  margin: 5px;
-  padding-top: 20px;
 }
 
-.custom-card{
-  max-width: 30%;
+.custom-card:hover {
+  transform: scale(1.03);
 }
 
-
-.info-comic {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  margin: 15px;
+/* Contenedor de la imagen */
+.card-image {
   text-align: center;
-  min-height: 200px;
+  padding: 10px;
 }
 
-.info-comic h3 {
-  font-size: 16px;
-  margin-bottom: 8px;
-  color: #333;
+.custom-card-content {
+  height: 270px;
+  border-top: none;
 }
-
-.info-comic p {
-  font-size: 14px;
-  margin: 4px 0;
-  color: #555;
-}
-
-/* Estilos del modal de stock */
-.modal-stock {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.8);
-  color: white;
-  padding: 15px 30px;
-  border-radius: 10px;
-  font-size: 18px;
-  text-align: center;
-  z-index: 1000;
-  opacity: 0.9;
-  animation: fadeInOut 1.5s ease-in-out;
-}
-
-@keyframes fadeInOut {
-  0% { opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { opacity: 0; }
-}
-
-

@@ -86,6 +86,36 @@ const ZonaUsuario = () => { // Define el componente ZonaUsuario como una funció
     return <p>{error}</p>; // Muestra un mensaje de error si hay un error
   }
 
+
+  const eliminarCuenta = async () => {
+    const confirmar = window.confirm(" ¿Estás seguro de que quieres eliminar tu cuenta? Esta acción no se puede deshacer.");
+    if (!confirmar) return;
+
+    try {
+      const token = localStorage.getItem("token");
+      const response = await fetch(`http://localhost:3001/api/user/${usuario.id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert("Tu cuenta ha sido eliminada con éxito.");
+        localStorage.removeItem("token"); // Eliminar el token de autenticación
+        navigate("/"); // Redirigir a la página de inicio
+      } else {
+        alert(data.message || "Error al eliminar la cuenta.");
+      }
+    } catch (error) {
+      console.error("Error al eliminar cuenta:", error);
+      alert("Error en el servidor.");
+    }
+  };
+
+
   return (
     <div className="container mt-5"> {/* Contenedor principal con margen superior */}
       <div className="card"> {/* Tarjeta */}
@@ -106,39 +136,34 @@ const ZonaUsuario = () => { // Define el componente ZonaUsuario como una funció
                 <p><strong>Email:</strong> {usuario?.email}</p> {/* Muestra el email del usuario */}
               </div>
 
-              <div className="tarjeta-opciones"> {/* Tarjeta de opciones */}
-                <Boton className="btn-zu" onClick={() => navigate("/mis-ofertas")}> {/* Botón para navegar a "Mis Ofertas" */}
-                  MIS OFERTAS
-                </Boton>
-                <Boton className="btn-zu" onClick={() => navigate("/subir-comic-usuario")}> {/* Botón para navegar a "Subir Comic" */}
-                  SUBIR COMIC
-                </Boton>
-                <Boton className="btn-zu" onClick={() => navigate("/mis-comics")}> {/* Botón para navegar a "Mis Comics" */}
-                  MIS COMICS
-                </Boton>
-                
-                <div className="boton-notificacion"> {/* Contenedor para el botón de notificación */}
+              <div className="tarjeta-opciones">
+                {usuario.permiso === 1 && (
+                  <Boton className="btn-zu" onClick={() => setModoEdicion(true)}>MODIFICAR DATOS</Boton>
+                )}
+                <Boton className="btn-zu" onClick={() => setModoEdicion(true)}>CREAR OFERTA</Boton>
+                <Boton className="btn-zu" onClick={() => navigate("/mis-ofertas")}>MIS OFERTAS</Boton>
+                <Boton className="btn-zu" onClick={() => navigate("/subir-comic-usuario")}>SUBIR COMIC</Boton>
+                <Boton className="btn-zu" onClick={() => navigate("/mis-comics")}>MIS COMICS</Boton>
+                  <div className="boton-notificacion"> {/* Contenedor para el botón de notificación */}
                   <Boton className="btn-zu" onClick={() => navigate("/chats-activos")}> {/* Botón para navegar a "Chats Activos" */}
                     CHATS ACTIVOS
                   </Boton>
                   {hayMensajesNoLeidos && <span className="notificacion">!</span>} {/* Muestra una notificación si hay mensajes no leídos */}
                 </div>
-                {usuario.permiso === 9 && ( // Si el usuario tiene permiso 9, muestra los botones de administración
-                <Boton className="btn-zu" onClick={() => navigate("/admin-usuarios")}>ADM USUARIOS</Boton>
-              )}
-               {usuario.permiso === 9 && (
+                {usuario.permiso === 9 && (
+                  <Boton className="btn-zu" onClick={() => navigate("/admin-usuarios")}>ADM USUARIOS</Boton>
+                )}
+                {usuario.permiso === 9 && (
                   <Boton className="btn-zu" onClick={() => navigate("/admin-comics")}>ADM COMICS</Boton>
                 )}
-              {usuario.permiso === 9 && (
-                <Boton className="btn-zu" >ADM PEDIDOS</Boton>
-              )}
-              {usuario.permiso === 9 && (
-                <Boton className="btn-zu"onClick={() => navigate("/ventas")}>ADM VENTAS</Boton>
-              )}
+                {usuario.permiso === 9 && (
+                  <Boton className="btn-zu" >ADM PEDIDOS</Boton>
+                )}
+                {usuario.permiso === 9 && (
+                  <Boton className="btn-zu" >ADM VENTAS</Boton>
+                )}
+                <Boton className="btn-zu" onClick={eliminarCuenta}>ELIMINAR CUENTA</Boton>
 
-                <Boton className="btn-zu" onClick={() => navigate("/logout")}> {/* Botón para cerrar sesión */}
-                  CERRAR SESIÓN
-                </Boton>
               </div>
             </div>
           )}

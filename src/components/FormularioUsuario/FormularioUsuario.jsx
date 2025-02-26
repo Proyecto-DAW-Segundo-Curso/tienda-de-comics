@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./FormularioUsuario.css";
 import Boton from "../Boton/Boton";
+import Swal from "sweetalert2";
 
 const FormularioUsuario = ({ datosUsuario, onGuardar, onCancelar }) => {
   const [datosEditados, setDatosEditados] = useState({
@@ -42,11 +43,10 @@ const FormularioUsuario = ({ datosUsuario, onGuardar, onCancelar }) => {
           contrasenia: datosEditados.contrasenia ? "Actualizada" : "No cambiada" 
         });
       } else {
-        alert(data.message || "Error al actualizar los datos");
+        Swal.fire(data.message || 'Hubo un error al actualizar los datos');
       }
     } catch (error) {
-      console.error("Error al actualizar usuario:", error);
-      alert("Error en el servidor");
+      Swal.fire('Hubo un error en el servidor');
     }
   };
 

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../MisComics/MisComics.css";
 import Boton from "../Boton/Boton";
+import Swal from "sweetalert2";
 
 const MisOfertas = () => {
   const [ofertas, setOfertas] = useState([]);
@@ -22,7 +23,7 @@ const MisOfertas = () => {
         const data = await response.json();
         setOfertas(data);
       } catch (error) {
-        console.error("Error:", error);
+        Swal.fire("Hubo un error al obtener las ofertas");
       }
     };
 
@@ -48,15 +49,14 @@ const MisOfertas = () => {
       const data = await response.json();
 
       if (!response.ok) {
-        alert(data.message || "Error al eliminar la oferta.");
+        Swal.fire(data.message || "Error al eliminar la oferta.");
         return;
       }
 
-      alert("Oferta eliminada correctamente");
+      Swal.fire('Oferta eliminada correctamente');
       setOfertas(ofertas.filter(oferta => oferta.intercambio_id !== intercambioId));
     } catch (error) {
-      console.error("Error al eliminar oferta:", error);
-      alert("Hubo un error al eliminar la oferta.");
+      Swal.fire('Hubo un error al eliminar la oferta');
     }
   };
 

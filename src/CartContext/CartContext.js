@@ -1,4 +1,5 @@
 import React, { createContext, useState, useContext } from 'react';
+import Swal from 'sweetalert2';
 
 const CartContext = createContext();
 
@@ -18,7 +19,6 @@ export function CartProvider({ children }) {
       const { stock } = await response.json();
       return stock;
     } catch (error) {
-      console.error('Error al obtener stock:', error);
       return 0;
     }
   };
@@ -94,7 +94,6 @@ export function CartProvider({ children }) {
       }
     } catch (error) {
       setMessage("Error en la conexión con el servidor");
-      console.error(error);
     }
   };
 

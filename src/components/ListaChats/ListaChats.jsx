@@ -24,7 +24,6 @@ const ListaChats = () => {
         const data = await response.json(); // Convertimos la respuesta en JSON
         setChats(data); // Guardamos los chats en el estado
       } catch (error) {
-        console.error("Error al obtener chats:", error);
         setError("No se pudieron cargar los chats."); // Mostramos un mensaje de error
       } finally {
         setCargando(false); // Quitamos el estado de carga
@@ -54,7 +53,6 @@ const ListaChats = () => {
       navigate(`/chat/${chat_id}`);
 
     } catch (error) {
-      console.error("Error al marcar mensajes como leídos:", error);
     }
   };
 

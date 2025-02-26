@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom'; // Importa useNavigate
 import './FormComic.css';
 import Boton from '../Boton/Boton';
+import Swal from 'sweetalert2';
 
 function FormComic() {
   const { id } = useParams();
@@ -22,7 +23,9 @@ function FormComic() {
       fetch(`http://localhost:3001/api/comics/${id}`)
         .then((res) => res.json())
         .then((data) => setComic(data))
-        .catch((error) => console.error('Error al cargar el cómic:', error));
+        .catch(
+          Swal.fire('Hubo un error al cargar el cómic. Inténtalo de nuevo.')
+        );
     }
   }, [id]);
 
@@ -49,14 +52,13 @@ function FormComic() {
       });
 
       if (response.ok) {
-        alert(id ? 'Cómic actualizado con éxito' : 'Cómic agregado exitosamente');
+        Swal.fire(id ? 'Cómic actualizado con éxito' : 'Cómic agregado exitosamente');
         navigate('/admin-comics'); // Redirige a AdminComics después de la operación
       } else {
-        alert('Error al procesar la solicitud');
+        Swal.fire('Error al procesar la solicitud');
       }
     } catch (error) {
-      console.error('Error:', error);
-      alert('Hubo un error en el servidor');
+      Swal.fire('Hubo un error en el servidor');
     }
   };
 

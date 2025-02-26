@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const EditarUsuario = () => {
   const { id } = useParams();
@@ -22,7 +23,9 @@ const EditarUsuario = () => {
       })
         .then((res) => res.json())
         .then((data) => setUsuario(data))
-        .catch((error) => console.error("Error al cargar el usuario:", error));
+        .catch(
+          Swal.fire("Hubo un error al cargar el usuario. Inténtalo de nuevo.")
+        );
     }
   }, [id]);
 
@@ -53,14 +56,13 @@ const EditarUsuario = () => {
       });
 
       if (response.ok) {
-        alert("Usuario actualizado con éxito");
+        Swal.fire("Usuario actualizado con éxito");
         navigate("/admin-usuarios");
       } else {
-        alert("Error al procesar la solicitud");
+        Swal.fire("Error al procesar la solicitud");
       }
     } catch (error) {
-      console.error("Error:", error);
-      alert("Hubo un error en el servidor");
+      Swal.fire("Hubo un error en el servidor");    
     }
   };
 

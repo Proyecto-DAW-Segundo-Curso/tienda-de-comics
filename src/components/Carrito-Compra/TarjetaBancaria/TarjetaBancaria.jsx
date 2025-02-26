@@ -63,13 +63,6 @@ const TarjetaBancaria = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    if (validateForm()) {
-      // Aquí va el código para enviar los datos al servidor
-      console.log('Formulario enviado', formData);
-    } else {
-      console.log('Errores en el formulario');
-    }
   };
 
   return (

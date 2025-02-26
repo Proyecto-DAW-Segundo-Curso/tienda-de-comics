@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "../UsuarioSubirComicForm/UsuarioSubirComicForm.css";
 import Boton from "../Boton/Boton";
+import Swal from "sweetalert2";
 
 const EditarOferta = () => {
   const { id } = useParams(); // ID de la oferta
@@ -23,7 +24,7 @@ const EditarOferta = () => {
         setComentario(data.comentario);
         setEstadoIntercambio(data.estado_intercambio);
       } catch (error) {
-        console.error("Error al obtener la oferta:", error);
+        Swal.fire("Hubo un error al obtener la oferta");
       }
     };
 
@@ -50,11 +51,10 @@ const EditarOferta = () => {
 
       if (!response.ok) throw new Error("Error al editar la oferta");
 
-      alert("Oferta editada correctamente");
-      navigate("/mis-ofertas"); // Redirigir a la lista de ofertas después de editar
+      Swal.fire("Oferta editada correctamente");
+        navigate("/mis-ofertas"); // Redirigir a la lista de ofertas después de editar
     } catch (error) {
-      console.error("Error al editar la oferta:", error);
-      alert("Hubo un error al editar la oferta");
+      Swal.fire("Hubo un error al editar la oferta");
     }
   };
 

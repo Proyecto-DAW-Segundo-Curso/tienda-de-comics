@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "../UsuarioSubirComicForm/UsuarioSubirComicForm.css";
 import Boton from "../Boton/Boton";
+import Swal from "sweetalert2";
 
 const FormularioIntercambio = () => {
   const { id } = useParams(); // Obtiene el ID del cómic desde la URL
@@ -43,10 +44,9 @@ const FormularioIntercambio = () => {
         return;
       }
 
-      alert("Cómic ofertado exitosamente");
+      Swal.fire('Cómic ofertado con éxito');
       navigate("/mis-comics"); // Redirige de vuelta a la lista de cómics después de ofertar
     } catch (error) {
-      console.error("Error:", error);
       setError("Hubo un error en el servidor. Inténtalo más tarde.");
     }
   };

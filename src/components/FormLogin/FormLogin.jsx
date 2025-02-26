@@ -15,9 +15,10 @@ function FormLogin({ onLogin }) {
       .then((res) => res.json())
       .then((data) => {
         setDatoUsuarioActual(data);
-        console.log(data);
       })
-      .catch((error) => console.error("Error al cargar usuarios:", error));
+      .catch(
+        (error)
+      );
   }, []);
 
   const manejarSubmit = async (e) => {
@@ -34,7 +35,6 @@ function FormLogin({ onLogin }) {
 
       if (response.ok) {
         localStorage.setItem('token', data.token);
-        console.log("sesion iniciada, token guardado");
         setError("");
         onLogin(data);
         navigate('/zona-usuario', { state: { usuarioLogado: data } });
@@ -42,7 +42,6 @@ function FormLogin({ onLogin }) {
         setError(data.message || "Error en el inicio de sesión");
       }
     } catch (error) {
-      console.error("Error en la solicitud:", error);
       setError("Error en el servidor");
     }
   };

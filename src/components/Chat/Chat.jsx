@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'; // Importamos React y los hooks useState y useEffect
 import { useParams, useNavigate } from 'react-router-dom'; // useParams para obtener el ID del chat de la URL, useNavigate para redireccionar
 import './Chat.css';
+import Swal from 'sweetalert2';
 
 const Chat = () => {
     const { id } = useParams();  // Extraemos el ID del chat desde la URL
@@ -39,8 +40,7 @@ const Chat = () => {
     
             } catch (error) {
                 // Si ocurre un error en la solicitud, lo mostramos en la consola y establecemos un mensaje de error
-                console.error("Error al obtener usuario:", error);
-                setErrorMensaje("Hubo un problema al verificar tu cuenta.");
+                setErrorMensaje("Hubo un problema al obtener la información del usuario.");
             }
         };
     
@@ -78,7 +78,6 @@ const Chat = () => {
     
                 } catch (error) {
                     // Si ocurre un error en la solicitud, lo mostramos en la consola y establecemos un mensaje de error
-                    console.error("Error al obtener mensajes:", error);
                     setErrorMensaje("No tienes permiso para ver este chat.");
                 }
             };
@@ -119,7 +118,6 @@ const Chat = () => {
                     }
                 }
             } catch (error) {
-                console.error("Error al obtener detalles del chat:", error);
                 setOtroUsuario("Usuario desconocido"); // En caso de error, establecemos un nombre genérico
             }
         };
@@ -168,8 +166,8 @@ const Chat = () => {
             // Limpiamos el campo de entrada del mensaje después de enviarlo
             setMensaje('');
         } catch (error) {
-            // Si ocurre un error, lo mostramos en la consola
-            console.error("Error al enviar mensaje:", error);
+            // Si ocurre un error, lo mostramos en la consola y establecemos un mensaje de error
+            setErrorMensaje("Hubo un problema al enviar el mensaje.");
         }
     };
     
@@ -202,7 +200,6 @@ const Chat = () => {
             }
         } catch (error) {
             // Si ocurre un error, lo mostramos en la consola y establecemos un mensaje de error
-            console.error("Error al aceptar intercambio:", error);
             setEstadoIntercambio("Hubo un problema al aceptar el intercambio.");
         }
     };
@@ -230,7 +227,6 @@ const Chat = () => {
             setTimeout(() => navigate("/chats-activos"), 3000);
         } catch (error) {
             // Si ocurre un error, lo mostramos en la consola y establecemos un mensaje de error
-            console.error("Error al rechazar el chat:", error);
             setEstadoIntercambio("Hubo un problema al eliminar el chat.");
         }
     };

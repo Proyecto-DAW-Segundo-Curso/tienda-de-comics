@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './FormRegistro.css';
 import Boton from '../Boton/Boton';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 function FormRegistro() {
   const [nombre, setNombre] = useState('');
@@ -13,7 +14,7 @@ function FormRegistro() {
   async function manejarSubmit(e) { 
     e.preventDefault();
     if (password !== confirmPassword) {
-      alert('Las contraseñas no coinciden');
+      Swal.fire('Las contraseñas no coinciden');
       return;
     }
     try {
@@ -36,7 +37,6 @@ function FormRegistro() {
         setMensaje(data.message || 'Error en el registro');
       }
     } catch (error) {
-      console.error('Error en la solicitud:', error);
       setMensaje('Error en el servidor');
     }
   }

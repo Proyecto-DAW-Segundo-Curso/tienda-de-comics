@@ -2,14 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import '../FormComic/FormComic.css';
 import Boton from '../Boton/Boton';
+import Swal from 'sweetalert2';
 
 function EditarMisComics() {
   const { id } = useParams(); // Obtiene el ID de la URL
   const navigate = useNavigate();
   const location = useLocation();
   const { comic } = location.state || {}; // Obtiene el cómic si viene desde navegación
-
-  console.log("🟢 ID del cómic a editar:", id); // Verifica que el ID no sea undefined o null
 
   const [comicData, setComicData] = useState({
     titulo: '',
@@ -24,17 +23,16 @@ function EditarMisComics() {
   // Cargar los datos del cómic desde la API si no se reciben desde location.state
   useEffect(() => {
     if (comic) {
-      console.log("📥 Cargando cómic desde location.state:", comic);
       setComicData(comic);
     } else {
-      console.log("📡 Obteniendo cómic desde la API...");
       fetch(`http://localhost:3001/api/comics-subidos-usuario/${id}`)
         .then((res) => res.json())
         .then((data) => {
-          console.log("✅ Datos del cómic recibidos:", data);
           setComicData(data);
         })
-        .catch((error) => console.error("❌ Error al cargar el cómic:", error));
+        .catch(
+          Swal.fire('Hubo un error al cargar el cómic. Inténtalo de nuevo.')
+        );
     }
   }, [comic, id]); // Se ejecuta cuando cambia `comic` o `id`
 
@@ -58,14 +56,13 @@ function EditarMisComics() {
       });
 
       if (response.ok) {
-        alert("✅ Cómic actualizado con éxito");
+        Swal.fire("Cómic actualizado con éxito");
         navigate("/mis-comics");
       } else {
-        alert("❌ Error al actualizar el cómic");
+        Swal.fire("Error al actualizar el cómic");
       }
     } catch (error) {
-      console.error("🔥 Error en el servidor:", error);
-      alert("Hubo un error en el servidor");
+      Swal.fire("Hubo un error en el servidor");
     }
   };
 

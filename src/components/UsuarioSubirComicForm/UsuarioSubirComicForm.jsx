@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import "./UsuarioSubirComicForm.css";
 import { jwtDecode } from "jwt-decode"; // Instalar con npm install jwt-decode
 import Boton from "../Boton/Boton";
+import Swal from "sweetalert2";
 
 function UsuarioSubirComicForm() {
   const { id } = useParams();
@@ -11,12 +12,11 @@ function UsuarioSubirComicForm() {
   if (token) {
     try {
       const decoded = jwtDecode(token);
-      console.log("✅ Token decodificado correctamente:", decoded);
     } catch (error) {
-      console.error("❌ Error al decodificar el token:", error.message);
+      Swal.fire('Tu sesión ha expirado. Inicia sesión de nuevo.');
+      navigate('/login');
     }
   } else {
-    console.log("❌ No hay token en localStorage");
   }
 
   const [comic, setComic] = useState({
@@ -33,7 +33,7 @@ function UsuarioSubirComicForm() {
       fetch(`http://localhost:3001/api/comics-subidos-usuario/${id}`)
         .then((res) => res.json())
         .then((data) => setComic(data))
-        .catch((error) => console.error('Error al cargar el cómic:', error));
+        .catch();
     }
   }, [id]);
 
@@ -53,7 +53,7 @@ function UsuarioSubirComicForm() {
     try {
       const token = localStorage.getItem('token'); // Obtiene el token
       if (!token) {
-        alert("No tienes una sesión activa. Inicia sesión primero.");
+        Swal.fire('No tienes una sesión activa. Inicia sesión primero.');
         return;
       }
 
@@ -67,16 +67,14 @@ function UsuarioSubirComicForm() {
       });
 
       if (response.ok) {
-        alert(id ? 'Cómic actualizado con éxito' : 'Cómic agregado exitosamente');
+        Swal.fire(id ? 'Cómic actualizado con éxito' : 'Cómic agregado exitosamente');
         navigate('/mis-comics'); // Redirige a mis comics después de la operación
       } else {
         const errorData = await response.json();
-        console.error('Error en la respuesta:', errorData);
-        alert(errorData.message || 'Error al procesar la solicitud');
+        Swal.fire('Error al procesar la solicitud', errorData.message);  
       }
     } catch (error) {
-      console.error('Error en el servidor:', error);
-      alert('Hubo un error en el servidor');
+      Swal.fire('Hubo un error en el servidor');
     }
   };
 

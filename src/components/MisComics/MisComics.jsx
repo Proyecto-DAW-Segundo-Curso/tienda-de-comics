@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"; // Importa React y los hooks
 import { useNavigate } from "react-router-dom"; // Importa useNavigate de react-router-dom para la navegación
 import "./MisComics.css"; // Importa el archivo CSS para los estilos
 import Boton from "../Boton/Boton"; // Importa el componente Boton
+import Swal from "sweetalert2"; // Importa el módulo sweetalert2 para mostrar alertas
 
 const MisComics = () => { // Define el componente MisComics como una función
   const [comicsSubidos, setComicsSubidos] = useState([]); // Estado para almacenar los cómics subidos
@@ -35,7 +36,7 @@ const MisComics = () => { // Define el componente MisComics como una función
         setComicsSubidos(comics); // Actualiza el estado comicsSubidos con los datos obtenidos
         setFilteredComics(comics); // Inicialmente muestra todos los cómics sin filtro
       } catch (error) {
-        console.error("Error:", error); // Muestra el error en la consola
+        Swal.fire('Error al cargar los cómics: ', error); // Muestra un mensaje de
       }
     };
 
@@ -49,7 +50,20 @@ const MisComics = () => { // Define el componente MisComics como una función
 
   // Define la función para eliminar un cómic
   const eliminarComic = async (id) => {
-    const confirmar = window.confirm("¿Estás seguro de que quieres eliminar este cómic?"); // Pide confirmación al usuario
+    const confirmar = Swal.fire({
+      title: "¿Estás seguro de que quieres eliminar el cómic?",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Save",
+      denyButtonText: `Don't save`
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        Swal.fire("Saved!", "", "success");
+      } else if (result.isDenied) {
+        Swal.fire("Changes are not saved", "", "info");
+      }
+    }); // Pide confirmación al usuario
     if (!confirmar) return; // Si el usuario cancela, no hace nada
 
     try {
@@ -62,10 +76,9 @@ const MisComics = () => { // Define el componente MisComics como una función
       if (!response.ok) throw new Error("Error al eliminar cómic"); // Lanza un error si la respuesta no es exitosa
 
       setComicsSubidos(comicsSubidos.filter(comic => comic.id !== id)); // Actualiza el estado eliminando el cómic eliminado
-      alert("Cómic eliminado correctamente"); // Muestra una alerta de éxito
+      Swal.fire('Cómic eliminado correctamente');  // Muestra una alerta de éxito
     } catch (error) {
-      console.error("Error al eliminar:", error); // Muestra el error en la consola
-      alert("Hubo un error al eliminar el cómic"); // Muestra una alerta de error
+      Swal.fire('Error al eliminar: ', error);  // Muestra el error en la consola
     }
   };
 

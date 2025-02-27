@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'; // Importa React y los hooks
 import './AdminComics.css'; // Importa los estilos personalizados del componente
 import { useNavigate } from "react-router-dom"; // Hook para navegar entre rutas de la aplicación
 import Boton from '../Boton/Boton';
+import Swal from 'sweetalert2';
 
 function AdminComics() {
   const navigate = useNavigate(); // Permite redirigir a otras rutas dentro de la aplicación
@@ -34,11 +35,13 @@ function AdminComics() {
       fetch(`http://localhost:3001/api/comics/${comicId}`, { // Petición HTTP DELETE a la API
         method: 'DELETE',
       })
-        .then(() => {
-          // Actualiza el estado eliminando el cómic borrado
-          setComics(comics.filter(c => c.id !== comicId));
-        })
-        .catch(err => console.error(err)); // Manejo de errores en la petición
+      .then(() => {
+        // Actualiza el estado eliminando el cómic borrado
+        setComics(comics.filter(c => c.id !== comicId));
+      })
+      .catch(
+        () => Swal.fire('Error al eliminar el cómic', '', 'error')   // Manejo de errores en la petición
+      ); 
     }
   };
 

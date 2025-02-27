@@ -20,12 +20,9 @@ const Intercambio = () => { // Define el componente Intercambio como una funcioÌ
 
         const data = await response.json(); // Convierte la respuesta a JSON
 
-        // Agregamos un console.log para verificar si las ofertas incluyen usuario_id
-        console.log("ğŸ“Œ Datos recibidos de la API:", data);
-
         setOfertas(data); // Actualiza el estado ofertas con los datos obtenidos
       } catch (error) {
-        console.error("Error al cargar ofertas:", error); // Muestra el error en la consola
+        setMensajeError("Hubo un problema al cargar las ofertas"); // Muestra un mensaje de error
       }
     };
 
@@ -52,7 +49,6 @@ const Intercambio = () => { // Define el componente Intercambio como una funcioÌ
         const data = await response.json(); // Convierte la respuesta a JSON
         setUsuario(data); // Actualiza el estado usuario con los datos obtenidos
       } catch (error) {
-        console.error("Error al obtener usuario:", error); // Muestra el error en la consola
         setMensajeError("Hubo un problema al verificar tu cuenta."); // Muestra un mensaje de error
       }
     };
@@ -62,7 +58,6 @@ const Intercambio = () => { // Define el componente Intercambio como una funcioÌ
 
   // FuncioÌn para manejar la oferta
   const manejarOferta = async (oferta) => {
-    console.log(" Oferta seleccionada:", oferta); // Ver queÌ datos tiene la oferta
 
     if (!usuario) {
       setMensajeError("Debes iniciar sesioÌn para hacer una oferta."); // Muestra un mensaje de error si el usuario no estaÌ logueado
@@ -73,7 +68,6 @@ const Intercambio = () => { // Define el componente Intercambio como una funcioÌ
     const vendedorId = oferta.vendedor_id || oferta.usuario_id; // Obtiene el ID del vendedor
 
     if (!vendedorId) {
-      console.error(" No se encontroÌ vendedor_id en la oferta:", oferta); // Muestra un error si no se encuentra el ID del vendedor
       setMensajeError("Error: No se pudo identificar al vendedor."); // Muestra un mensaje de error
       return;
     }
@@ -92,8 +86,6 @@ const Intercambio = () => { // Define el componente Intercambio como una funcioÌ
         comic_id: oferta.comic_id || oferta.id // Asigna el ID del coÌmic
       };
 
-      console.log(" Datos enviados al backend:", bodyData); // Muestra los datos enviados al backend
-
       const response = await fetch("http://localhost:3001/api/chat", {
         method: "POST",
         headers: {
@@ -106,7 +98,6 @@ const Intercambio = () => { // Define el componente Intercambio como una funcioÌ
       const data = await response.json(); // Convierte la respuesta a JSON
 
       if (!response.ok) {
-        console.error(" Error en la respuesta del servidor:", data); // Muestra un error si la respuesta no es exitosa
         throw new Error(data.message || "Error al iniciar el chat."); // Lanza un error con el mensaje del servidor
       }
 
@@ -116,7 +107,6 @@ const Intercambio = () => { // Define el componente Intercambio como una funcioÌ
 
       navigate(`/chat/${data.chat_id}`); // Navega a la paÌgina del chat con el ID del chat
     } catch (error) {
-      console.error(" Error al iniciar chat:", error); // Muestra el error en la consola
       setMensajeError("Hubo un problema al iniciar el chat."); // Muestra un mensaje de error
     }
   };

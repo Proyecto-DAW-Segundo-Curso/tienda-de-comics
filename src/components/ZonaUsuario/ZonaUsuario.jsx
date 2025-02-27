@@ -3,6 +3,9 @@ import { useNavigate } from "react-router-dom"; // Importa useNavigate de react-
 import FormularioUsuario from "../FormularioUsuario/FormularioUsuario"; // Importa el componente FormularioUsuario
 import "./ZonaUsuario.css"; // Importa el archivo CSS para los estilos
 import Boton from "../Boton/Boton"; // Importa el componente Boton
+import Swal from "sweetalert2";
+import '../../sweetalert2.css';
+import { hover } from "@testing-library/user-event/dist/hover";
 
 const ZonaUsuario = () => { // Define el componente ZonaUsuario como una función
   const [modoEdicion, setModoEdicion] = useState(false); // Estado para controlar el modo de edición
@@ -36,8 +39,7 @@ const ZonaUsuario = () => { // Define el componente ZonaUsuario como una funció
         const datos = await response.json(); // Convierte la respuesta a JSON
         setUsuario(datos); // Actualiza el estado usuario con los datos obtenidos
       } catch (error) {
-        console.error("Error al cargar los datos del usuario:", error); // Muestra el error en la consola
-        setError("Error al cargar los datos."); // Muestra un mensaje de error
+        setError("Error al cargar los datos del usuario."); // Muestra un mensaje de error
       } finally {
         setCargando(false); // Detiene la carga de datos
       }
@@ -66,7 +68,7 @@ const ZonaUsuario = () => { // Define el componente ZonaUsuario como una funció
         setHayMensajesNoLeidos(tieneNoLeidos); // Actualiza el estado de notificación
 
       } catch (error) {
-        console.error("Error al obtener chats:", error); // Muestra el error en la consola
+        setError("No se pudieron cargar los chats."); // Muestra un mensaje de error
       }
     };
 
@@ -80,41 +82,62 @@ const ZonaUsuario = () => { // Define el componente ZonaUsuario como una funció
 
   if (cargando) {
     return <p>Cargando...</p>; // Muestra un mensaje de carga si los datos están cargando
-  }
+  };
 
   if (error) {
     return <p>{error}</p>; // Muestra un mensaje de error si hay un error
-  }
-
-
-  const eliminarCuenta = async () => {
-    const confirmar = window.confirm(" ¿Estás seguro de que quieres eliminar tu cuenta? Esta acción no se puede deshacer.");
-    if (!confirmar) return;
-
-    try {
-      const token = localStorage.getItem("token");
-      const response = await fetch(`http://localhost:3001/api/user/${usuario.id}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        alert("Tu cuenta ha sido eliminada con éxito.");
-        localStorage.removeItem("token"); // Eliminar el token de autenticación
-        navigate("/"); // Redirigir a la página de inicio
-      } else {
-        alert(data.message || "Error al eliminar la cuenta.");
-      }
-    } catch (error) {
-      console.error("Error al eliminar cuenta:", error);
-      alert("Error en el servidor.");
-    }
   };
 
+
+  const eliminarCuenta = () => {
+    Swal.fire({
+      title: "¿Estás seguro de eliminar la cuenta?",
+      text: "No podrás deshacer esta acción.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#62CFFE",
+      cancelButtonColor: "rgb(137, 137, 137)",
+      confirmButtonText: "Sí, la quiero eliminar",
+      cancelButtonText: "Cancelar",
+      customClass: {
+        confirmButton: "btn confirm-button",
+        cancelButton: "btn cancel-button",
+      }
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "¡Cuenta eliminada con éxito!",
+          icon: "success",
+          confirmButtonColor: "#62CFFE",
+        });
+        try {
+          const token = localStorage.getItem("token");
+          const response = await fetch(`http://localhost:3001/api/user/${usuario.id}`, {
+            method: "DELETE",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+    
+          const data = await response.json();
+    
+          if (response.ok) {
+            Swal.fire("Cuenta eliminada con éxito");
+            localStorage.removeItem("token"); // Eliminar el token de autenticación
+            navigate("/"); // Redirigir a la página de inicio
+          } else {
+            Swal.fire(data.message || "Error al eliminar la cuenta."); 
+          }
+        } catch (error) {
+          Swal.fire("Error al eliminar la cuenta");
+        };
+      }
+      }
+    )};
+
+    // if (!confirmar) return;
+
+    
 
   return (
     <div className="container mt-5"> {/* Contenedor principal con margen superior */}
@@ -162,7 +185,6 @@ const ZonaUsuario = () => { // Define el componente ZonaUsuario como una funció
                   <Boton className="btn-zu" >ADM VENTAS</Boton>
                 )}
                 <Boton className="btn-zu" onClick={eliminarCuenta}>ELIMINAR CUENTA</Boton>
-
               </div>
             </div>
           )}

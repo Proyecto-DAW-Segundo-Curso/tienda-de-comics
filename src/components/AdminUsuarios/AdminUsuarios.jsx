@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ListaUsuarios from "./ListaUsuarios";
 import ModalConfirmacion from "./ModalConfirmacion";
+import Swal from "sweetalert2";
 
 const AdminUsuarios = () => {
   const [usuarios, setUsuarios] = useState([]);
@@ -17,17 +18,18 @@ const AdminUsuarios = () => {
         });
 
         if (!response.ok) throw new Error("Error al obtener usuarios.");
-        const data = await response.json();
-        setUsuarios(data);
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setCargando(false);
-      }
-    };
+          const data = await response.json();
+          setUsuarios(data);
+        } catch (error) {
+          setError(error.message);
+          Swal.fire("Error al cargar los usuarios: ", error.message);
+        } finally {
+          setCargando(false);
+        }
+      };
 
-    fetchUsuarios();
-  }, []);
+      fetchUsuarios();
+    }, []);
 
   const eliminarUsuario = async (id) => {
     try {
@@ -39,11 +41,10 @@ const AdminUsuarios = () => {
 
       if (response.ok) {
         setUsuarios(usuarios.filter((user) => user.id !== id));
-      } else {
-        console.error("No se pudo eliminar el usuario.");
       }
+      
     } catch (error) {
-      console.error("Error en el servidor.");
+      Swal.fire("Error al eliminar el usuario: ", error.message);
     } finally {
       setModalEliminar({ mostrar: false, id: null });
     }

@@ -24,7 +24,7 @@ function FormComic() {
         .then((res) => res.json())
         .then((data) => setComic(data))
         .catch(
-          Swal.fire('Hubo un error al cargar el cómic. Inténtalo de nuevo.')
+          () => Swal.fire('Hubo un error al cargar el cómic. Inténtalo de nuevo.')
         );
     }
   }, [id]);

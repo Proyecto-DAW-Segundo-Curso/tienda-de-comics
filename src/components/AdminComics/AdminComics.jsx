@@ -40,7 +40,7 @@ function AdminComics() {
         setComics(comics.filter(c => c.id !== comicId));
       })
       .catch(
-        error => Swal.fire('Error al eliminar el cómic', '', 'error')   // Manejo de errores en la petición
+        () => Swal.fire('Error al eliminar el cómic', '', 'error')   // Manejo de errores en la petición
       ); 
     }
   };

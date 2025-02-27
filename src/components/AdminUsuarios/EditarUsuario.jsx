@@ -24,7 +24,7 @@ const EditarUsuario = () => {
         .then((res) => res.json())
         .then((data) => setUsuario(data))
         .catch(
-          Swal.fire("Hubo un error al cargar el usuario. Inténtalo de nuevo.")
+          () => Swal.fire("Hubo un error al cargar el usuario. Inténtalo de nuevo.")
         );
     }
   }, [id]);

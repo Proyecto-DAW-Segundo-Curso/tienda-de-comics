@@ -4,6 +4,8 @@ import FormularioUsuario from "../FormularioUsuario/FormularioUsuario"; // Impor
 import "./ZonaUsuario.css"; // Importa el archivo CSS para los estilos
 import Boton from "../Boton/Boton"; // Importa el componente Boton
 import Swal from "sweetalert2";
+import '../../sweetalert2.css';
+import { hover } from "@testing-library/user-event/dist/hover";
 
 const ZonaUsuario = () => { // Define el componente ZonaUsuario como una función
   const [modoEdicion, setModoEdicion] = useState(false); // Estado para controlar el modo de edición
@@ -87,41 +89,56 @@ const ZonaUsuario = () => { // Define el componente ZonaUsuario como una funció
   };
 
 
-  const eliminarCuenta = async () => {
-    const confirmar = Swal.fire({
-      title: "¿Estás seguro de que deseas eliminar la cuenta?",
+  const eliminarCuenta = () => {
+    Swal.fire({
+      title: "¿Estás seguro de eliminar la cuenta?",
+      text: "No podrás deshacer esta acción.",
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonText: "Sí",
-    }).then((result) => {
-      /* Read more about isConfirmed, isDenied below */
-      if (result.isConfirmed) {
-        Swal.fire("Saved!", "", "success");
-      } 
-    });
-    if (!confirmar) return;
-
-    try {
-      const token = localStorage.getItem("token");
-      const response = await fetch(`http://localhost:3001/api/user/${usuario.id}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        Swal.fire("Cuenta eliminada con éxito");
-        localStorage.removeItem("token"); // Eliminar el token de autenticación
-        navigate("/"); // Redirigir a la página de inicio
-      } else {
-        Swal.fire(data.message || "Error al eliminar la cuenta."); 
+      confirmButtonColor: "#62CFFE",
+      cancelButtonColor: "rgb(137, 137, 137)",
+      confirmButtonText: "Sí, la quiero eliminar",
+      cancelButtonText: "Cancelar",
+      customClass: {
+        confirmButton: "btn confirm-button",
+        cancelButton: "btn cancel-button",
       }
-    } catch (error) {
-      Swal.fire("Error al eliminar la cuenta");
-    };
-    }
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "¡Cuenta eliminada con éxito!",
+          icon: "success",
+          confirmButtonColor: "#62CFFE",
+        });
+        try {
+          const token = localStorage.getItem("token");
+          const response = await fetch(`http://localhost:3001/api/user/${usuario.id}`, {
+            method: "DELETE",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+    
+          const data = await response.json();
+    
+          if (response.ok) {
+            Swal.fire("Cuenta eliminada con éxito");
+            localStorage.removeItem("token"); // Eliminar el token de autenticación
+            navigate("/"); // Redirigir a la página de inicio
+          } else {
+            Swal.fire(data.message || "Error al eliminar la cuenta."); 
+          }
+        } catch (error) {
+          Swal.fire("Error al eliminar la cuenta");
+        };
+      }
+      }
+    )};
+
+    // if (!confirmar) return;
+
+    
+
   return (
     <div className="container mt-5"> {/* Contenedor principal con margen superior */}
       <div className="card"> {/* Tarjeta */}

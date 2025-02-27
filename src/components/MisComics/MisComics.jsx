@@ -50,7 +50,20 @@ const MisComics = () => { // Define el componente MisComics como una función
 
   // Define la función para eliminar un cómic
   const eliminarComic = async (id) => {
-    const confirmar = window.confirm("¿Estás seguro de que quieres eliminar este cómic?"); // Pide confirmación al usuario
+    const confirmar = Swal.fire({
+      title: "¿Estás seguro de que quieres eliminar el cómic?",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Save",
+      denyButtonText: `Don't save`
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        Swal.fire("Saved!", "", "success");
+      } else if (result.isDenied) {
+        Swal.fire("Changes are not saved", "", "info");
+      }
+    }); // Pide confirmación al usuario
     if (!confirmar) return; // Si el usuario cancela, no hace nada
 
     try {

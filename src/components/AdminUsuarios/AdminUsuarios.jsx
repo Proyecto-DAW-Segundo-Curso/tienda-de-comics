@@ -18,18 +18,18 @@ const AdminUsuarios = () => {
         });
 
         if (!response.ok) throw new Error("Error al obtener usuarios.");
-        const data = await response.json();
-        setUsuarios(data);
-      } catch (error) {
-        setError(error.message);
-        Swal.fire("Error al cargar los usuarios: ", error.message);
-      } finally {
-        setCargando(false);
-      }
-    };
+          const data = await response.json();
+          setUsuarios(data);
+        } catch (error) {
+          setError(error.message);
+          Swal.fire("Error al cargar los usuarios: ", error.message);
+        } finally {
+          setCargando(false);
+        }
+      };
 
-    fetchUsuarios();
-  }, []);
+      fetchUsuarios();
+    }, []);
 
   const eliminarUsuario = async (id) => {
     try {

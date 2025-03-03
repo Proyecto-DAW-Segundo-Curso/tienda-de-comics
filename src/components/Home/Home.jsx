@@ -12,7 +12,6 @@ function Home() {
       <section>
         <Tendencias />
       </section>
-
     </div>
   )
 }

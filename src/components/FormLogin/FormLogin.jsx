@@ -49,29 +49,46 @@ function FormLogin({ onLogin }) {
 
   return (
     <section>
-      <div className="container mt-5">
+      <div className="container mt-5 w-50">
         <div className="card">
           <div className="card-header custom-header text-white fw-bold">
             LOGIN
           </div>
           <div className="card-body custom-body">
-            <form className="contenedor-form" onSubmit={manejarSubmit}>
-              <label htmlFor="email">Email</label>
-              <input type="email" value={email} id="email" onChange={(e) => setEmail(e.target.value)} required />
-
-              <label htmlFor="contrasenia">Contraseña</label>
-              <input type="password" value={contrasenia} id="contrasenia" onChange={(e) => setContrasenia(e.target.value)} required />
-
-              {error && <p className="error">{error}</p>}
-
-              <Boton type="submit" >INICIAR SESIÓN</Boton>
-
-              <p>¿No tienes cuenta?</p> <Link to="/registro">Regístrate aquí</Link>
+            <form className="d-flex flex-column align-items-center justify-content-center" onSubmit={manejarSubmit}>
+              <div className="mb-3 w-50">
+                <label htmlFor="email" className="form-label">Email</label>
+                <input
+                  type="email"
+                  className="form-control"
+                  id="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="mb-3 w-50">
+                <label htmlFor="contrasenia" className="form-label">Contraseña</label>
+                <input
+                  type="password"
+                  className="form-control"
+                  id="contrasenia"
+                  value={contrasenia}
+                  onChange={(e) => setContrasenia(e.target.value)}
+                  required
+                />
+              </div>
+              {error && <div className="alert alert-danger text-center">{error}</div>}
+              <div className="d-grid">
+                <Boton type="submit" >INICIAR SESIÓN</Boton>
+              </div>
+              <div className="text-center mt-3">
+                <p>¿No tienes cuenta? <Link to="/registro" className="text-dark fw-bold">Regístrate aquí</Link></p>
+              </div>
             </form>
           </div>
         </div>
       </div>
-
     </section>
   );
 }

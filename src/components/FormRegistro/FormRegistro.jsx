@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './FormRegistro.css';
 import Boton from '../Boton/Boton';
+import { Link } from 'react-router-dom';
 
 function FormRegistro() {
   const [nombre, setNombre] = useState('');
@@ -42,39 +43,70 @@ function FormRegistro() {
 
   return (
     <section>
-      <div className="form-registro">
-        <div className="contenedor-boton">
-          
-        </div>
-        <div className="contenedor-formRegistro">
-          <form onSubmit={manejarSubmit} className="formulario">
-            <div className="contenedor-campos">
-              <div className="contenedor-categoria">
-                <label htmlFor="nombre">Nombre</label>
-                <input value={nombre} onChange={(e) => setNombre(e.target.value)} type="text" name="nombre" id="nombre" required />
+      <div className="container mt-5 w-50">
+        <div className="card">
+          <div className="card-header custom-header text-white fw-bold">
+            REGISTRO
+          </div>
+          <div className="card-body custom-body">
+            <form className="d-flex flex-column align-items-center justify-content-center" onSubmit={manejarSubmit}>
+              <div className="mb-3 w-50">
+                <label htmlFor="nombre" className="form-label">Nombre</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="nombre"
+                  value={nombre}
+                  onChange={(e) => setNombre(e.target.value)}
+                  required
+                />
               </div>
-              <div className="contenedor-categoria">
-                <label htmlFor="email">Email</label>
-                <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" name="email" id="email" required />
+              <div className="mb-3 w-50">
+                <label htmlFor="email" className="form-label">Email</label>
+                <input
+                  type="email"
+                  className="form-control"
+                  id="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
               </div>
-              <div className="contenedor-categoria">
-                <label htmlFor="password">Contraseña</label>
-                <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" name="password" id="password" required />
+              <div className="mb-3 w-50">
+                <label htmlFor="password" className="form-label">Contraseña</label>
+                <input
+                  type="password"
+                  className="form-control"
+                  id="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
               </div>
-              <div className="contenedor-categoria">
-                <label htmlFor="confirm-password">Confirmar contraseña</label>
-                <input value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} type="password" name="confirm-password" id="confirm-password" required />
+              <div className="mb-3 w-50">
+                <label htmlFor="confirm-password" className="form-label">Confirmar contraseña</label>
+                <input
+                  type="password"
+                  className="form-control"
+                  id="confirm-password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  required
+                />
               </div>
-            </div>
-            <div className="contenedor-boton-registro">
-              <Boton>REGISTRARSE</Boton>
-            </div>
-          </form>
-          {mensaje && <p>{mensaje}</p>}
+              {mensaje && <div className="alert alert-danger text-center">{mensaje}</div>}
+              <div className="d-grid">
+                <Boton type="submit">REGISTRARSE</Boton>
+              </div>
+              <div className="text-center mt-3">
+                <p>¿Ya tienes cuenta? <Link to="/login" className="text-dark fw-bold">Inicia sesión aquí</Link></p>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </section>
   );
-}
+  }
 
 export default FormRegistro;

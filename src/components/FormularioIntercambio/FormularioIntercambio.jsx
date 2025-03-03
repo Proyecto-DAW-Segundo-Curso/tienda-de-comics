@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "../UsuarioSubirComicForm/UsuarioSubirComicForm.css";
+import Boton from "../Boton/Boton";
 
 const FormularioIntercambio = () => {
   const { id } = useParams(); // Obtiene el ID del cómic desde la URL
@@ -87,12 +88,8 @@ const FormularioIntercambio = () => {
             </div>
 
             <div className="d-flex justify-content-between mt-4">
-              <button type="submit" className="btn custom-button fw-bold">
-                Confirmar Oferta
-              </button>
-              <button type="button" className="btn btn-danger" onClick={() => navigate("/mis-comics")}>
-                Cancelar
-              </button>
+              <Boton type="submit">CONFIRMAR OFERTA</Boton>
+              <Boton type="button" className="btn-danger" onClick={() => navigate("/mis-comics")}>CANCELAR</Boton>
             </div>
           </form>
         </div>

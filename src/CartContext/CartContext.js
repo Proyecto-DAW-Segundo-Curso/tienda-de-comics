@@ -41,7 +41,6 @@ export function CartProvider({ children }) {
 
       if (existingProduct) {
         if (existingProduct.cantidad + 1 > stock) {
-          setMessage("No hay suficiente stock disponible");
           return prevCart;
         }
         return prevCart.map(item =>

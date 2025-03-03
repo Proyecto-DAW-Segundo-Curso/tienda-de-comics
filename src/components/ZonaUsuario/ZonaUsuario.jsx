@@ -11,6 +11,10 @@ const ZonaUsuario = () => { // Define el componente ZonaUsuario como una funció
   const [error, setError] = useState(""); // Estado para almacenar mensajes de error
   const [chats, setChats] = useState([]); // Estado para almacenar la lista de chats
   const [hayMensajesNoLeidos, setHayMensajesNoLeidos] = useState(false); // Estado para notificación de mensajes no leídos
+  const [ultimoComic, setUltimoComic] = useState(null); // Estado para almacenar el último cómic subido
+  const [misOfertas, setMisOfertas] = useState(0);
+  const [misComics, setMisComics] = useState(0);
+  const [chatsActivos, setChatsActivos] = useState(0);
   const navigate = useNavigate(); // Obtiene la función navigate para la navegación programática
 
   useEffect(() => {
@@ -45,6 +49,86 @@ const ZonaUsuario = () => { // Define el componente ZonaUsuario como una funció
 
     obtenerDatosUsuario(); // Llama a la función para obtener los datos del usuario
   }, []); // Dependencias: ejecuta el hook solo al montar el componente
+
+
+  useEffect(() => {
+    if (!usuario) return;
+    
+    const token = localStorage.getItem("token");
+
+    const obtenerMisOfertas = async () => {
+      try {
+        const response = await fetch("http://localhost:3001/api/mis-ofertas", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+
+        if (!response.ok) throw new Error("Error al obtener mis ofertas");
+
+        const data = await response.json();
+        setMisOfertas(data.length);
+      } catch (error) {
+        console.error("Error al obtener mis ofertas:", error);
+      }
+    };
+
+    const obtenerMisComics = async () => {
+      try {
+        const response = await fetch("http://localhost:3001/api/comics-subidos-usuario", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+
+        if (!response.ok) throw new Error("Error al obtener mis cómics");
+
+        const data = await response.json();
+        setMisComics(data.length);
+      } catch (error) {
+        console.error("Error al obtener mis cómics:", error);
+      }
+    };
+
+    const obtenerChatsActivos = async () => {
+      try {
+        const response = await fetch("http://localhost:3001/api/chat", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+
+        if (!response.ok) throw new Error("Error al obtener los chats");
+
+        const data = await response.json();
+        setChatsActivos(data.length);
+      } catch (error) {
+        console.error("Error al obtener los chats activos:", error);
+      }
+    };
+
+    obtenerMisOfertas();
+    obtenerMisComics();
+    obtenerChatsActivos();
+  }, [usuario]);
+
+  useEffect(() => {
+    if (!usuario) return;
+
+    const obtenerUltimoComic = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await fetch("http://localhost:3001/api/comics-subidos-usuario", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+
+        if (!response.ok) throw new Error("Error al obtener los cómics");
+
+        const data = await response.json();
+        if (data.length > 0) {
+          setUltimoComic(data[data.length - 1]); // Tomamos el último cómic de la lista
+        }
+      } catch (error) {
+        console.error("Error al obtener el último cómic:", error);
+      }
+    };
+
+    obtenerUltimoComic();
+  }, [usuario]);
 
   useEffect(() => {
     if (!usuario) return; // Si no hay usuario, no hace nada
@@ -131,38 +215,65 @@ const ZonaUsuario = () => { // Define el componente ZonaUsuario como una funció
             />
           ) : (
             <div className="datos-usuario"> {/* Contenedor de los datos del usuario */}
-              <div className="tarjeta-info"> {/* Tarjeta de información */}
+            <div className="tarjeta-info"> {/* Tarjeta de información */}
                 <p><strong>Nombre:</strong> {usuario?.nombre}</p> {/* Muestra el nombre del usuario */}
                 <p><strong>Email:</strong> {usuario?.email}</p> {/* Muestra el email del usuario */}
+                <p><strong>Mis Ofertas:</strong> {misOfertas}</p>
+                <p><strong>Mis Cómics:</strong> {misComics}</p>
+                <p><strong>Chats Activos:</strong> {chatsActivos}</p>
+              </div>
+              <div className="tarjeta-comic"> {/* Tarjeta para mostrar el último cómic */}
+              <h4 className="titulo-comic">Último Cómic</h4>
+                {ultimoComic ? (
+                  <>
+                    <img src={ultimoComic.imagen} alt={ultimoComic.titulo} />
+                    <p><strong>{ultimoComic.titulo}</strong></p>
+                  </>
+                ) : (
+                  <p>No has subido cómics aún</p>
+                )}
               </div>
 
-              <div className="tarjeta-opciones">
-                {usuario.permiso === 1 && (
-                  <Boton className="btn-zu" onClick={() => setModoEdicion(true)}>MODIFICAR DATOS</Boton>
-                )}
-                <Boton className="btn-zu" onClick={() => navigate("/mis-ofertas")}>MIS OFERTAS</Boton>
-                <Boton className="btn-zu" onClick={() => navigate("/subir-comic-usuario")}>SUBIR COMIC</Boton>
-                <Boton className="btn-zu" onClick={() => navigate("/mis-comics")}>MIS COMICS</Boton>
-                  <div className="boton-notificacion"> {/* Contenedor para el botón de notificación */}
-                  <Boton className="btn-zu" onClick={() => navigate("/chats-activos")}> {/* Botón para navegar a "Chats Activos" */}
-                    CHATS ACTIVOS
+              <div className={`tarjeta-opciones-grid ${usuario.permiso === 9 ? '' : 'centrado'}`}>
+                <div className="botones-generales">
+                  {usuario.permiso === 1 && (
+                    <Boton className="btn-zu" onClick={() => setModoEdicion(true)}>
+                      MODIFICAR DATOS
+                    </Boton>
+                  )}
+                  <Boton className="btn-zu" onClick={() => navigate("/mis-ofertas")}>
+                    MIS OFERTAS
                   </Boton>
-                  {hayMensajesNoLeidos && <span className="notificacion">!</span>} {/* Muestra una notificación si hay mensajes no leídos */}
+                  <Boton className="btn-zu" onClick={() => navigate("/subir-comic-usuario")}>
+                    SUBIR CÓMIC
+                  </Boton>
+                  <Boton className="btn-zu" onClick={() => navigate("/mis-comics")}>
+                    MIS CÓMICS
+                  </Boton>
+                  <div className="boton-notificacion">
+                    <Boton className="btn-zu" onClick={() => navigate("/chats-activos")}>
+                      CHATS ACTIVOS
+                    </Boton>
+                    {hayMensajesNoLeidos && <span className="notificacion">!</span>}
+                  </div>
+                  <Boton className="btn-zu" onClick={eliminarCuenta}>
+                    ELIMINAR CUENTA
+                  </Boton>
                 </div>
-                {usuario.permiso === 9 && (
-                  <Boton className="btn-zu" onClick={() => navigate("/admin-usuarios")}>ADM USUARIOS</Boton>
-                )}
-                {usuario.permiso === 9 && (
-                  <Boton className="btn-zu" onClick={() => navigate("/admin-comics")}>ADM COMICS</Boton>
-                )}
-                {usuario.permiso === 9 && (
-                  <Boton className="btn-zu" >ADM PEDIDOS</Boton>
-                )}
-                {usuario.permiso === 9 && (
-                  <Boton className="btn-zu" >ADM VENTAS</Boton>
-                )}
-                <Boton className="btn-zu" onClick={eliminarCuenta}>ELIMINAR CUENTA</Boton>
 
+                {/* COLUMNA DE BOTONES DE ADMINISTRACIÓN */}
+                {usuario.permiso === 9 && (
+                  <div className="admin-buttons">
+                    <Boton className="btn-zu" onClick={() => navigate("/admin-usuarios")}>
+                      ADM USUARIOS
+                    </Boton>
+                    <Boton className="btn-zu" onClick={() => navigate("/admin-comics")}>
+                      ADM CÓMICS
+                    </Boton>
+                    <Boton className="btn-zu">ADM PEDIDOS</Boton>
+                    <Boton className="btn-zu">ADM VENTAS</Boton>
+                  </div>
+                )}
               </div>
             </div>
           )}

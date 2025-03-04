@@ -59,11 +59,15 @@ const Ventas = () => {
             onChange={(e) => setFechaFin(e.target.value)}
           />
         </div>
-        <div className="col-md-2 d-flex align-items-end">
+        {/* <div className="col-md-2 d-flex align-items-end">
           <button className="btn btn-primary w-100" onClick={fetchVentas}>
             Filtrar
           </button>
-        </div>
+        </div> */}
+      </div>
+            {/* Total general */}
+            <div className="mt-4 mb-4 p-3 bg-light rounded">
+        <h3 className="mb-0">Total General: ${formatMoney(totalGeneral)}</h3>
       </div>
 
       {/* Lista de ventas */}
@@ -72,7 +76,7 @@ const Ventas = () => {
           <div key={venta.id_venta} className="col-md-6 mb-4">
             <div className="card h-100">
               <div className="card-body">
-                <h5 className="card-title">Venta ID: {venta.id_venta}</h5>
+                <h5 className="card-title">ID de venta : {venta.id_venta}</h5>
                 <h6 className="card-subtitle mb-2 text-muted">
                   Usuario: {venta.usuario}
                 </h6>
@@ -93,10 +97,6 @@ const Ventas = () => {
         ))}
       </div>
 
-      {/* Total general */}
-      <div className="mt-4 p-3 bg-light rounded">
-        <h3 className="mb-0">Total General: ${formatMoney(totalGeneral)}</h3>
-      </div>
     </div>
   );
 };

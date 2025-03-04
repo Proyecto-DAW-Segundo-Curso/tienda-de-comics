@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './Ventas.css';
 
 const Ventas = () => {
   const [ventas, setVentas] = useState([]);
@@ -37,13 +38,13 @@ const Ventas = () => {
 
   return (
     <div className='container mt-5 w-80 position-relative'>
-      <div className="card bg-light">
+      <div className="card  bg-ventas">
         <div className="card-header custom-header text-white fw-bold text-center">
           REPORTE DE VENTAS
         </div>
 
         {/* Filtros de fecha */}
-        <div className="row m-4 bg-light rounded">
+        <div className="row m-4 rounded">
           <div className="col-md-3">
             <label className="form-label"><h5>Fecha Inicio:</h5></label>
             <input
@@ -69,7 +70,7 @@ const Ventas = () => {
         </div> */}
         </div>
         {/* Total general */}
-        <div className="m-4 p-3 bg-light rounded">
+        <div className="m-4 p-3 rounded">
           <h3 className="mb-0">Total General: {formatMoney(totalGeneral)}€</h3>
         </div>
 
@@ -77,7 +78,7 @@ const Ventas = () => {
         <div className="row m-4">
           {ventas.map((venta) => (
             <div key={venta.id_venta} className="col-md-6 mb-4">
-              <div className="card h-100">
+              <div className="card h-100 bg-light">
                 <div className="card-body d-flex flex-column">
                   <h5 className="card-title">ID de venta : {venta.id_venta}</h5>
                   <h6 className="card-subtitle mb-2 text-muted">
@@ -85,7 +86,7 @@ const Ventas = () => {
                   </h6>
                   <ul className="list-group list-group-flush">
                     {venta.comics.map((comic) => (
-                      <li key={comic.id} className="list-group-item">
+                      <li key={comic.id} className="list-group-item bg-light">
                         <strong>{comic.titulo}</strong> - Cantidad: {comic.cantidad} - Precio: 
                         {formatMoney(comic.precio)}€
                       </li>

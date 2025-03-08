@@ -263,16 +263,18 @@ const ZonaUsuario = () => { // Define el componente ZonaUsuario como una funció
 
                 {/* COLUMNA DE BOTONES DE ADMINISTRACIÓN */}
                 {usuario.permiso === 9 && (
-                  <div className="admin-buttons">
-                    <Boton className="btn-zu" onClick={() => navigate("/admin-usuarios")}>
-                      ADM USUARIOS
-                    </Boton>
-                    <Boton className="btn-zu" onClick={() => navigate("/admin-comics")}>
-                      ADM CÓMICS
-                    </Boton>
-                    <Boton className="btn-zu">ADM PEDIDOS</Boton>
-                    <Boton className="btn-zu">ADM VENTAS</Boton>
-                  </div>
+
+                  <Boton className="btn-zu" onClick={() => navigate("/admin-usuarios")}>ADM USUARIOS</Boton>
+                )}
+                {usuario.permiso === 9 && (
+                  <Boton className="btn-zu" onClick={() => navigate("/admin-comics")}>ADM COMICS</Boton>
+                )}
+                {usuario.permiso === 9 && (
+                  <Boton className="btn-zu" >ADM PEDIDOS</Boton>
+                )}
+                {usuario.permiso === 9 && (
+                  <Boton className="btn-zu" onClick={() => navigate("/ventas")}>ADM VENTAS</Boton>
+
                 )}
               </div>
             </div>

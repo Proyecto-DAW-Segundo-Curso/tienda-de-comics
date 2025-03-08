@@ -40,7 +40,7 @@ function FichaLibro({ comic }) {
       </div>
 
       {/* Contenedor del contenido con scroll */}
-      <div className="text-center list-group custom-card-content border-0 d-flex align-items-center">
+      <div className="text-center list-group custom-card-content border-0 d-flex align-items-center justify-content-center">
         <h5 className="card-title">{titulo}</h5>
         <p className="card-text"><strong>Autor:</strong> {autor}</p>
         <p className="card-text"><strong>Editorial:</strong> {editorial}</p>

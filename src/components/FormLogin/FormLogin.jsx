@@ -48,8 +48,8 @@ function FormLogin({ onLogin }) {
   };
 
   return (
-    <section>
-      <div className="container mt-5 w-50">
+    <section className="w-50">
+      <div className="container mt-5">
         <div className="card">
           <div className="card-header custom-header text-white fw-bold">
             LOGIN

@@ -53,7 +53,7 @@ const ZonaUsuario = () => { // Define el componente ZonaUsuario como una funció
 
   useEffect(() => {
     if (!usuario) return;
-    
+
     const token = localStorage.getItem("token");
 
     const obtenerMisOfertas = async () => {
@@ -215,7 +215,7 @@ const ZonaUsuario = () => { // Define el componente ZonaUsuario como una funció
             />
           ) : (
             <div className="datos-usuario"> {/* Contenedor de los datos del usuario */}
-            <div className="tarjeta-info"> {/* Tarjeta de información */}
+              <div className="tarjeta-info"> {/* Tarjeta de información */}
                 <p><strong>Nombre:</strong> {usuario?.nombre}</p> {/* Muestra el nombre del usuario */}
                 <p><strong>Email:</strong> {usuario?.email}</p> {/* Muestra el email del usuario */}
                 <p><strong>Mis Ofertas:</strong> {misOfertas}</p>
@@ -223,7 +223,7 @@ const ZonaUsuario = () => { // Define el componente ZonaUsuario como una funció
                 <p><strong>Chats Activos:</strong> {chatsActivos}</p>
               </div>
               <div className="tarjeta-comic"> {/* Tarjeta para mostrar el último cómic */}
-              <h4 className="titulo-comic">Último Cómic</h4>
+                <h4 className="titulo-comic">Último Cómic</h4>
                 {ultimoComic ? (
                   <>
                     <img src={ultimoComic.imagen} alt={ultimoComic.titulo} />
@@ -236,11 +236,9 @@ const ZonaUsuario = () => { // Define el componente ZonaUsuario como una funció
 
               <div className={`tarjeta-opciones-grid ${usuario.permiso === 9 ? '' : 'centrado'}`}>
                 <div className="botones-generales">
-                  {usuario.permiso === 1 && (
-                    <Boton className="btn-zu" onClick={() => setModoEdicion(true)}>
-                      MODIFICAR DATOS
-                    </Boton>
-                  )}
+                  <Boton className="btn-zu" onClick={() => setModoEdicion(true)}>
+                    MODIFICAR DATOS
+                  </Boton>
                   <Boton className="btn-zu" onClick={() => navigate("/mis-ofertas")}>
                     MIS OFERTAS
                   </Boton>
@@ -262,20 +260,17 @@ const ZonaUsuario = () => { // Define el componente ZonaUsuario como una funció
                 </div>
 
                 {/* COLUMNA DE BOTONES DE ADMINISTRACIÓN */}
-                {usuario.permiso === 9 && (
-
-                  <Boton className="btn-zu" onClick={() => navigate("/admin-usuarios")}>ADM USUARIOS</Boton>
-                )}
-                {usuario.permiso === 9 && (
-                  <Boton className="btn-zu" onClick={() => navigate("/admin-comics")}>ADM COMICS</Boton>
-                )}
-                {usuario.permiso === 9 && (
-                  <Boton className="btn-zu" >ADM PEDIDOS</Boton>
-                )}
-                {usuario.permiso === 9 && (
-                  <Boton className="btn-zu" onClick={() => navigate("/ventas")}>ADM VENTAS</Boton>
-
-                )}
+                <div className="admin-buttons">
+                  {usuario.permiso === 9 && (
+                    <Boton className="btn-zu" onClick={() => navigate("/admin-usuarios")}>ADM USUARIOS</Boton>
+                  )}
+                  {usuario.permiso === 9 && (
+                    <Boton className="btn-zu" onClick={() => navigate("/admin-comics")}>ADM COMICS</Boton>
+                  )}
+                  {usuario.permiso === 9 && (
+                    <Boton className="btn-zu" onClick={() => navigate("/ventas")}>ADM VENTAS</Boton>
+                  )}
+                </div>
               </div>
             </div>
           )}

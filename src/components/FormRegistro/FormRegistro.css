@@ -1,8 +1,9 @@
 .form-registro {
     width: 80%;
+    max-width: 600px; /* Evita que se expanda demasiado en pantallas grandes */
     height: auto;
     position: relative;
-    margin: 20px 0;
+    margin: 20px auto;
 }
 
 .contenedor-boton {
@@ -25,6 +26,7 @@
     align-items: center;
     justify-content: center;
     padding: 2rem;
+    box-sizing: border-box;
 }
 
 .formulario {
@@ -38,22 +40,25 @@
 .contenedor-campos {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
+    gap: 1rem;
     width: 100%;
+    max-width: 500px;
+    align-items: center; /* Asegura que los campos estén alineados correctamente */
 }
 
 .contenedor-categoria {
     display: flex;
     flex-direction: column;
-    gap: 5px;
-    margin-bottom: 10px;
+    width: 100%;
+    align-items: flex-start; /* Mantiene alineado todo a la izquierda */
 }
 
 .contenedor-categoria > label {
-    opacity: 100%;
-    color: #000;
+    min-width: 150px; /* Asegura que los labels ocupen el mismo espacio */
+    white-space: nowrap; /* Evita que el texto se divida en dos líneas */
+    text-align: left;
+    display: inline-block;
     font-weight: bold;
-    letter-spacing: 1px;
 }
 
 .contenedor-categoria > input {
@@ -62,6 +67,9 @@
     border-radius: 9999px;
     border: 1px solid #ccc;
     padding: 0.5rem;
+    width: 100%;
+    max-width: 250px;
+    box-sizing: border-box;
 }
 
 .contenedor-boton-registro {
@@ -71,13 +79,9 @@
     margin-top: 1.5rem;
 }
 
-.contenedor-form > p {
-    color: #000000;
-}
-
 /* Ajuste para móviles */
 @media (max-width: 768px) {
     .contenedor-campos {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Acomoda los campos en una sola columna en móviles */
     }
 }

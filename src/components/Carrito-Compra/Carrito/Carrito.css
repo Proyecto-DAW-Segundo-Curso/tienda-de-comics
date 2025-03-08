@@ -1,5 +1,4 @@
-/* ESTILOS PROPIOS */
-
+/* Contenedor del carrito */
 .custom-cart-container {
   position: relative;
   width: 70px;
@@ -14,6 +13,7 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
+/* Icono del carrito */
 .custom-cart {
   width: 35px;
   height: 35px;
@@ -25,43 +25,41 @@
   transform: scale(1.1);
 }
 
+/* Contenido del carrito */
 .custom-cart-content {
   position: absolute;
   top: 80px;
-  overflow-y: auto;
-  position: absolute;
-  z-index: 1000;
   right: 0;
-  opacity: 0; /* Oculto por defecto */
-  visibility: hidden; /* Oculto por defecto */
-  transition: opacity 0.3s ease, visibility 0.3s ease; /* Transiciones suaves */
+  width: 300px; /* Ajuste para evitar que se corte */
+  max-width: 90vw; /* Se adapta en móviles */
+  max-height: 350px; /* Evita que se corte en pantallas pequeñas */
+  overflow-y: auto;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .custom-cart-container:hover .custom-cart-content,
 .custom-cart-content:hover {
   opacity: 1;
-  /* Visible cuando se interactúa */
   visibility: visible;
-  /* Visible cuando se interactúa */
 }
 
-.list-group-item span:nth-child(2) {
-  display: inline-block;
-  width: 240px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
+/* Lista de productos */
 .list-group {
-  max-height: 285px;
+  max-height: 250px;
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: #007bff #f5f5f5;
 }
 
 .list-group::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 .list-group::-webkit-scrollbar-track {
@@ -74,18 +72,55 @@
   border: 2px solid transparent;
 }
 
+/* Asegurar que los nombres de los productos no se corten */
+.list-group-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+
 .list-group-item span:nth-child(2) {
-  display: inline-block;
-  width: 240px;
+  display: block;
+  width: auto;
+  max-width: 150px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.list-group-item span {
-  margin: 0 3px;
-}
-
+/* Imagen de los productos */
 .product-img {
   width: 50px;
+  height: auto;
+  border-radius: 5px;
+}
+
+/* Ajustes para móviles */
+@media (max-width: 480px) {
+  .custom-cart-content {
+    width: 90vw;
+    max-width: 350px;
+    max-height: 400px; /* Asegura que sea visible sin ser muy grande */
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%); /* Centra el carrito */
+  }
+
+  .list-group-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .list-group-item span:nth-child(2) {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .product-img {
+    width: 60px;
+  }
 }

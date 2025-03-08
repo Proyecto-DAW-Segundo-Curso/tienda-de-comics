@@ -27,21 +27,38 @@ function FichaLibro({ comic }) {
   }, [message]); // Se ejecuta cuando el mensaje cambie
 
   return (
-    <div className="ficha-libro">
-      <PortadaComic src={imagen} alt={titulo} />
-      <div className="info-comic">
-        <h3>{titulo}</h3>
-        <p><strong>Autor:</strong> {autor}</p>
-        <p><strong>Editorial:</strong> {editorial}</p>
-        <p><strong>Género:</strong> {genero}</p>
-        <p><strong>Precio:</strong> ${precio.toFixed(2)}</p>
-        <p><strong>Stock:</strong> {stock}</p>
+    <div className="card custom-card d-flex flex-column justify-content-between align-items-center p-2">
+      {/* Contenedor de la imagen */}
+      <div className="card-image">
+        <PortadaComic src={imagen} alt={titulo} className="img-fluid" />
       </div>
-      <Boton onClick={handleAddToCart}>+ Añadir</Boton>
+
+      {/* Contenedor del contenido con scroll */}
+      <div className="text-center list-group custom-card-content border-0 d-flex align-items-center">
+        <h5 className="card-title">{titulo}</h5>
+        <p className="card-text"><strong>Autor:</strong> {autor}</p>
+        <p className="card-text"><strong>Editorial:</strong> {editorial}</p>
+        <p className="card-text"><strong>Género:</strong> {genero}</p>
+        <p className="card-text"><strong>Precio:</strong> ${precio.toFixed(2)}</p>
+        <p className={`card-text ${stock > 0 ? 'text-success' : 'text-danger'}`}>
+          <strong>Stock:</strong> {stock}
+        </p>
+      </div>
+
+      {/* Contenedor del botón */}
+      <div>
+        <Boton className="w-75" onClick={handleAddToCart}>+ Añadir</Boton>
+      </div>
 
       {showModal && message && (
-        <div className="modal-stock">
-          <p>{message}</p> {/* Mostrar el mensaje del contexto */}
+        <div className="modal fade show d-block" role="dialog">
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-body text-center">
+                <p>{message}</p>
+              </div>
+            </div>
+          </div>
         </div>
       )}
     </div>

@@ -1,30 +1,59 @@
 .header {
+  padding-top: 0; /* Asegura que no tenga margen superior */
+  margin-top: 0;
   width: 100%;
-  height: 145px;
+  height: auto;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
+/* Contenedor principal del logo y botones */
 .contenedor-logo-botones {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-
+  align-items: center;
+  width: 100%;
+  padding: 10px 20px;
+  position: relative;
 }
 
+/* Logo */
 .contenedor-logo {
-  height: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .imagen-logo {
-  width: 115px;
-  margin: 15px 15px;
+  width: 100px;
+  margin: 10px;
   border-radius: 50%;
 }
 
+/* Contenedor de los botones de usuario */
 .contenedor-botones {
   display: flex;
-  justify-content: space-between;
-  margin-right: 25px;
+  gap: 10px;
   align-items: center;
+}
+
+/* Media Query para móviles */
+@media (max-width: 768px) {
+  .contenedor-logo-botones {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contenedor-botones {
+    flex-direction: row;  /* Cambia de columna a fila para alinear los botones */
+    flex-wrap: wrap; /* Permite que los botones se ajusten si no hay espacio */
+    justify-content: center; /* Centra los botones */
+    gap: 5px; /* Reduce espacio en móviles */
+    width: auto;
+  }
+
+  .imagen-logo {
+    width: 80px;
+  }
 }

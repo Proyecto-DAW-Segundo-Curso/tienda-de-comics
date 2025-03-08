@@ -19,8 +19,9 @@ const FormularioUsuario = ({ datosUsuario, onGuardar, onCancelar }) => {
 
     try {
       const token = localStorage.getItem("token"); // Recuperar el token de autenticación
+      const userId= datosUsuario.id;
 
-      const response = await fetch("http://localhost:3001/api/update", {
+      const response = await fetch(`http://localhost:3001/api/user/${userId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

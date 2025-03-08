@@ -1,4 +1,4 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -6,30 +6,41 @@
 
 html,
 body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
   width: 100vw;
+  height: 100vh;
   color: #000;
   background-image: url(./img/background-page.jpg);
-  background-size: 200vw;
-  background-repeat: repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; 
+  background-repeat: no-repeat;
   font-family: Lato, sans-serif;
-
 }
 
-.App{
+
+/* Ajustar la estructura principal */
+.App {
   min-height: 100vh;
-  /* display: inline-block;  */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
-main{
+/* Ajustar el contenido principal */
+main {
   margin-top: 50px;
   flex: 1;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  padding: 10px;
 }
 
-section{
+/* Centrar el contenido */
+section {
   display: flex;
   justify-content: center;
 }
@@ -42,4 +53,17 @@ section{
 .custom-body {
   background-color: #D9D9D9;
 }
+
+/* Media Queries para pantallas pequeñas */
+@media (max-width: 768px) {
+  body {
+    background-size: 300vw; /* Evita que la imagen de fondo se vea pixelada */
+  }
+
+  main {
+    margin-top: 20px;
+    padding: 5px;
+  }
+}
+
 

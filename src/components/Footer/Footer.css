@@ -7,12 +7,16 @@
   justify-content: center;
   align-items: center;
   color: #FFFFFF;
-  font-size: 45px;
+  font-size: 35px;
   margin-top: 30px;
+  padding: 10px;
 }
 
-.social-icon{
-  margin: 0 10px 0 10px;
+/* Íconos de redes sociales */
+.social-icon {
+  margin: 0 10px;
   display: flex;
   justify-content: center;
 }
+
+

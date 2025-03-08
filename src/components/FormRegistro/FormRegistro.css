@@ -1,0 +1,87 @@
+.form-registro {
+    width: 80%;
+    max-width: 600px; /* Evita que se expanda demasiado en pantallas grandes */
+    height: auto;
+    position: relative;
+    margin: 20px auto;
+}
+
+.contenedor-boton {
+    width: 100%;
+    height: 52px;
+    background: linear-gradient(to bottom, #000000, #5c5c5c);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px 15px 0 0;
+}
+
+.contenedor-formRegistro {
+    width: 100%;
+    opacity: 60%;
+    background-color: #D9D9D9;
+    border-radius: 0 0 15px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    box-sizing: border-box;
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.contenedor-campos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    width: 100%;
+    max-width: 500px;
+    align-items: center; /* Asegura que los campos estén alineados correctamente */
+}
+
+.contenedor-categoria {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-start; /* Mantiene alineado todo a la izquierda */
+}
+
+.contenedor-categoria > label {
+    min-width: 150px; /* Asegura que los labels ocupen el mismo espacio */
+    white-space: nowrap; /* Evita que el texto se divida en dos líneas */
+    text-align: left;
+    display: inline-block;
+    font-weight: bold;
+}
+
+.contenedor-categoria > input {
+    background-color: white;
+    height: 40px;
+    border-radius: 9999px;
+    border: 1px solid #ccc;
+    padding: 0.5rem;
+    width: 100%;
+    max-width: 250px;
+    box-sizing: border-box;
+}
+
+.contenedor-boton-registro {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+
+/* Ajuste para móviles */
+@media (max-width: 768px) {
+    .contenedor-campos {
+        grid-template-columns: 1fr; /* Acomoda los campos en una sola columna en móviles */
+    }
+}

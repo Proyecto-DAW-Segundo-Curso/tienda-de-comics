@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../MisComics/MisComics.css";
+import Boton from "../Boton/Boton";
 
 const MisOfertas = () => {
   const [ofertas, setOfertas] = useState([]);
@@ -88,8 +89,8 @@ const MisOfertas = () => {
                         <strong>Precio:</strong> ${oferta.precio.toFixed(2)}
                       </p>
                       <div className="d-flex justify-content-between">
-                        <button className="btn btn-warning" onClick={() => editarOferta(oferta.intercambio_id)}>Editar</button>
-                        <button className="btn btn-danger" onClick={() => eliminarOferta(oferta.intercambio_id)}>Eliminar</button>
+                        <Boton className="btn-warning" onClick={() => editarOferta(oferta.intercambio_id)}>EDITAR</Boton>
+                        <Boton className="btn-danger" onClick={() => eliminarOferta(oferta.intercambio_id)}>ELIMINAR</Boton>
                       </div>
                     </div>
                   </div>
@@ -97,11 +98,8 @@ const MisOfertas = () => {
               ))}
             </div>
           )}
-
           <div className="volver-container">
-            <button className="btn custom-button" onClick={() => navigate("/zona-usuario")}>
-              VOLVER
-            </button>
+            <Boton onClick={() => navigate("/zona-usuario")}>VOLVER</Boton>
           </div>
         </div>
       </div>

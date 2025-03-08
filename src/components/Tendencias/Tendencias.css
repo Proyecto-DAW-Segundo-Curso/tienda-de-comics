@@ -6,6 +6,10 @@
     position: relative;
 }
 
+.custom-input{
+    background-color: #D9D9D9;
+}
+
 .contenedor-boton {
     height: 52px;
     background: linear-gradient(to bottom, #000000, #5c5c5c);
@@ -19,12 +23,11 @@
     width: 100%;
     min-height: 315px;
     /* Se adapta a las imágenes */
-    background-color: rgba(255, 255, 255, 0.65);
     border-radius: 0 0 15px 15px;
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 10px;
     padding: 10px;
 }

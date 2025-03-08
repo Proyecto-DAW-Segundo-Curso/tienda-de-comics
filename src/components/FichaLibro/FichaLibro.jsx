@@ -1,30 +1,36 @@
-import React, { useState, useEffect } from 'react'; 
+import React, { useState, useEffect } from 'react';
 import PortadaComic from '../PortadaComic/PortadaComic';
-import './FichaLibro.css';
-import { useCart } from '../../CartContext/CartContext.js'; 
+import { useCart } from '../../CartContext/CartContext.js';
 import Boton from '../Boton/Boton.jsx';
+import './FichaLibro.css';
 
 function FichaLibro({ comic }) {
-  const { addToCart, message, clearMessage } = useCart();  // Obtener el mensaje desde el contexto
+  const { addToCart, message, setMessage } = useCart();
   const { titulo, autor, editorial, genero, precio, stock, imagen } = comic;
 
   const [showModal, setShowModal] = useState(false);
+  
 
   const handleAddToCart = () => {
     if (stock > 0) {
+      setMessage(`${titulo} añadido al carrito`);
       addToCart(comic);
     } else {
-      setShowModal(true);
+      setMessage("No hay suficiente stock");
     }
   };
 
   useEffect(() => {
     if (message) {
       setShowModal(true);
-      const timer = setTimeout(() => setShowModal(false), 1500); // Ocultar modal después de 1.5 segundos
-      return () => clearTimeout(timer); // Limpiar el timer cuando el componente se desmonte
+      const timer = setTimeout(() => {
+        setShowModal(false);
+        setMessage("")  
+      }, 1000);
+
+      return () => clearTimeout(timer);
     }
-  }, [message]); // Se ejecuta cuando el mensaje cambie
+  }, [message]);
 
   return (
     <div className="card custom-card d-flex flex-column justify-content-between align-items-center p-2">

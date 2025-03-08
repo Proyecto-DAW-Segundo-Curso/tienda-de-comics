@@ -45,6 +45,15 @@ section {
   justify-content: center;
 }
 
+/** Header de los formularios */
+.custom-header {
+  background: linear-gradient(to bottom, #000000, #5c5c5c);
+}
+
+.custom-body {
+  background-color: #D9D9D9;
+}
+
 /* Media Queries para pantallas pequeñas */
 @media (max-width: 768px) {
   body {
@@ -56,3 +65,5 @@ section {
     padding: 5px;
   }
 }
+
+

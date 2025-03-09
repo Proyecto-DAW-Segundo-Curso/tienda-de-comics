@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./FormularioUsuario.css";
 import Boton from "../Boton/Boton";
 import Swal from "sweetalert2";
+import "../../sweetalert2.css"
 
 const FormularioUsuario = ({ datosUsuario, onGuardar, onCancelar }) => {
   const [datosEditados, setDatosEditados] = useState({
@@ -20,8 +21,8 @@ const FormularioUsuario = ({ datosUsuario, onGuardar, onCancelar }) => {
 
     try {
       const token = localStorage.getItem("token"); // Recuperar el token de autenticación
-
-      const response = await fetch("http://localhost:3001/api/update", {
+      const userId = datosUsuario.id;
+      const response = await fetch(`http://localhost:3001/api/user/${userId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

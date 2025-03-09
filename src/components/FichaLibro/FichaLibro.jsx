@@ -10,7 +10,6 @@ function FichaLibro({ comic }) {
 
   const [showModal, setShowModal] = useState(false);
   
-
   const handleAddToCart = () => {
     if (stock > 0) {
       setMessage(`${titulo} añadido al carrito`);
@@ -27,10 +26,11 @@ function FichaLibro({ comic }) {
         setShowModal(false);
         setMessage("")  
       }, 1000);
+      console.log(message)
 
       return () => clearTimeout(timer);
     }
-  }, [message]);
+  }, [message, setMessage]);
 
   return (
     <div className="card custom-card d-flex flex-column justify-content-between align-items-center p-2">
@@ -45,7 +45,7 @@ function FichaLibro({ comic }) {
         <p className="card-text"><strong>Autor:</strong> {autor}</p>
         <p className="card-text"><strong>Editorial:</strong> {editorial}</p>
         <p className="card-text"><strong>Género:</strong> {genero}</p>
-        <p className="card-text"><strong>Precio:</strong> ${precio.toFixed(2)}</p>
+        <p><strong>Precio:</strong> ${precio ? precio.toFixed(2) : "No disponible"}</p>
         <p className={`card-text ${stock > 0 ? 'text-success' : 'text-danger'}`}>
           <strong>Stock:</strong> {stock}
         </p>

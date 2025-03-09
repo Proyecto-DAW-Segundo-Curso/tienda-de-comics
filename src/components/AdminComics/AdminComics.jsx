@@ -3,6 +3,7 @@ import './AdminComics.css'; // Importa los estilos personalizados del componente
 import { useNavigate } from "react-router-dom"; // Hook para navegar entre rutas de la aplicación
 import Boton from '../Boton/Boton';
 import Swal from 'sweetalert2';
+import "../../sweetalert2.css"
 
 function AdminComics() {
   const navigate = useNavigate(); // Permite redirigir a otras rutas dentro de la aplicación
@@ -30,19 +31,31 @@ function AdminComics() {
 
   // Función para eliminar un cómic
   const eliminarComic = (comicId, titulo) => {
-    // Confirmación antes de eliminar
-    if (window.confirm(`¿Está seguro de eliminar ${titulo}?`)) {
-      fetch(`http://localhost:3001/api/comics/${comicId}`, { // Petición HTTP DELETE a la API
-        method: 'DELETE',
-      })
-      .then(() => {
-        // Actualiza el estado eliminando el cómic borrado
-        setComics(comics.filter(c => c.id !== comicId));
-      })
-      .catch(
-        () => Swal.fire('Error al eliminar el cómic', '', 'error')   // Manejo de errores en la petición
-      ); 
-    }
+    Swal.fire({
+      title: "¿Estás seguro de eliminar el cómic?",
+      text: "No podrás deshacer esta acción.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#62CFFE",
+      cancelButtonColor: "#898989",
+      confirmButtonText: "Sí, la quiero eliminar",
+      customClass: {
+        confirmButton: "btn confirm-button",
+        cancelButton: "btn cancel-button",
+      }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:3001/api/comics/${comicId}`, { // Petición DELETE
+          method: "DELETE",
+        })
+          .then(async (response) => {
+            if (!response.ok) throw new Error("No se pudo eliminar el cómic");
+            setComics(comics.filter((c) => c.id !== comicId)); // Actualiza la lista
+            Swal.fire("Eliminado", "El cómic ha sido eliminado.", "success");
+          })
+          .catch(() => Swal.fire("Error", "No se pudo eliminar el cómic.", "error"));
+      }
+    });
   };
 
   return (
@@ -92,7 +105,7 @@ function AdminComics() {
                         <strong>Autor:</strong> {comic.autor} <br />
                         <strong>Editorial:</strong> {comic.editorial} <br />
                         <strong>Género:</strong> {comic.genero} <br />
-                        <strong>Precio:</strong> ${comic.precio.toFixed(2)} <br />
+                        <strong>Precio:</strong> ${comic.precio} <br />
                         <strong>Stock:</strong> {comic.stock}
                       </p>
                     </div>

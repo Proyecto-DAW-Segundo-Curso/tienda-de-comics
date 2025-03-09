@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom"; // Importa useNavigate de react-
 import "./MisComics.css"; // Importa el archivo CSS para los estilos
 import Boton from "../Boton/Boton"; // Importa el componente Boton
 import Swal from "sweetalert2"; // Importa el módulo sweetalert2 para mostrar alertas
+import "../../sweetalert2.css"; // Importa el archivo CSS de sweetalert2
 
 const MisComics = () => { // Define el componente MisComics como una función
   const [comicsSubidos, setComicsSubidos] = useState([]); // Estado para almacenar los cómics subidos
@@ -51,35 +52,37 @@ const MisComics = () => { // Define el componente MisComics como una función
   // Define la función para eliminar un cómic
   const eliminarComic = async (id) => {
     const confirmar = Swal.fire({
-      title: "¿Estás seguro de que quieres eliminar el cómic?",
-      showDenyButton: true,
+      title: "¿Estás seguro de eliminar el cómic?",
+      text: "No podrás deshacer esta acción.",
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonText: "Save",
-      denyButtonText: `Don't save`
-    }).then((result) => {
+      confirmButtonColor: "#62CFFE",
+      cancelButtonColor: "rgb(137, 137, 137)",
+      confirmButtonText: "Sí, la quiero eliminar",
+      customClass: {
+        confirmButton: "btn confirm-button",
+        cancelButton: "btn cancel-button",
+      }
+    }).then(async (result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        Swal.fire("Saved!", "", "success");
-      } else if (result.isDenied) {
-        Swal.fire("Changes are not saved", "", "info");
+        Swal.fire("Se ha eliminado con éxito", "", "success");
+        try {
+          const token = localStorage.getItem("token"); // Obtiene el token de autenticación del localStorage
+          const response = await fetch(`http://localhost:3001/api/comics-subidos-usuario/${id}`, {
+            method: "DELETE",
+            headers: { Authorization: `Bearer ${token}` }, // Incluye el token en los headers de la solicitud
+          });
+    
+          if (!response.ok) throw new Error("Error al eliminar cómic"); // Lanza un error si la respuesta no es exitosa
+    
+          setComicsSubidos(comicsSubidos.filter(comic => comic.id !== id)); // Actualiza el estado eliminando el cómic eliminado
+          Swal.fire('Cómic eliminado correctamente');  // Muestra una alerta de éxito
+        } catch (error) {
+          Swal.fire('Error al eliminar: ', error);  // Muestra el error en la consola
+        }
       }
     }); // Pide confirmación al usuario
-    if (!confirmar) return; // Si el usuario cancela, no hace nada
-
-    try {
-      const token = localStorage.getItem("token"); // Obtiene el token de autenticación del localStorage
-      const response = await fetch(`http://localhost:3001/api/comics-subidos-usuario/${id}`, {
-        method: "DELETE",
-        headers: { Authorization: `Bearer ${token}` }, // Incluye el token en los headers de la solicitud
-      });
-
-      if (!response.ok) throw new Error("Error al eliminar cómic"); // Lanza un error si la respuesta no es exitosa
-
-      setComicsSubidos(comicsSubidos.filter(comic => comic.id !== id)); // Actualiza el estado eliminando el cómic eliminado
-      Swal.fire('Cómic eliminado correctamente');  // Muestra una alerta de éxito
-    } catch (error) {
-      Swal.fire('Error al eliminar: ', error);  // Muestra el error en la consola
-    }
   };
 
   return (
@@ -120,7 +123,7 @@ const MisComics = () => { // Define el componente MisComics como una función
                         <strong>Autor:</strong> {comic.autor} <br />
                         <strong>Editorial:</strong> {comic.editorial} <br />
                         <strong>Género:</strong> {comic.genero} <br />
-                        <strong>Precio:</strong> ${comic.precio.toFixed(2)}
+                        <strong>Precio:</strong> ${comic.precio}
                       </p>
                       <div className="d-flex flex-column"> {/* Contenedor flexible para los botones */}
                         <Boton className="mb-2 custom-ofertar" onClick={() => navigate(`/ofertar-comic/${comic.id}`)}> {/* Botón para ofertar */}

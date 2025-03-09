@@ -98,17 +98,15 @@ const ZonaUsuario = () => { // Define el componente ZonaUsuario como una funció
       confirmButtonColor: "#62CFFE",
       cancelButtonColor: "rgb(137, 137, 137)",
       confirmButtonText: "Sí, la quiero eliminar",
-      cancelButtonText: "Cancelar",
       customClass: {
         confirmButton: "btn confirm-button",
-        cancelButton: "btn cancel-button",
       }
     }).then(async (result) => {
       if (result.isConfirmed) {
         Swal.fire({
           title: "¡Cuenta eliminada con éxito!",
           icon: "success",
-          confirmButtonColor: "#62CFFE",
+          confirmButtonColor: "#62CFFE"
         });
         try {
           const token = localStorage.getItem("token");

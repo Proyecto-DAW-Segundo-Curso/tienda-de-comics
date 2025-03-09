@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import ListaUsuarios from "./ListaUsuarios";
 import ModalConfirmacion from "./ModalConfirmacion";
 import Swal from "sweetalert2";
+import "../../sweetalert2.css"
 
 const AdminUsuarios = () => {
   const [usuarios, setUsuarios] = useState([]);
@@ -32,6 +33,19 @@ const AdminUsuarios = () => {
     }, []);
 
   const eliminarUsuario = async (id) => {
+    Swal.fire({
+      title: "Do you want to save the changes?",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Save",
+      denyButtonText: `Don't save`
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("Saved!", "", "success");
+      } else if (result.isDenied) {
+        Swal.fire("Changes are not saved", "", "info");
+      }
+    });
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(`http://localhost:3001/api/user/${id}`, {

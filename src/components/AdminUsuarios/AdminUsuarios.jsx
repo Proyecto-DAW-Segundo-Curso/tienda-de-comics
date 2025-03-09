@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
 import ListaUsuarios from "./ListaUsuarios";
 import ModalConfirmacion from "./ModalConfirmacion";
+import Boton from "../Boton/Boton";
+import { useNavigate } from "react-router-dom";
+import "./AdminUsuarios.css";
 
 const AdminUsuarios = () => {
   const [usuarios, setUsuarios] = useState([]);
   const [error, setError] = useState(null);
   const [cargando, setCargando] = useState(true);
   const [modalEliminar, setModalEliminar] = useState({ mostrar: false, id: null });
+  const navigate = useNavigate(); // Obtiene la función navigate para la navegación programática
 
   useEffect(() => {
     const fetchUsuarios = async () => {
@@ -59,11 +63,11 @@ const AdminUsuarios = () => {
 
   return (
     <div className="container mt-5">
-      <div className="card">
+      <div className="card custom-card">
         <div className="card-header custom-header text-white fw-bold">
           ADMINISTRAR USUARIOS
         </div>
-        <div className="card-body custom-body">
+        <div className="card-body custom-body mb-5">
           <ListaUsuarios
             usuarios={usuarios}
             onEliminar={(id) => setModalEliminar({ mostrar: true, id })}
@@ -74,7 +78,10 @@ const AdminUsuarios = () => {
               onConfirm={() => eliminarUsuario(modalEliminar.id)}
               onCancel={() => setModalEliminar({ mostrar: false, id: null })}
             />
-          )}
+          )}        
+          <div className="volver-container"> {/* Contenedor para el botón de volver */}
+            <Boton onClick={() => navigate("/zona-usuario")}>VOLVER</Boton> {/* Botón para volver a la zona de usuario */}
+          </div>
         </div>
       </div>
     </div>

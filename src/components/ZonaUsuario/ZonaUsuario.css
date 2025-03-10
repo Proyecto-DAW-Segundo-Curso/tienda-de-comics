@@ -78,6 +78,34 @@
 }
 
 /* RESPONSIVE SOLO EN PANTALLAS PEQUEÑAS */
+@media (max-width: 992px) {
+  .zona-usuario {
+    width: 90%;
+    max-width: 100%;
+    margin: 50px auto;
+    padding: 15px;
+  }
+
+  .datos-usuario {
+    flex-direction: column; /* Se apilan en móviles */
+    text-align: center;
+  }
+
+  .tarjeta-opciones {
+    width: 100%;
+  }
+
+  .btn-zu {
+    width: 100%;
+    max-width: 250px;
+  }
+
+  .admin-buttons{
+    width: 100%;
+    max-width: fit-content;
+  }
+} 
+
 @media (max-width: 768px) {
   .zona-usuario {
     width: 90%;

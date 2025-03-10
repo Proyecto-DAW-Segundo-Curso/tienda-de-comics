@@ -73,7 +73,7 @@ const MisOfertas = () => {
           ) : (
             <div className="row">
               {ofertas.map((oferta) => (
-                <div className="col-md-4 mb-4" key={oferta.intercambio_id}>
+                <div className="col-12 col-sm-12 col-md-6 col-lg-4 mb-5" key={oferta.intercambio_id}>
                   <div className="card h-100">
                     <img
                       src={oferta.imagen || "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg"}
@@ -88,8 +88,8 @@ const MisOfertas = () => {
                         <strong>Comentario:</strong> {oferta.comentario} <br />
                         <strong>Precio:</strong> ${oferta.precio.toFixed(2)}
                       </p>
-                      <div className="d-flex justify-content-between">
-                        <Boton className="btn-warning" onClick={() => editarOferta(oferta.intercambio_id)}>EDITAR</Boton>
+                      <div className="d-flex justify-content-between align-items-center custom-opciones"> {/* Contenedor flexible para los botones de editar y eliminar */}
+                      <Boton className="btn-warning" onClick={() => editarOferta(oferta.intercambio_id)}>EDITAR</Boton>
                         <Boton className="btn-danger" onClick={() => eliminarOferta(oferta.intercambio_id)}>ELIMINAR</Boton>
                       </div>
                     </div>

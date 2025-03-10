@@ -84,7 +84,7 @@ const ListaChats = () => {
                           <Boton
                             onClick={() => navigate("/zona-usuario")}
                           >
-                            VOLVER
+                            Volver
                           </Boton>
 
                     </div>

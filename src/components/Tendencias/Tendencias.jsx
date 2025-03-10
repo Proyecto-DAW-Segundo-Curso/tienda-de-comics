@@ -30,7 +30,7 @@ function Tendencias() {
 
 
   return (
-    <div className='container mt-5 w-80 position-relative'>
+    <div className='container mt-5 position-relative'>
       <div className="card custom-body">
         <div className="card-header custom-header text-white fw-bold text-center">
           TENDENCIAS
@@ -45,7 +45,7 @@ function Tendencias() {
             onChange={e => setSearchText(e.target.value)} // Actualiza searchText al cambiar el contenido del input
           />
         </div>
-        <div className="custom-body contenedor-comics">
+        <div className="custom-body contenedor-comics p-2">
           {filteredComics.map((comic) => (
             <FichaLibro key={comic.id} comic={comic} />
           ))}

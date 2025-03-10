@@ -192,7 +192,7 @@ function UsuarioSubirComicForm() {
             <div className="row mt-3 d-flex justify-content-center">
               <div className="col-md-6 d-flex justify-content-around">
                 <Boton type="submit">CONFIRMAR</Boton>
-                <Boton type='button' onClick={() => navigate('/mis-comics')}>
+                <Boton type='button' onClick={() => navigate('/zona-usuario')}>
                   VOLVER
                 </Boton>
               </div>

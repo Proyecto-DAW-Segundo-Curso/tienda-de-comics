@@ -93,7 +93,7 @@ const MisComics = () => { // Define el componente MisComics como una función
           ) : ( // Si hay cómics filtrados, los muestra en una cuadrícula
             <div className="row">
               {filteredComics.map((comic) => ( // Mapea los cómics filtrados para mostrarlos
-                <div className="col-md-4 mb-5" key={comic.id}> {/* Columna con margen inferior */}
+                <div className="col-12 col-sm-12 col-md-6 col-lg-4 mb-5" key={comic.id}> {/* Columna con margen inferior */}
                   <div className="card h-100"> {/* Tarjeta con altura completa */}
                     <img
                       src={comic.imagen || "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg"} // Imagen del cómic o imagen por defecto
@@ -113,7 +113,7 @@ const MisComics = () => { // Define el componente MisComics como una función
                         <Boton className="mb-2 custom-ofertar" onClick={() => navigate(`/ofertar-comic/${comic.id}`)}> {/* Botón para ofertar */}
                           Ofertar
                         </Boton>
-                        <div className="d-flex justify-content-between custom-opciones"> {/* Contenedor flexible para los botones de editar y eliminar */}
+                        <div className="d-flex justify-content-between align-items-center custom-opciones"> {/* Contenedor flexible para los botones de editar y eliminar */}
                           <Boton className="btn-warning" onClick={() => editarComic(comic)}>Editar</Boton> {/* Botón para editar */}
                           <Boton className="btn-danger" onClick={() => eliminarComic(comic.id)}>Eliminar</Boton> {/* Botón para eliminar */}
                         </div>

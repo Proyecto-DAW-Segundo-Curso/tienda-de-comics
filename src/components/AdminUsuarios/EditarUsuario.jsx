@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import Boton from "../Boton/Boton";
 
 const EditarUsuario = () => {
   const { id } = useParams();
@@ -110,17 +111,17 @@ const EditarUsuario = () => {
               </select>
             </div>
 
-            <div className="modal-footer">
-              <button type="submit" className="btn btn-primary">
+            <div className="modal-footer mt-3">
+              <Boton type="submit">
                 Guardar Cambios
-              </button>
-              <button
+              </Boton>
+              <Boton
                 type="button"
-                className="btn btn-secondary"
+                className="btn-danger"
                 onClick={() => navigate("/admin-usuarios")}
               >
                 Cancelar
-              </button>
+              </Boton>
             </div>
           </form>
         </div>

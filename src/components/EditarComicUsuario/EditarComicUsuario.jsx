@@ -134,13 +134,15 @@ function EditarMisComics() {
                 </div>
                 <div className="form-group">
                   <label htmlFor="genero">Género</label>
-                  <input
-                    type="text"
-                    className="form-control"
+                  <select
+                    className="form-select mb-3"
                     id="genero"
-                    value={comicData.genero}
+                    value={comic.genero}
                     onChange={handleInputChange}
-                  />
+                  >
+                    <option value="Comic" selected>Comic</option>
+                    <option value="Manga">Manga</option>
+                  </select>
                 </div>
                 <div className="row">
                   <div className="col-md-6">

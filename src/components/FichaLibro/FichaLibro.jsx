@@ -33,7 +33,7 @@ function FichaLibro({ comic }) {
   }, [message]);
 
   return (
-    <div className="card custom-card d-flex flex-column justify-content-between align-items-center p-2">
+    <div className="card d-flex flex-column justify-content-between align-items-center p-2 col-12 col-sm-6 col-md-6 col-lg-4 g-3">
       {/* Contenedor de la imagen */}
       <div className="card-image">
         <PortadaComic src={imagen} alt={titulo} className="img-fluid" />

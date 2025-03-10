@@ -22,15 +22,3 @@
   border-top: none;
 }
 
-/* 📌 En móviles: Mostrar solo **1 cómic por fila** */
-@media (max-width: 767px) {
- .custom-card {
-    width: 100%; /* Ocupa todo el ancho del contenedor */
-  }
-  
-}
-/*
-.custom-card-content {
-  height: 270px;
-  border-top: none;
-}*/

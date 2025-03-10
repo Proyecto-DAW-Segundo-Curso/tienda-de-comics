@@ -63,7 +63,7 @@ const AdminUsuarios = () => {
 
   return (
     <div className="container mt-5">
-      <div className="card custom-card">
+      <div className="card custom-admin-color">
         <div className="card-header custom-header text-white fw-bold">
           ADMINISTRAR USUARIOS
         </div>

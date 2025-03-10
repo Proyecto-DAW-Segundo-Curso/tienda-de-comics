@@ -7,7 +7,7 @@
     overflow: hidden;
 }
 
-.contenedor-imagen  img {
+.contenedor-imagen img {
     height: 100%;
     object-fit: cover;
     display: block; 

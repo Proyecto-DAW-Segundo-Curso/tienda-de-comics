@@ -60,14 +60,16 @@ function AdminComics() {
             value={searchText} // Enlaza el valor del campo con el estado searchText
             onChange={e => setSearchText(e.target.value)} // Actualiza searchText al cambiar el contenido del input
           />
-          <Boton
-            onClick={() => navigate("/agregar-comic")} // Redirige a la ruta de agregar cómic
-          >
-            AÑADIR COMIC
-          </Boton>
-          <Boton onClick={() => navigate("/zona-usuario")}>VOLVER</Boton>
+          <div className='admin-comics-buttons'>
+            <Boton
+              onClick={() => navigate("/agregar-comic")} // Redirige a la ruta de agregar cómic
+            >
+              AÑADIR COMIC
+            </Boton>
+            <Boton onClick={() => navigate("/zona-usuario")}>VOLVER</Boton>
+          </div>
         </div>
-        <div className="card-body">
+        <div className="card-body ">
           {/* Mensaje de error si no se encuentran cómics */}
           {filteredComics.length === 0 ? (
             <div className="text-center text-danger">Cómic no encontrado</div>
@@ -75,7 +77,7 @@ function AdminComics() {
             <div className="row">
               {/* Mapea los cómics filtrados y muestra cada uno en una tarjeta */}
               {filteredComics.map(comic => (
-                <div className="col-md-4 mb-4" key={comic.id}>
+                <div className="col-12 col-sm-12 col-md-6 col-lg-4 mb-4" key={comic.id}>
                   <div className="card h-100 d-flex justify-content-between align-items-center">
                     <img
                       src={comic.imagen || 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg'} // Muestra la imagen del cómic o un placeholder si no hay imagen
